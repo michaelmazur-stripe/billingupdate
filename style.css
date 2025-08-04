@@ -364,7 +364,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 0;
+    padding: 16px 32px;
     max-width: 100%;
     margin: 0;
     box-sizing: border-box;
@@ -422,7 +422,7 @@ body {
     border: none;
     border-radius: 6px;
     background: transparent;
-    color: #6b7280;
+    color: #474E5A;
     cursor: pointer;
     transition: all 0.15s ease;
     position: relative;
@@ -430,7 +430,7 @@ body {
 
 .header-icon-btn:hover {
     background: #f3f4f6;
-    color: #374151;
+    color: #474E5A;
 }
 
 .header-icon-btn.profile-btn {
@@ -446,6 +446,7 @@ body {
 .header-icon-btn.primary {
     background: #635bff;
     color: #ffffff;
+    border-radius: 50%;
 }
 
 .header-icon-btn.primary:hover {
@@ -459,10 +460,7 @@ body {
     flex-shrink: 0;
 }
 
-/* Only show search header on home page */
-#generic-page .search-header {
-    display: none;
-}
+/* Search header is now global for all pages */
 
 /* Content Header */
 .content-header {
@@ -926,10 +924,14 @@ tr:hover {
         padding-right: 16px;
     }
     
-    .content-header,
-    .search-header-content {
+    .content-header {
         margin-left: 16px;
         margin-right: 16px;
+    }
+    
+    .search-header-content {
+        padding-left: 16px;
+        padding-right: 16px;
     }
     
     .metric-group {
@@ -1057,4 +1059,40 @@ tr:hover {
 .company-selector:focus {
     outline: 2px solid #635bff;
     outline-offset: 2px;
+}
+
+/* Placeholder Box for Future Pages */
+.placeholder-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 64px 32px;
+    margin: -32px 0 48px 0;
+    text-align: center;
+    min-height: 300px;
+}
+
+.placeholder-icon {
+    margin-bottom: 12px;
+    opacity: 0.6;
+}
+
+.placeholder-box .placeholder-title {
+    font-size: 20px !important;
+    font-weight: 600;
+    color: #374151;
+    margin: 0 0 12px 0;
+    line-height: 1.4;
+}
+
+.placeholder-text {
+    font-size: 16px;
+    color: #6b7280;
+    margin: 0;
+    font-weight: 400;
+    line-height: 1.5;
 }

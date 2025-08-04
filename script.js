@@ -117,6 +117,7 @@ function showPage(pageName) {
     const homePage = document.getElementById('home-page');
     const genericPage = document.getElementById('generic-page');
     const genericPageTitle = document.getElementById('generic-page-title');
+    const pageNamePlaceholder = document.getElementById('page-name-placeholder');
     
     // Hide all page content first
     if (homePage) homePage.style.display = 'none';
@@ -127,9 +128,10 @@ function showPage(pageName) {
         if (homePage) homePage.style.display = 'block';
         // Home page title is always "Today" and doesn't need to be changed
     } else {
-        // Show generic page with just the title
+        // Show generic page with placeholder content
         if (genericPage) genericPage.style.display = 'block';
         if (genericPageTitle) genericPageTitle.textContent = pageName;
+        if (pageNamePlaceholder) pageNamePlaceholder.textContent = pageName;
     }
 }
 

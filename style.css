@@ -471,6 +471,17 @@ body {
     background: #ffffff;
     margin: 0;
     box-sizing: border-box;
+    position: relative;
+}
+
+.content-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #e5e7eb;
 }
 
 .content-header h1 {
@@ -522,6 +533,20 @@ body {
     flex-direction: column;
     gap: 24px;
     margin: 0;
+    position: relative;
+}
+
+.today-right::before {
+    content: '';
+    position: absolute;
+    top: calc(50% - 28px);
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 1px;
+    background-color: #e5e7eb;
+    z-index: 1;
 }
 
 .metric-group {
@@ -546,9 +571,14 @@ body {
 
 .metric-value {
     font-size: 24px;
-    font-weight: 600;
-    color: #1a1a1a;
+    font-weight: 400;
+    color: #353A44;
     margin-bottom: 4px;
+}
+
+/* Move Revenue today metric to the right */
+.metric-group .metric:nth-child(2) {
+    margin-left: 24px;
 }
 
 .metric-time,
@@ -565,7 +595,7 @@ body {
 .balance-card,
 .debits-card {
     background: #ffffff;
-    border: 1px solid #e5e7eb;
+    border: none;
     border-radius: 8px;
     padding: 20px;
     margin: 0;
@@ -576,7 +606,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 .balance-header span {
@@ -598,8 +628,9 @@ body {
 
 .balance-value {
     font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 8px;
+    font-weight: 400;
+    margin-bottom: 0;
+    color: #353A44;
 }
 
 .balance-value.negative {
@@ -613,9 +644,9 @@ body {
 
 .debit-value {
     font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 4px;
-    color: #1a1a1a;
+    font-weight: 400;
+    margin-bottom: 2px;
+    color: #353A44;
 }
 
 .debit-date {
@@ -626,117 +657,176 @@ body {
 /* Overview Section */
 .overview-section {
     padding: 0 0 32px 0;
+    margin-top: 64px; /* Add 64px space above the overview section */
 }
 
 .overview-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     margin-left: 0;
     margin-right: 0;
+    position: relative;
+    padding-bottom: 16px;
+}
+
+.overview-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #e5e7eb;
 }
 
 .overview-header h2 {
-    font-size: 20px;
+    font-size: 28px;
     font-weight: 600;
     color: #1a1a1a;
 }
 
-.overview-controls {
+.overview-controls-row {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 12px;
+    margin-bottom: 24px;
 }
 
-.time-select,
-.period-select {
+.overview-pills {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pill-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
     background: #ffffff;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    padding: 6px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    padding: 4px 12px;
+    height: 24px;
     font-size: 14px;
     color: #374151;
     cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pill-button:hover {
+    border-color: #d1d5db;
+    background: #f9fafb;
+}
+
+.pill-button.compare {
+    border: 1px dashed #d1d5db;
+    color: #6b7280;
+}
+
+.pill-button.compare:hover {
+    border-color: #9ca3af;
+    background: #f9fafb;
+}
+
+.pill-label {
+    color: #6b7280;
+    font-weight: 400;
+}
+
+.pill-value {
+    color: #635bff;
+    font-weight: 500;
+}
+
+.pill-button.compare .pill-value {
+    color: #6b7280;
+    font-weight: 400;
+}
+
+.pill-chevron {
+    width: 12px;
+    height: 12px;
+    color: #9ca3af;
+    transition: transform 0.2s ease;
+}
+
+.pill-plus-icon {
+    width: 14px;
+    height: 14px;
+    color: #9ca3af;
+    flex-shrink: 0;
+}
+
+.overview-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    flex-shrink: 0;
+}
+
+.btn-secondary {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    color: #374151;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
 }
 
 .overview-content {
     display: flex;
-    gap: 40px;
+    gap: 24px;
 }
 
-.overview-left {
+.overview-chart-container {
     flex: 1;
-}
-
-.overview-right {
-    flex: 2;
-}
-
-.overview-metric {
     background: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 8px;
     padding: 24px;
-}
-
-.metric-header {
     display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 12px;
+    flex-direction: column;
 }
 
-.metric-header span {
-    font-size: 14px;
-    color: #6b7280;
-    font-weight: 500;
-}
-
-.info-icon {
+.overview-chart-title {
     font-size: 16px;
-    color: #9ca3af;
-    cursor: help;
-}
-
-.metric-big-value {
-    font-size: 36px;
-    font-weight: 600;
-    color: #1a1a1a;
-}
-
-.overview-chart-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 24px;
-}
-
-.explore-btn {
-    background: #f8f9fa;
-    border: 1px solid #e5e7eb;
+    font-weight: 500;
     color: #374151;
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 13px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    margin-bottom: 8px;
 }
 
-.explore-btn:hover {
-    background: #f3f4f6;
+.overview-chart-value {
+    font-size: 24px;
+    font-weight: 400;
+    color: #353A44;
+    margin-bottom: 16px;
+    line-height: 1.2;
 }
 
-.chart-container-main {
-    height: 300px;
-    position: relative;
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 16px;
+.overview-chart-canvas {
+    height: 200px;
+    width: 100%;
 }
+
+/* Old overview styles removed - using new 3-chart layout */
 
 /* Page Content Containers */
 .page-content {
@@ -945,8 +1035,19 @@ tr:hover {
         gap: 16px;
     }
     
-    .overview-controls {
-        flex-wrap: wrap;
+    .overview-controls-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    
+    .overview-pills {
+        order: 2;
+    }
+    
+    .overview-actions {
+        order: 1;
+        align-self: flex-end;
     }
     
     .nav-bottom {

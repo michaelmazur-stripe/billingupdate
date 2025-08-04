@@ -7,19 +7,20 @@ const mockData = {
         debits: 41.60
     },
     
-    overview: {
-        highRiskPayments: 0,
-        grossVolume: 3.88
+    overviewTotals: {
+        totalRevenue: 85200,
+        subscriptionRevenue: 54500,
+        meterRevenue: 30700
     },
     
     todayChartData: {
-        labels: ['12:00 AM', '3:00 AM', '6:00 AM', '9:00 AM', '12:00 PM', '3:00 PM', '6:00 PM', '9:00 PM'],
+        labels: ['12:00 CST', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00'],
         datasets: [{
             label: 'Volume',
-            data: [0.1, 0.05, 0.2, 0.8, 1.01, 0.7, 0.4, 0.3],
+            data: [0.5, 0.8, 1.2, 1.01, 0.9, null, null, null],
             borderColor: '#6366f1',
             backgroundColor: 'rgba(99, 102, 241, 0.1)',
-            fill: true,
+            fill: false, 
             tension: 0.4,
             borderWidth: 2,
             pointRadius: 0,
@@ -27,18 +28,48 @@ const mockData = {
         }]
     },
     
-    overviewChartData: {
-        labels: ['Jul 26', '', 'Aug 1', '', 'Jul 26', '', 'Aug 1'],
+    totalRevenueChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [{
-            label: 'Gross Volume',
-            data: [0.5, 1.2, 2.1, 1.8, 3.2, 2.1, 3.88],
-            borderColor: '#8b5cf6',
-            backgroundColor: 'rgba(139, 92, 246, 0.1)',
-            fill: true,
+            label: 'Total Revenue',
+            data: [4200, 5100, 4800, 6200, 7100, 6800, 7900, 8400, 7600, 8100, 8800, 9200],
+            borderColor: '#635bff',
+            backgroundColor: 'rgba(99, 91, 255, 0.1)',
+            fill: false,
             tension: 0.4,
             borderWidth: 2,
-            pointRadius: 3,
-            pointHoverRadius: 6
+            pointRadius: 0,
+            pointHoverRadius: 0
+        }]
+    },
+
+    subscriptionRevenueChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Subscription Revenue',
+            data: [2800, 3200, 3100, 3900, 4500, 4200, 5100, 5600, 5200, 5400, 5900, 6300],
+            borderColor: '#635bff',
+            backgroundColor: 'rgba(99, 91, 255, 0.1)',
+            fill: false,
+            tension: 0.4,
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 0
+        }]
+    },
+
+    meterRevenueChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Meter Revenue',
+            data: [1400, 1900, 1700, 2300, 2600, 2600, 2800, 2800, 2400, 2700, 2900, 2900],
+            borderColor: '#635bff',
+            backgroundColor: 'rgba(99, 91, 255, 0.1)',
+            fill: false,
+            tension: 0.4,
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 0
         }]
     },
     
@@ -276,9 +307,10 @@ function updateMetrics() {
     document.getElementById('usdBalance').textContent = formatCurrency(mockData.today.usdBalance);
     document.getElementById('debits').textContent = formatCurrency(mockData.today.debits);
     
-    // Overview metrics
-    document.getElementById('highRiskPayments').textContent = mockData.overview.highRiskPayments;
-    document.getElementById('overviewGrossVolume').textContent = formatCurrency(mockData.overview.grossVolume);
+    // Overview chart totals
+    document.getElementById('totalRevenueValue').textContent = formatCurrency(mockData.overviewTotals.totalRevenue);
+    document.getElementById('subscriptionRevenueValue').textContent = formatCurrency(mockData.overviewTotals.subscriptionRevenue);
+    document.getElementById('meterRevenueValue').textContent = formatCurrency(mockData.overviewTotals.meterRevenue);
 }
 
 // Create Charts
@@ -307,9 +339,15 @@ function createCharts() {
             },
             scales: {
                 x: {
-                    display: false,
+                    display: true,
                     grid: {
                         display: false
+                    },
+                    ticks: {
+                        color: '#9ca3af',
+                        font: {
+                            size: 12
+                        }
                     }
                 },
                 y: {
@@ -333,12 +371,9 @@ function createCharts() {
         }
     });
     
-    // Overview Chart (main chart)
-    const overviewCtx = document.getElementById('overviewChart').getContext('2d');
-    new Chart(overviewCtx, {
-        type: 'line',
-        data: mockData.overviewChartData,
-        options: {
+    // Helper function to create chart options
+    function createChartOptions(maxValue) {
+        return {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
@@ -366,7 +401,14 @@ function createCharts() {
                     ticks: {
                         color: '#9ca3af',
                         font: {
-                            size: 12
+                            size: 11
+                        },
+                        callback: function(value, index) {
+                            // Only show Jan (index 0) and Dec (index 11)
+                            if (index === 0 || index === 11) {
+                                return this.getLabelForValue(value);
+                            }
+                            return '';
                         }
                     }
                 },
@@ -379,32 +421,58 @@ function createCharts() {
                     border: {
                         display: false
                     },
+                    min: 0,
+                    max: maxValue,
                     ticks: {
                         color: '#9ca3af',
                         font: {
-                            size: 12
+                            size: 11
                         },
+                        stepSize: maxValue / 3, // This creates exactly 4 ticks (0, stepSize, 2*stepSize, 3*stepSize)
                         callback: function(value) {
-                            return '$' + value.toFixed(2);
+                            return '$' + value.toLocaleString();
                         }
-                    },
-                    beginAtZero: true
+                    }
                 }
             },
             elements: {
                 point: {
-                    radius: 3,
-                    hoverRadius: 6,
-                    backgroundColor: '#8b5cf6',
+                    radius: 0,
+                    hoverRadius: 0,
+                    backgroundColor: '#635bff',
                     borderColor: '#ffffff',
-                    borderWidth: 2
+                    borderWidth: 1
                 }
             },
             interaction: {
                 intersect: false,
                 mode: 'index'
             }
-        }
+        };
+    }
+
+    // Total Revenue Chart
+    const totalRevenueCtx = document.getElementById('totalRevenueChart').getContext('2d');
+    new Chart(totalRevenueCtx, {
+        type: 'line',
+        data: mockData.totalRevenueChartData,
+        options: createChartOptions(12000) // 0, 4000, 8000, 12000
+    });
+
+    // Subscription Revenue Chart
+    const subscriptionRevenueCtx = document.getElementById('subscriptionRevenueChart').getContext('2d');
+    new Chart(subscriptionRevenueCtx, {
+        type: 'line',
+        data: mockData.subscriptionRevenueChartData,
+        options: createChartOptions(9000) // 0, 3000, 6000, 9000
+    });
+
+    // Meter Revenue Chart
+    const meterRevenueCtx = document.getElementById('meterRevenueChart').getContext('2d');
+    new Chart(meterRevenueCtx, {
+        type: 'line',
+        data: mockData.meterRevenueChartData,
+        options: createChartOptions(3600) // 0, 1200, 2400, 3600
     });
 }
 

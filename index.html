@@ -408,7 +408,7 @@
                 <section class="revenue-overview-section">
                     <h2 class="revenue-overview-title">Overview</h2>
                     <p class="revenue-overview-description">
-                        Committed subscription and usage revenue. Manage <u>metric calculations</u> or learn <u>how we benchmark</u>.
+                        Committed subscription and usage revenue. Manage <u><button class="metrics-link" id="metricsCalculationsLink">metric calculations</button></u>.
                     </p>
                 </section>
 
@@ -484,6 +484,59 @@
                             <div class="overview-chart-value" id="meterRevenueValueBilling">$30,700</div>
                             <div class="overview-chart-canvas">
                                 <canvas id="meterRevenueChartBilling"></canvas>
+                            </div>
+                            <svg class="chart-open-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9375 1.75H3.0625C2.33763 1.75 1.75 2.33763 1.75 3.0625V10.9375C1.75 11.6624 2.33763 12.25 3.0625 12.25H10.9375C11.6624 12.25 12.25 11.6624 12.25 10.9375V3.0625C12.25 2.33763 11.6624 1.75 10.9375 1.75ZM3.0625 0.4375C1.61275 0.4375 0.4375 1.61275 0.4375 3.0625V10.9375C0.4375 12.3872 1.61275 13.5625 3.0625 13.5625H10.9375C12.3872 13.5625 13.5625 12.3872 13.5625 10.9375V3.0625C13.5625 1.61275 12.3872 0.4375 10.9375 0.4375H3.0625Z" fill="#B6C0CD"/>
+                                <path d="M10.2897 3.0625L7.30618 3.06271C6.94374 3.06274 6.64995 3.35657 6.64998 3.71901C6.65 4.08145 6.94384 4.37524 7.30628 4.37521L8.69681 4.37511L4.375 8.69692V7.29779C4.375 6.93535 4.08119 6.64154 3.71875 6.64154C3.35631 6.64154 3.0625 6.93535 3.0625 7.29779V10.2815C3.0625 10.4556 3.13164 10.6225 3.25472 10.7456C3.37779 10.8687 3.54472 10.9378 3.71877 10.9378L6.70252 10.9377C7.06496 10.9377 7.35876 10.6439 7.35875 10.2814C7.35874 9.91901 7.06492 9.6252 6.70249 9.62521L5.30283 9.62525L9.63354 5.29453V6.7025C9.63354 7.06494 9.92736 7.35875 10.2898 7.35875C10.6522 7.35875 10.946 7.06494 10.946 6.7025V3.71875C10.946 3.54469 10.8769 3.37777 10.7538 3.25469C10.6307 3.13162 10.4638 3.06249 10.2897 3.0625Z" fill="#B6C0CD"/>
+                            </svg>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Customer Economics Section -->
+                <section class="customer-economics-overview-section">
+                    <h2 class="revenue-overview-title">Customer economics</h2>
+                    <p class="revenue-overview-description">
+                        Customer revenue contributions, retention trends, and value. Manage <u><button class="metrics-link" id="customerEconomicsLink">metric calculations</button></u>.
+                    </p>
+                </section>
+
+                <!-- Customer Economics Content Layout -->
+                <section class="billing-main-content customer-economics-content">
+                    <!-- Average Revenue Per User Chart (3/4 width) -->
+                    <div class="billing-chart-main" data-chart="arpu">
+                        <div class="billing-chart-header">
+                            <h3 class="billing-chart-title">Average revenue per user</h3>
+                            <div class="billing-chart-total" id="customerEconomicsChartTotal">$128</div>
+                        </div>
+                        <div class="billing-chart-canvas">
+                            <canvas id="customerEconomicsChart"></canvas>
+                        </div>
+                        <svg class="chart-open-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9375 1.75H3.0625C2.33763 1.75 1.75 2.33763 1.75 3.0625V10.9375C1.75 11.6624 2.33763 12.25 3.0625 12.25H10.9375C11.6624 12.25 12.25 11.6624 12.25 10.9375V3.0625C12.25 2.33763 11.6624 1.75 10.9375 1.75ZM3.0625 0.4375C1.61275 0.4375 0.4375 1.61275 0.4375 3.0625V10.9375C0.4375 12.3872 1.61275 13.5625 3.0625 13.5625H10.9375C12.3872 13.5625 13.5625 12.3872 13.5625 10.9375V3.0625C13.5625 1.61275 12.3872 0.4375 10.9375 0.4375H3.0625Z" fill="#B6C0CD"/>
+                            <path d="M10.2897 3.0625L7.30618 3.06271C6.94374 3.06274 6.64995 3.35657 6.64998 3.71901C6.65 4.08145 6.94384 4.37524 7.30628 4.37521L8.69681 4.37511L4.375 8.69692V7.29779C4.375 6.93535 4.08119 6.64154 3.71875 6.64154C3.35631 6.64154 3.0625 6.93535 3.0625 7.29779V10.2815C3.0625 10.4556 3.13164 10.6225 3.25472 10.7456C3.37779 10.8687 3.54472 10.9378 3.71877 10.9378L6.70252 10.9377C7.06496 10.9377 7.35876 10.6439 7.35875 10.2814C7.35874 9.91901 7.06492 9.6252 6.70249 9.62521L5.30283 9.62525L9.63354 5.29453V6.7025C9.63354 7.06494 9.92736 7.35875 10.2898 7.35875C10.6522 7.35875 10.946 7.06494 10.946 6.7025V3.71875C10.946 3.54469 10.8769 3.37777 10.7538 3.25469C10.6307 3.13162 10.4638 3.06249 10.2897 3.0625Z" fill="#B6C0CD"/>
+                        </svg>
+                    </div>
+
+                    <!-- Customer Economics Metric Modules (1/4 width) -->
+                    <div class="billing-metrics-sidebar">
+                        <div class="overview-chart-container billing-metric-module" data-chart="lifetimeValue">
+                            <div class="overview-chart-title">Lifetime value</div>
+                            <div class="overview-chart-value" id="lifetimeValueValue">$2,450</div>
+                            <div class="overview-chart-canvas">
+                                <canvas id="lifetimeValueChart"></canvas>
+                            </div>
+                            <svg class="chart-open-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9375 1.75H3.0625C2.33763 1.75 1.75 2.33763 1.75 3.0625V10.9375C1.75 11.6624 2.33763 12.25 3.0625 12.25H10.9375C11.6624 12.25 12.25 11.6624 12.25 10.9375V3.0625C12.25 2.33763 11.6624 1.75 10.9375 1.75ZM3.0625 0.4375C1.61275 0.4375 0.4375 1.61275 0.4375 3.0625V10.9375C0.4375 12.3872 1.61275 13.5625 3.0625 13.5625H10.9375C12.3872 13.5625 13.5625 12.3872 13.5625 10.9375V3.0625C13.5625 1.61275 12.3872 0.4375 10.9375 0.4375H3.0625Z" fill="#B6C0CD"/>
+                                <path d="M10.2897 3.0625L7.30618 3.06271C6.94374 3.06274 6.64995 3.35657 6.64998 3.71901C6.65 4.08145 6.94384 4.37524 7.30628 4.37521L8.69681 4.37511L4.375 8.69692V7.29779C4.375 6.93535 4.08119 6.64154 3.71875 6.64154C3.35631 6.64154 3.0625 6.93535 3.0625 7.29779V10.2815C3.0625 10.4556 3.13164 10.6225 3.25472 10.7456C3.37779 10.8687 3.54472 10.9378 3.71877 10.9378L6.70252 10.9377C7.06496 10.9377 7.35876 10.6439 7.35875 10.2814C7.35874 9.91901 7.06492 9.6252 6.70249 9.62521L5.30283 9.62525L9.63354 5.29453V6.7025C9.63354 7.06494 9.92736 7.35875 10.2898 7.35875C10.6522 7.35875 10.946 7.06494 10.946 6.7025V3.71875C10.946 3.54469 10.8769 3.37777 10.7538 3.25469C10.6307 3.13162 10.4638 3.06249 10.2897 3.0625Z" fill="#B6C0CD"/>
+                            </svg>
+                        </div>
+
+                        <div class="overview-chart-container billing-metric-module" data-chart="netDollarRetention">
+                            <div class="overview-chart-title">Net dollar retention</div>
+                            <div class="overview-chart-value" id="netDollarRetentionValue">118%</div>
+                            <div class="overview-chart-canvas">
+                                <canvas id="netDollarRetentionChart"></canvas>
                             </div>
                             <svg class="chart-open-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9375 1.75H3.0625C2.33763 1.75 1.75 2.33763 1.75 3.0625V10.9375C1.75 11.6624 2.33763 12.25 3.0625 12.25H10.9375C11.6624 12.25 12.25 11.6624 12.25 10.9375V3.0625C12.25 2.33763 11.6624 1.75 10.9375 1.75ZM3.0625 0.4375C1.61275 0.4375 0.4375 1.61275 0.4375 3.0625V10.9375C0.4375 12.3872 1.61275 13.5625 3.0625 13.5625H10.9375C12.3872 13.5625 13.5625 12.3872 13.5625 10.9375V3.0625C13.5625 1.61275 12.3872 0.4375 10.9375 0.4375H3.0625Z" fill="#B6C0CD"/>
@@ -595,6 +648,94 @@
                     <p id="modalCalculationText" class="modal-calculation-text">
                         This metric represents the total revenue generated from all payment transactions during the selected time period.
                     </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Metrics Calculations Panel -->
+    <div id="metricsPanel" class="metrics-panel">
+        <div class="metrics-panel-overlay" id="metricsPanelOverlay"></div>
+        <div class="metrics-panel-content">
+            <div class="metrics-panel-header">
+                <h2 class="metrics-panel-title">Metrics calculations</h2>
+                <button class="metrics-panel-close" id="metricsPanelClose">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4.293 4.293a1 1 0 011.414 0L8 6.586l2.293-2.293a1 1 0 111.414 1.414L9.414 8l2.293 2.293a1 1 0 01-1.414 1.414L8 9.414l-2.293 2.293a1 1 0 01-1.414-1.414L6.586 8 4.293 5.707a1 1 0 010-1.414z" fill="currentColor"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="metrics-panel-body">
+                <!-- Metric items will be populated dynamically based on panel type -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Metric Detail Panel -->
+    <div id="metricDetailPanel" class="metrics-panel metric-detail-panel">
+        <div class="metrics-panel-overlay" id="metricDetailPanelOverlay"></div>
+        <div class="metrics-panel-content">
+            <div class="metrics-panel-header">
+                <div class="metric-detail-header-content">
+                    <div class="metric-detail-breadcrumb">
+                        <button class="breadcrumb-back" id="breadcrumbBack">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 4l-4 4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Metrics calculations
+                        </button>
+                    </div>
+                    <h2 class="metric-detail-title" id="metricDetailTitle">Total committed revenue</h2>
+                </div>
+                <button class="metrics-panel-close" id="metricDetailPanelClose">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4.293 4.293a1 1 0 011.414 0L8 6.586l2.293-2.293a1 1 0 111.414 1.414L9.414 8l2.293 2.293a1 1 0 01-1.414 1.414L8 9.414l-2.293 2.293a1 1 0 01-1.414-1.414L6.586 8 4.293 5.707a1 1 0 010-1.414z" fill="currentColor"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="metrics-panel-body">
+                <p class="metric-detail-description" id="metricDetailDescription">
+                    A sum of your billing revenue and usage charges measured by meters. Usage and billing revenue have been committed by customers but may not have yet been collected. Decide whether discounts, credits, and uncollected committed revenue are included in your calculation.
+                </p>
+                
+                <div class="metric-detail-controls">
+                    <div class="metric-control-item">
+                        <div class="metric-control-content">
+                            <h4 class="metric-control-title">Monthly recurring revenue</h4>
+                            <p class="metric-control-description">Include revenue that is committed in total revenue but has not yet been collected</p>
+                        </div>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="toggleMRR" checked>
+                            <label for="toggleMRR" class="toggle-slider"></label>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-control-item">
+                        <div class="metric-control-content">
+                            <h4 class="metric-control-title">One time discounts</h4>
+                            <p class="metric-control-description">Include one time discounts in your total revenue</p>
+                        </div>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="toggleDiscounts" checked>
+                            <label for="toggleDiscounts" class="toggle-slider"></label>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-control-item">
+                        <div class="metric-control-content">
+                            <h4 class="metric-control-title">Free credits</h4>
+                            <p class="metric-control-description">Include free credits in your total revenue</p>
+                        </div>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="toggleCredits" checked>
+                            <label for="toggleCredits" class="toggle-slider"></label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="metric-detail-actions">
+                    <button class="metric-detail-cancel">Cancel</button>
+                    <button class="metric-detail-apply">Apply</button>
                 </div>
             </div>
         </div>

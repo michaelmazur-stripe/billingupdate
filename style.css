@@ -888,7 +888,7 @@ body {
     text-align: center;
 }
 
-.generic-page-container h2 {
+.generic-page-container h2:not(.placeholder-title) {
     font-size: 32px;
     font-weight: 600;
     color: #1a1a1a;
@@ -1231,12 +1231,13 @@ tr:hover {
     align-items: center;
     justify-content: center;
     background: #ffffff;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #e5e7eb !important;
     border-radius: 8px;
     padding: 64px 32px;
     margin: -32px 0 48px 0;
     text-align: center;
     min-height: 300px;
+    box-sizing: border-box;
 }
 
 .placeholder-icon {
@@ -1246,10 +1247,10 @@ tr:hover {
 
 .placeholder-box .placeholder-title {
     font-size: 20px !important;
-    font-weight: 600;
-    color: #374151;
-    margin: 0 0 12px 0;
-    line-height: 1.4;
+    font-weight: 600 !important;
+    color: #374151 !important;
+    margin: 0 0 12px 0 !important;
+    line-height: 1.4 !important;
 }
 
 .placeholder-text {

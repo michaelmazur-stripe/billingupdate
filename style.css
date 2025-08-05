@@ -467,7 +467,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 0 24px 0;
+    padding: 0 0 14px 0;
     background: #ffffff;
     margin: 0;
     box-sizing: border-box;
@@ -752,6 +752,14 @@ body {
     transition: transform 0.2s ease;
 }
 
+.pill-divider {
+    width: 1px;
+    height: 16px;
+    background-color: #e5e7eb;
+    margin: 0 8px;
+    flex-shrink: 0;
+}
+
 .pill-plus-icon {
     width: 14px;
     height: 14px;
@@ -804,6 +812,31 @@ body {
     padding: 24px;
     display: flex;
     flex-direction: column;
+    position: relative;
+    transition: box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.overview-chart-container:hover {
+    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.overview-chart-container::before {
+    content: "Explore";
+    position: absolute;
+    top: 19px;
+    right: 32px;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: #635bff;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.overview-chart-container:hover::before {
+    opacity: 1;
 }
 
 .overview-chart-title {
@@ -818,7 +851,23 @@ body {
     font-weight: 400;
     color: #353A44;
     margin-bottom: 16px;
-    line-height: 1.2;
+}
+
+.chart-open-icon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all 0.2s ease;
+}
+
+.overview-chart-container:hover .chart-open-icon {
+    opacity: 1;
+}
+
+.overview-chart-container:hover .chart-open-icon path {
+    fill: #635bff;
 }
 
 .overview-chart-canvas {
@@ -1135,7 +1184,7 @@ tr:hover {
 
 /* Navigation sections */
 .nav-section {
-    margin: 24px 0 16px 0;
+    margin: 32px 0 20px 0;
 }
 
 .nav-section ul {
@@ -1196,4 +1245,494 @@ tr:hover {
     margin: 0;
     font-weight: 400;
     line-height: 1.5;
+}
+
+/* Chart Detail Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 0;
+    overflow-y: auto;
+}
+
+.modal-container {
+    width: 944px;
+    max-height: 680px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    margin: 24px 32px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    padding: 24px 32px 16px 32px;
+    background: #ffffff;
+    position: relative;
+}
+
+.modal-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0px;
+}
+
+.modal-metric-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: #6b7280;
+    border-radius: 6px;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close-btn:hover {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.modal-metric-value {
+    font-size: 32px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.modal-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 32px 32px 32px;
+}
+
+.modal-filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.pill-button-add {
+    border: 1px dashed #d1d5db !important;
+    background: transparent !important;
+    color: #6b7280 !important;
+}
+
+.pill-button-add .pill-value {
+    color: #6b7280 !important;
+    font-weight: 400 !important;
+}
+
+.pill-button-add:hover {
+    border-color: #9ca3af !important;
+    background: #f9fafb !important;
+}
+
+.pill-button-add:hover .pill-chevron {
+    color: #6b7280;
+}
+
+.pill-plus-icon {
+    width: 14px;
+    height: 14px;
+    color: #6b7280;
+}
+
+.pill-button-add .pill-chevron {
+    color: #6b7280;
+}
+
+.modal-chart-container {
+    height: 304px;
+    margin-bottom: 32px;
+    background: #ffffff;
+    padding: 16px;
+}
+
+.modal-chart-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.modal-table-section {
+    margin-bottom: 32px;
+}
+
+.modal-table-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 16px 0;
+}
+
+.modal-table-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.modal-table {
+    min-width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.modal-table th {
+    background: #ffffff;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 10px;
+    color: #353A44;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-table th:first-child {
+    position: sticky;
+    left: 0;
+    background: #ffffff;
+    z-index: 1;
+}
+
+.modal-table td:first-child {
+    position: sticky;
+    left: 0;
+    background: #ffffff;
+    z-index: 1;
+}
+
+.modal-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #f3f4f6;
+    color: #353A44;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.modal-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.modal-table tbody tr:hover {
+    background: #f9fafb;
+}
+
+.modal-table tbody tr:hover td:first-child {
+    background: #f9fafb;
+}
+
+/* Revenue Checkbox Styles */
+.revenue-checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    gap: 8px;
+}
+
+.revenue-checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.revenue-checkbox-checkmark {
+    height: 16px;
+    width: 16px;
+    border: 2px solid #d1d5db;
+    border-radius: 3px;
+    position: relative;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.revenue-checkbox-checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 4px;
+    top: 1px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.revenue-checkbox:checked + .revenue-checkbox-checkmark::after {
+    display: block;
+}
+
+.modal-calculation-section {
+    margin-bottom: 16px;
+}
+
+.modal-calculation-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 12px 0;
+}
+
+.modal-calculation-text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* Modal responsive behavior */
+@media (max-width: 1024px) {
+    .modal-container {
+        width: calc(100vw - 64px);
+        margin: 24px 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-container {
+        width: calc(100vw - 32px);
+        margin: 16px 16px;
+    }
+    
+    .modal-header {
+        padding: 20px 24px 16px 24px;
+    }
+    
+    .modal-content {
+        padding: 0 24px 24px 24px;
+    }
+}
+
+/* Billing Page Styles */
+.billing-filters {
+    display: flex;
+    gap: 8px;
+    margin: 22px 0 24px 0;
+    flex-wrap: wrap;
+}
+
+.revenue-overview-section {
+    margin-bottom: 24px;
+}
+
+.revenue-overview-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 8px 0;
+}
+
+.revenue-overview-description {
+    font-size: 14px;
+    font-weight: 400;
+    color: #596171;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.billing-main-content {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.billing-chart-main {
+    flex: 3;
+    min-width: 300px;
+    height: 352px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 24px;
+    position: relative;
+    transition: box-shadow 0.2s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.billing-chart-main:hover {
+    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.billing-chart-main::before {
+    content: "Explore";
+    position: absolute;
+    top: 19px;
+    right: 32px;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: #635bff;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.billing-chart-main:hover::before {
+    opacity: 1;
+}
+
+
+
+.billing-chart-main:hover .chart-open-icon path {
+    fill: #635bff;
+}
+
+.billing-chart-header {
+    margin-bottom: 24px;
+}
+
+.billing-chart-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 2px 0;
+}
+
+.billing-chart-total {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.billing-chart-canvas {
+    flex: 1;
+    position: relative;
+    min-height: 0;
+}
+
+.billing-metrics-sidebar {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.billing-metrics-sidebar .overview-chart-container.billing-metric-module {
+    height: 56px !important;
+    min-height: 56px !important;
+    max-height: 56px !important;
+    flex: none !important;
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
+    padding: 8px 16px !important;
+    justify-content: center !important;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+}
+
+.billing-metrics-sidebar .overview-chart-container.billing-metric-module:hover {
+    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.billing-metrics-sidebar .overview-chart-container.billing-metric-module:hover .chart-open-icon path {
+    fill: #635bff;
+}
+
+.billing-metrics-sidebar .overview-chart-container.billing-metric-module .overview-chart-canvas {
+    display: none !important;
+}
+
+.billing-metrics-sidebar .overview-chart-container.billing-metric-module .chart-open-icon {
+    top: 8px !important;
+    transform: none !important;
+    right: 12px !important;
+}
+
+.billing-metrics-sidebar .overview-chart-container.billing-metric-module::before {
+    content: "Explore";
+    position: absolute;
+    top: 15px;
+    right: 32px;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: #635bff;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.billing-metrics-sidebar .overview-chart-container.billing-metric-module:hover::before {
+    opacity: 1;
+}
+
+.overview-chart-container.billing-metric-module .overview-chart-title {
+    font-size: 12px;
+    margin-bottom: 2px !important;
+    line-height: 1.2 !important;
+}
+
+.overview-chart-container.billing-metric-module .overview-chart-value {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+}
+
+/* Responsive adjustments for billing page */
+@media (max-width: 1000px) {
+    .billing-chart-main {
+        flex: 2;
+        min-width: 250px;
+    }
+    
+    .billing-metrics-sidebar {
+        flex: 1;
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 900px) {
+    .billing-main-content {
+        flex-direction: column;
+        gap: 24px;
+    }
+    
+    .billing-chart-main {
+        flex: none;
+        min-width: unset;
+    }
+    
+    .billing-metrics-sidebar {
+        flex: none;
+        min-width: unset;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 8px;
+    }
+    
+    .overview-chart-container.billing-metric-module {
+        height: 56px !important;
+        min-height: 56px !important;
+        max-height: 56px !important;
+    }
 }

@@ -1136,13 +1136,13 @@ function showPage(pageName) {
     } else if (pageName === 'revenue' || pageName.toLowerCase() === 'revenue') {
         // Show billing revenue page
         if (revenuePage) revenuePage.style.display = 'block';
-        // Update billing chart total
-        updateBillingChartTotal();
         // Create billing charts when showing the page
         setTimeout(() => {
             createBillingCharts();
             createCustomerEconomicsCharts();
             setupCustomerEconomicsInteractivity();
+            // Update billing chart total after charts are created
+            updateBillingChartTotal();
         }, 100);
         
         // Setup sticky filters with proper cleanup first
@@ -3592,7 +3592,7 @@ function updateBillingChartTotal() {
         const usageData = mockData.billingStackedChartData.datasets[1].data;
         const lastIndex = subscriptionData.length - 1;
         const total = subscriptionData[lastIndex] + usageData[lastIndex];
-        totalElement.textContent = formatCurrency(total);
+        totalElement.innerHTML = formatCurrency(total) + ' <span class="amount-growth">+11.2%</span>';
     }
 }
 

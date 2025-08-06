@@ -93,7 +93,19 @@ const mockData = {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [{
             label: 'Subscription Revenue',
-            data: [2800, 3200, 3100, 3900, 4500, 4200, 5100, 5600, 5200, 5400, 5900, 6300],
+            data: [58400, 56200, 51600, 62800, 68500, 61700, 55900, 54800, 67200, 71300, 78600, 73200],
+            backgroundColor: '#9966FF',
+            borderColor: '#9966FF',
+            borderWidth: 1
+        }]
+    },
+
+    // MRR bar chart data for subscriptions overview
+    mrrBarChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Monthly Recurring Revenue',
+            data: [42300, 43200, 41800, 44600, 45900, 44200, 43100, 42600, 45800, 46700, 47200, 46800],
             backgroundColor: '#9966FF',
             borderColor: '#9966FF',
             borderWidth: 1
@@ -153,6 +165,51 @@ const mockData = {
             borderWidth: 2,
             pointRadius: 0,
             pointHoverRadius: 4
+        }]
+    },
+
+    // Meters usage chart data for individual meter tracking
+    modelRunsChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Model Run API Calls (Millions)',
+            data: [1.8, 2.2, 2.6, 3.1, 2.9, 3.4, 3.8, 4.2, 3.9, 4.1, 4.5, 2.8],
+            backgroundColor: '#9966FF',
+            borderColor: '#9966FF',
+            borderWidth: 1
+        }]
+    },
+
+    tokensProcessedChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Token Processing API Calls (Billions)',
+            data: [89.2, 105.8, 118.6, 132.4, 124.7, 139.5, 148.2, 156.8, 145.3, 151.7, 162.4, 142.8],
+            backgroundColor: '#9966FF',
+            borderColor: '#9966FF',
+            borderWidth: 1
+        }]
+    },
+
+    trainingHoursChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Training Session API Calls (Thousands)',
+            data: [4.2, 6.8, 7.9, 9.5, 8.1, 9.8, 10.2, 11.6, 9.7, 10.4, 11.8, 8.4],
+            backgroundColor: '#9966FF',
+            borderColor: '#9966FF',
+            borderWidth: 1
+        }]
+    },
+
+    inferenceSecondsChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Inference API Calls (Thousands)',
+            data: [298.5, 342.8, 385.2, 421.6, 398.4, 445.7, 468.9, 501.2, 465.8, 488.1, 512.4, 476.2],
+            backgroundColor: '#9966FF',
+            borderColor: '#9966FF',
+            borderWidth: 1
         }]
     },
 
@@ -634,23 +691,23 @@ const mockData = {
         },
         mrr: {
             title: "Monthly Recurring Revenue",
-            value: "$54,500",
-            description: "This metric represents the predictable recurring revenue from subscription customers, calculated by normalizing all subscription revenue to a monthly basis.",
+            value: "$46,800",
+            description: "This metric represents only the predictable, recurring portion of subscription revenue. It excludes one-time setup fees, annual plan recognition spikes, usage overages, and other non-recurring subscription components. MRR is the foundation that can be counted on month after month.",
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            data: [2800, 3200, 3100, 3900, 4500, 4200, 5100, 5600, 5200, 5400, 5900, 6300],
+            data: [42300, 43200, 41800, 44600, 45900, 44200, 43100, 42600, 45800, 46700, 47200, 46800],
             tableData: [
-                { month: 'January', value: 2800, change: '+8.5%' },
-                { month: 'February', value: 3200, change: '+14.3%' },
-                { month: 'March', value: 3100, change: '-3.1%' },
-                { month: 'April', value: 3900, change: '+25.8%' },
-                { month: 'May', value: 4500, change: '+15.4%' },
-                { month: 'June', value: 4200, change: '-6.7%' },
-                { month: 'July', value: 5100, change: '+21.4%' },
-                { month: 'August', value: 5600, change: '+9.8%' },
-                { month: 'September', value: 5200, change: '-7.1%' },
-                { month: 'October', value: 5400, change: '+3.8%' },
-                { month: 'November', value: 5900, change: '+9.3%' },
-                { month: 'December', value: 6300, change: '+6.8%' }
+                { month: 'January', value: 42300, change: '+1.8%' },
+                { month: 'February', value: 43200, change: '+2.1%' },
+                { month: 'March', value: 41800, change: '-3.2%' },
+                { month: 'April', value: 44600, change: '+6.7%' },
+                { month: 'May', value: 45900, change: '+2.9%' },
+                { month: 'June', value: 44200, change: '-3.7%' },
+                { month: 'July', value: 43100, change: '-2.5%' },
+                { month: 'August', value: 42600, change: '-1.2%' },
+                { month: 'September', value: 45800, change: '+7.5%' },
+                { month: 'October', value: 46700, change: '+2.0%' },
+                { month: 'November', value: 47200, change: '+1.1%' },
+                { month: 'December', value: 46800, change: '-0.8%' }
             ]
         },
         meterRevenue: {
@@ -735,6 +792,27 @@ const mockData = {
                 { month: 'October', value: 120, change: '+0.8%' },
                 { month: 'November', value: 118, change: '-1.7%' },
                 { month: 'December', value: 118, change: '0.0%' }
+            ]
+        },
+        arpu: {
+            title: "Average revenue per user",
+            value: "$128",
+            description: "This metric represents the average revenue generated per customer during the selected time period, calculated by dividing total revenue by the number of active customers.",
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            data: [105, 108, 102, 118, 125, 121, 131, 136, 132, 134, 130, 128],
+            tableData: [
+                { month: 'January', value: 105, change: '+2.9%' },
+                { month: 'February', value: 108, change: '+2.9%' },
+                { month: 'March', value: 102, change: '-5.6%' },
+                { month: 'April', value: 118, change: '+15.7%' },
+                { month: 'May', value: 125, change: '+5.9%' },
+                { month: 'June', value: 121, change: '-3.2%' },
+                { month: 'July', value: 131, change: '+8.3%' },
+                { month: 'August', value: 136, change: '+3.8%' },
+                { month: 'September', value: 132, change: '-2.9%' },
+                { month: 'October', value: 134, change: '+1.5%' },
+                { month: 'November', value: 130, change: '-3.0%' },
+                { month: 'December', value: 128, change: '-1.5%' }
             ]
         }
     },
@@ -1027,6 +1105,9 @@ function initDashboard() {
 
 // Page Navigation Functions
 function showPage(pageName) {
+    // Set page position to top immediately when navigation occurs (no animation)
+    window.scrollTo(0, 0);
+    
     // Get page elements
     const homePage = document.getElementById('home-page');
     const revenuePage = document.getElementById('revenue-page');
@@ -1062,8 +1143,24 @@ function showPage(pageName) {
             createBillingCharts();
             createCustomerEconomicsCharts();
             setupCustomerEconomicsInteractivity();
-            setupStickyFilters();
         }, 100);
+        
+        // Setup sticky filters with proper cleanup first
+        setTimeout(() => {
+            cleanupStickyFilters(); // Clean up any existing handlers
+            setupStickyFilters();
+        }, 200);
+        
+        // Additional fallback to ensure customer economics chart is created
+        setTimeout(() => {
+            const customerEconomicsCanvas = document.getElementById('customerEconomicsChart');
+            if (customerEconomicsCanvas && !customerEconomicsCanvas.chart) {
+                console.log('Fallback: Creating customer economics chart');
+                createCustomerEconomicsCharts();
+            }
+            // Additional fallback for interactivity
+            setupCustomerEconomicsInteractivity();
+        }, 500);
     } else if (pageName === 'subscriptions' || pageName.toLowerCase() === 'subscriptions') {
         // Show subscriptions page with sticky filters and subscription charts
         if (subscriptionsPage) subscriptionsPage.style.display = 'block';
@@ -1357,6 +1454,14 @@ function setupSubscriptionChartInteractivity() {
         });
     }
     
+    // Add click event listener for MRR chart container
+    const mrrContainer = document.querySelector('#mrrValue').closest('.overview-chart-container');
+    if (mrrContainer) {
+        mrrContainer.addEventListener('click', () => {
+            showModal('mrr');
+        });
+    }
+    
     // Add click event listeners to subscriber chart containers
     const activeSubscribersContainer = document.querySelector('#activeSubscribersValue').closest('.overview-chart-container');
     const activeSubscribersGrowthContainer = document.querySelector('#activeSubscribersGrowthValue').closest('.overview-chart-container');
@@ -1533,6 +1638,73 @@ function createSubscriptionOverviewCharts() {
             }
         }
     });
+
+    // MRR Bar Chart
+    const mrrBarCtx = document.getElementById('mrrChart');
+    if (mrrBarCtx) {
+        new Chart(mrrBarCtx.getContext('2d'), {
+            type: 'bar',
+            data: mockData.mrrBarChartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: '#1f2937',
+                        titleColor: '#f9fafb',
+                        bodyColor: '#f9fafb',
+                        borderColor: '#374151',
+                        borderWidth: 1
+                    }
+                },
+                scales: {
+                    x: {
+                        display: true,
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#9ca3af',
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    y: {
+                        position: 'right',
+                        grid: {
+                            color: '#f3f4f6',
+                            borderDash: [2, 2]
+                        },
+                        border: {
+                            display: false
+                        },
+                        min: 0,
+                        max: 8000,
+                        ticks: {
+                            color: '#9ca3af',
+                            font: {
+                                size: 11
+                            },
+                            stepSize: 2000, // Creates ticks: 0, 2000, 4000, 6000, 8000
+                            callback: function(value) {
+                                return '$' + Math.round(value).toLocaleString();
+                            }
+                        }
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                }
+            }
+        });
+    }
 }
 
     // Create subscriber charts
@@ -1755,9 +1927,10 @@ function createCustomerEconomicsCharts() {
     
     if (customerEconomicsCtx) {
         console.log('Creating chart...');
-        const chart = new Chart(customerEconomicsCtx.getContext('2d'), {
-            type: 'line',
-            data: mockData.customerEconomicsChartData,
+        try {
+            const chart = new Chart(customerEconomicsCtx.getContext('2d'), {
+                type: 'line',
+                data: mockData.customerEconomicsChartData,
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
@@ -1820,8 +1993,11 @@ function createCustomerEconomicsCharts() {
                     mode: 'index'
                 }
             }
-        });
-        console.log('Chart created successfully:', chart);
+            });
+            console.log('Chart created successfully:', chart);
+        } catch (error) {
+            console.error('Error creating customer economics chart:', error);
+        }
     } else {
         console.log('Canvas element not found!');
     }
@@ -2840,7 +3016,7 @@ function createMetersOverviewCharts() {
                         position: 'right', grid: { color: '#f3f4f6', borderDash: [2, 2] }, border: { display: false },
                         min: 0, max: 3000,
                         ticks: {
-                            color: '#9ca3af', font: { size: 11 }, stepSize: 500,
+                            color: '#9ca3af', font: { size: 11 }, stepSize: 750,
                             callback: function(value) { return '$' + Math.round(value).toLocaleString(); }
                         }
                     }
@@ -2875,12 +3051,149 @@ function createMetersOverviewCharts() {
                         position: 'right', grid: { color: '#f3f4f6', borderDash: [2, 2] }, border: { display: false },
                         min: -20, max: 40,
                         ticks: {
-                            color: '#9ca3af', font: { size: 11 }, stepSize: 10,
+                            color: '#9ca3af', font: { size: 11 }, stepSize: 15,
                             callback: function(value) { return Math.round(value) + '%'; }
                         }
                     }
                 },
                 elements: { point: { radius: 0, hoverRadius: 4 } },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+    }
+
+    // Meters Usage Charts
+    // API Requests Chart
+    const apiRequestsCtx = document.getElementById('metersChart1');
+    if (apiRequestsCtx) {
+        new Chart(apiRequestsCtx.getContext('2d'), {
+            type: 'bar',
+            data: mockData.modelRunsChartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        mode: 'index', intersect: false, backgroundColor: '#1f2937', titleColor: '#f9fafb', bodyColor: '#f9fafb', borderColor: '#374151', borderWidth: 1
+                    }
+                },
+                scales: {
+                    x: {
+                        display: true, grid: { display: false },
+                        ticks: { color: '#9ca3af', font: { size: 12 } }
+                    },
+                    y: {
+                        position: 'right', grid: { color: '#f3f4f6', borderDash: [2, 2] }, border: { display: false },
+                        min: 0, max: 60,
+                        ticks: {
+                            color: '#9ca3af', font: { size: 11 }, stepSize: 15,
+                            callback: function(value) { return Math.round(value) + 'M'; }
+                        }
+                    }
+                },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+    }
+
+    // Data Transfer Chart
+    const dataTransferCtx = document.getElementById('metersChart2');
+    if (dataTransferCtx) {
+        new Chart(dataTransferCtx.getContext('2d'), {
+            type: 'bar',
+            data: mockData.tokensProcessedChartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        mode: 'index', intersect: false, backgroundColor: '#1f2937', titleColor: '#f9fafb', bodyColor: '#f9fafb', borderColor: '#374151', borderWidth: 1
+                    }
+                },
+                scales: {
+                    x: {
+                        display: true, grid: { display: false },
+                        ticks: { color: '#9ca3af', font: { size: 12 } }
+                    },
+                    y: {
+                        position: 'right', grid: { color: '#f3f4f6', borderDash: [2, 2] }, border: { display: false },
+                        min: 0, max: 12,
+                        ticks: {
+                            color: '#9ca3af', font: { size: 11 }, stepSize: 3,
+                            callback: function(value) { return Math.round(value) + 'TB'; }
+                        }
+                    }
+                },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+    }
+
+    // Email Deliveries Chart
+    const emailDeliveriesCtx = document.getElementById('metersChart3');
+    if (emailDeliveriesCtx) {
+        new Chart(emailDeliveriesCtx.getContext('2d'), {
+            type: 'bar',
+            data: mockData.trainingHoursChartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        mode: 'index', intersect: false, backgroundColor: '#1f2937', titleColor: '#f9fafb', bodyColor: '#f9fafb', borderColor: '#374151', borderWidth: 1
+                    }
+                },
+                scales: {
+                    x: {
+                        display: true, grid: { display: false },
+                        ticks: { color: '#9ca3af', font: { size: 12 } }
+                    },
+                    y: {
+                        position: 'right', grid: { color: '#f3f4f6', borderDash: [2, 2] }, border: { display: false },
+                        min: 0, max: 220,
+                        ticks: {
+                            color: '#9ca3af', font: { size: 11 }, stepSize: 55,
+                            callback: function(value) { return Math.round(value) + 'K'; }
+                        }
+                    }
+                },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+    }
+
+    // Storage Usage Chart
+    const storageUsageCtx = document.getElementById('metersChart4');
+    if (storageUsageCtx) {
+        new Chart(storageUsageCtx.getContext('2d'), {
+            type: 'bar',
+            data: mockData.inferenceSecondsChartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        mode: 'index', intersect: false, backgroundColor: '#1f2937', titleColor: '#f9fafb', bodyColor: '#f9fafb', borderColor: '#374151', borderWidth: 1
+                    }
+                },
+                scales: {
+                    x: {
+                        display: true, grid: { display: false },
+                        ticks: { color: '#9ca3af', font: { size: 12 } }
+                    },
+                    y: {
+                        position: 'right', grid: { color: '#f3f4f6', borderDash: [2, 2] }, border: { display: false },
+                        min: 0, max: 4,
+                        ticks: {
+                            color: '#9ca3af', font: { size: 11 }, stepSize: 1,
+                            callback: function(value) { return value.toFixed(1) + 'GB'; }
+                        }
+                    }
+                },
                 interaction: { intersect: false, mode: 'index' }
             }
         });
@@ -3127,8 +3440,23 @@ function setupCustomerEconomicsInteractivity() {
     if (mainChart) {
         mainChart.addEventListener('click', () => {
             const chartType = mainChart.getAttribute('data-chart');
-            if (chartType && mockData.modalChartData[chartType]) {
+            if (chartType === 'arpu') {
+                showModal('arpu');
+            } else if (chartType && typeof mockData !== 'undefined' && mockData.modalChartData && mockData.modalChartData[chartType]) {
                 showModal(chartType);
+            }
+        });
+    }
+    
+    // Add document-level event delegation as backup (only once)
+    if (!window.arpuClickListenerAdded) {
+        window.arpuClickListenerAdded = true;
+        document.addEventListener('click', function(event) {
+            const target = event.target.closest('.billing-chart-main[data-chart="arpu"]');
+            if (target) {
+                event.preventDefault();
+                event.stopPropagation();
+                showModal('arpu');
             }
         });
     }
@@ -3863,7 +4191,8 @@ class MetricsPanel {
         } else if (this.currentPanelType === 'subscriptions') {
             metricsToShow = [
                 'subscription-revenue',
-                'subscription-revenue-growth'
+                'subscription-revenue-growth',
+                'mrr'
             ];
         } else if (this.currentPanelType === 'subscribers') {
             metricsToShow = [

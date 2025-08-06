@@ -481,9 +481,9 @@
 
                         <div class="overview-chart-container billing-metric-module" data-chart="mrr">
                             <div class="overview-chart-title">MRR</div>
-                            <div class="overview-chart-value" id="mrrValue">$54,500</div>
+                            <div class="overview-chart-value" id="mrrValueRevenue">$54,500</div>
                             <div class="overview-chart-canvas">
-                                <canvas id="mrrChart"></canvas>
+                                <canvas id="mrrChartRevenue"></canvas>
                             </div>
                             <svg class="chart-open-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9375 1.75H3.0625C2.33763 1.75 1.75 2.33763 1.75 3.0625V10.9375C1.75 11.6624 2.33763 12.25 3.0625 12.25H10.9375C11.6624 12.25 12.25 11.6624 12.25 10.9375V3.0625C12.25 2.33763 11.6624 1.75 10.9375 1.75ZM3.0625 0.4375C1.61275 0.4375 0.4375 1.61275 0.4375 3.0625V10.9375C0.4375 12.3872 1.61275 13.5625 3.0625 13.5625H10.9375C12.3872 13.5625 13.5625 12.3872 13.5625 10.9375V3.0625C13.5625 1.61275 12.3872 0.4375 10.9375 0.4375H3.0625Z" fill="#B6C0CD"/>
@@ -634,7 +634,7 @@
                                             <section class="revenue-overview-section">
                     <h2 class="revenue-overview-title">Earnings</h2>
                                 <p class="revenue-overview-description">
-                                    Subscription revenue and growth. Manage <u><button class="metrics-link" id="subscriptionsMetricsCalculationsLink">metric calculations</button></u>.
+                                    Recurring revenue generated from subscriptions. Manage <u><button class="metrics-link" id="subscriptionsMetricsCalculationsLink">metric calculations</button></u>.
                                 </p>
                             </section>
                             
@@ -661,6 +661,18 @@
                                     <div class="overview-chart-value" id="subscriptionGrowthValue">+12.8%</div>
                                     <div class="overview-chart-canvas">
                                         <canvas id="subscriptionGrowthChart"></canvas>
+                                    </div>
+                                </div>
+                                
+                                <div class="overview-chart-container">
+                                    <svg class="chart-open-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9375 1.75H3.0625C2.33763 1.75 1.75 2.33763 1.75 3.0625V10.9375C1.75 11.6624 2.33763 12.25 3.0625 12.25H10.9375C11.6624 12.25 12.25 11.6624 12.25 10.9375V3.0625C12.25 2.33763 11.6624 1.75 10.9375 1.75ZM3.0625 0.4375C1.61275 0.4375 0.4375 1.61275 0.4375 3.0625V10.9375C0.4375 12.3872 1.61275 13.5625 3.0625 13.5625H10.9375C12.3872 13.5625 13.5625 12.3872 13.5625 10.9375V3.0625C13.5625 1.61275 12.3872 0.4375 10.9375 0.4375H3.0625Z" fill="#B6C0CD"/>
+                                        <path d="M10.2897 3.0625L7.30618 3.06271C6.94374 3.06274 6.64995 3.35657 6.64998 3.71901C6.65 4.08145 6.94384 4.37524 7.30628 4.37521L8.69681 4.37511L4.375 8.69692V7.29779C4.375 6.93535 4.08119 6.64154 3.71875 6.64154C3.35631 6.64154 3.0625 6.93535 3.0625 7.29779V10.2815C3.0625 10.4556 3.13164 10.6225 3.25472 10.7456C3.37779 10.8687 3.54472 10.9378 3.71877 10.9378L6.70252 10.9377C7.06496 10.9377 7.35876 10.6439 7.35875 10.2814C7.35874 9.91901 7.06492 9.6252 6.70249 9.62521L5.30283 9.62525L9.63354 5.29453V6.7025C9.63354 7.06494 9.92736 7.35875 10.2898 7.35875C10.6522 7.35875 10.946 7.06494 10.946 6.7025V3.71875C10.946 3.54469 10.8769 3.37777 10.7538 3.25469C10.6307 3.13162 10.4638 3.06249 10.2897 3.0625Z" fill="#B6C0CD"/>
+                                    </svg>
+                                    <div class="overview-chart-title">Monthly recurring revenue (MRR)</div>
+                                    <div class="overview-chart-value" id="mrrValue">$46,800</div>
+                                    <div class="overview-chart-canvas">
+                                        <canvas id="mrrChart"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -1037,7 +1049,7 @@
                             <section class="revenue-overview-section">
                                 <h2 class="revenue-overview-title">Earnings</h2>
                                 <p class="revenue-overview-description">
-                                    Invoice revenue and growth. Manage <u><button class="metrics-link" id="invoicesMetricsCalculationsLink">metric calculations</button></u>.
+                                    Revenue generated from invoices. Manage <u><button class="metrics-link" id="invoicesMetricsCalculationsLink">metric calculations</button></u>.
                                 </p>
                             </section>
                             
@@ -1147,7 +1159,7 @@
                             <section class="revenue-overview-section">
                                 <h2 class="revenue-overview-title">Earnings</h2>
                                 <p class="revenue-overview-description">
-                                    Subscription revenue and growth. Manage <u><button class="metrics-link" id="metersMetricsCalculationsLink">metric calculations</button></u>.
+                                    Overage revenue generated from meters. Manage <u><button class="metrics-link" id="metersMetricsCalculationsLink">metric calculations</button></u>.
                                 </p>
                             </section>
                             
@@ -1174,6 +1186,65 @@
                                     <div class="overview-chart-value" id="metersSubscriptionGrowthValue">+7.1%</div>
                                     <div class="overview-chart-canvas">
                                         <canvas id="metersSubscriptionGrowthChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Meters Section -->
+                            <section class="revenue-overview-section" style="margin-top: 80px;">
+                                <h2 class="revenue-overview-title">Meters</h2>
+                                <p class="revenue-overview-description">
+                                    Usage of your top meters. <u>Edit meters displayed</u>.
+                                </p>
+                            </section>
+                            
+                            <!-- Meters Chart Modules -->
+                            <div class="overview-content">
+                                <div class="overview-chart-container">
+                                    <svg class="chart-open-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9375 1.75H3.0625C2.33763 1.75 1.75 2.33763 1.75 3.0625V10.9375C1.75 11.6624 2.33763 12.25 3.0625 12.25H10.9375C11.6624 12.25 12.25 11.6624 12.25 10.9375V3.0625C12.25 2.33763 11.6624 1.75 10.9375 1.75ZM3.0625 0.4375C1.61275 0.4375 0.4375 1.61275 0.4375 3.0625V10.9375C0.4375 12.3872 1.61275 13.5625 3.0625 13.5625H10.9375C12.3872 13.5625 13.5625 12.3872 13.5625 10.9375V3.0625C13.5625 1.61275 12.3872 0.4375 10.9375 0.4375H3.0625Z" fill="#B6C0CD"/>
+                                        <path d="M10.2897 3.0625L7.30618 3.06271C6.94374 3.06274 6.64995 3.35657 6.64998 3.71901C6.65 4.08145 6.94384 4.37524 7.30628 4.37521L8.69681 4.37511L4.375 8.69692V7.29779C4.375 6.93535 4.08119 6.64154 3.71875 6.64154C3.35631 6.64154 3.0625 6.93535 3.0625 7.29779V10.2815C3.0625 10.4556 3.13164 10.6225 3.25472 10.7456C3.37779 10.8687 3.54472 10.9378 3.71877 10.9378L6.70252 10.9377C7.06496 10.9377 7.35876 10.6439 7.35875 10.2814C7.35874 9.91901 7.06492 9.6252 6.70249 9.62521L5.30283 9.62525L9.63354 5.29453V6.7025C9.63354 7.06494 9.92736 7.35875 10.2898 7.35875C10.6522 7.35875 10.946 7.06494 10.946 6.7025V3.71875C10.946 3.54469 10.8769 3.37777 10.7538 3.25469C10.6307 3.13162 10.4638 3.06249 10.2897 3.0625Z" fill="#B6C0CD"/>
+                                    </svg>
+                                    <div class="overview-chart-title">Model runs</div>
+                                    <div class="overview-chart-value" id="metersChart1Value">2.8M</div>
+                                    <div class="overview-chart-canvas">
+                                        <canvas id="metersChart1"></canvas>
+                                    </div>
+                                </div>
+                                
+                                <div class="overview-chart-container">
+                                    <svg class="chart-open-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9375 1.75H3.0625C2.33763 1.75 1.75 2.33763 1.75 3.0625V10.9375C1.75 11.6624 2.33763 12.25 3.0625 12.25H10.9375C11.6624 12.25 12.25 11.6624 12.25 10.9375V3.0625C12.25 2.33763 11.6624 1.75 10.9375 1.75ZM3.0625 0.4375C1.61275 0.4375 0.4375 1.61275 0.4375 3.0625V10.9375C0.4375 12.3872 1.61275 13.5625 3.0625 13.5625H10.9375C12.3872 13.5625 13.5625 12.3872 13.5625 10.9375V3.0625C13.5625 1.61275 12.3872 0.4375 10.9375 0.4375H3.0625Z" fill="#B6C0CD"/>
+                                        <path d="M10.2897 3.0625L7.30618 3.06271C6.94374 3.06274 6.64995 3.35657 6.64998 3.71901C6.65 4.08145 6.94384 4.37524 7.30628 4.37521L8.69681 4.37511L4.375 8.69692V7.29779C4.375 6.93535 4.08119 6.64154 3.71875 6.64154C3.35631 6.64154 3.0625 6.93535 3.0625 7.29779V10.2815C3.0625 10.4556 3.13164 10.6225 3.25472 10.7456C3.37779 10.8687 3.54472 10.9378 3.71877 10.9378L6.70252 10.9377C7.06496 10.9377 7.35876 10.6439 7.35875 10.2814C7.35874 9.91901 7.06492 9.6252 6.70249 9.62521L5.30283 9.62525L9.63354 5.29453V6.7025C9.63354 7.06494 9.92736 7.35875 10.2898 7.35875C10.6522 7.35875 10.946 7.06494 10.946 6.7025V3.71875C10.946 3.54469 10.8769 3.37777 10.7538 3.25469C10.6307 3.13162 10.4638 3.06249 10.2897 3.0625Z" fill="#B6C0CD"/>
+                                    </svg>
+                                    <div class="overview-chart-title">Tokens processed</div>
+                                    <div class="overview-chart-value" id="metersChart2Value">142.8B</div>
+                                    <div class="overview-chart-canvas">
+                                        <canvas id="metersChart2"></canvas>
+                                    </div>
+                                </div>
+                                
+                                <div class="overview-chart-container">
+                                    <svg class="chart-open-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9375 1.75H3.0625C2.33763 1.75 1.75 2.33763 1.75 3.0625V10.9375C1.75 11.6624 2.33763 12.25 3.0625 12.25H10.9375C11.6624 12.25 12.25 11.6624 12.25 10.9375V3.0625C12.25 2.33763 11.6624 1.75 10.9375 1.75ZM3.0625 0.4375C1.61275 0.4375 0.4375 1.61275 0.4375 3.0625V10.9375C0.4375 12.3872 1.61275 13.5625 3.0625 13.5625H10.9375C12.3872 13.5625 13.5625 12.3872 13.5625 10.9375V3.0625C13.5625 1.61275 12.3872 0.4375 10.9375 0.4375H3.0625Z" fill="#B6C0CD"/>
+                                        <path d="M10.2897 3.0625L7.30618 3.06271C6.94374 3.06274 6.64995 3.35657 6.64998 3.71901C6.65 4.08145 6.94384 4.37524 7.30628 4.37521L8.69681 4.37511L4.375 8.69692V7.29779C4.375 6.93535 4.08119 6.64154 3.71875 6.64154C3.35631 6.64154 3.0625 6.93535 3.0625 7.29779V10.2815C3.0625 10.4556 3.13164 10.6225 3.25472 10.7456C3.37779 10.8687 3.54472 10.9378 3.71877 10.9378L6.70252 10.9377C7.06496 10.9377 7.35876 10.6439 7.35875 10.2814C7.35874 9.91901 7.06492 9.6252 6.70249 9.62521L5.30283 9.62525L9.63354 5.29453V6.7025C9.63354 7.06494 9.92736 7.35875 10.2898 7.35875C10.6522 7.35875 10.946 7.06494 10.946 6.7025V3.71875C10.946 3.54469 10.8769 3.37777 10.7538 3.25469C10.6307 3.13162 10.4638 3.06249 10.2897 3.0625Z" fill="#B6C0CD"/>
+                                    </svg>
+                                    <div class="overview-chart-title">Training hours</div>
+                                    <div class="overview-chart-value" id="metersChart3Value">8.4K</div>
+                                    <div class="overview-chart-canvas">
+                                        <canvas id="metersChart3"></canvas>
+                                    </div>
+                                </div>
+                                
+                                <div class="overview-chart-container">
+                                    <svg class="chart-open-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9375 1.75H3.0625C2.33763 1.75 1.75 2.33763 1.75 3.0625V10.9375C1.75 11.6624 2.33763 12.25 3.0625 12.25H10.9375C11.6624 12.25 12.25 11.6624 12.25 10.9375V3.0625C12.25 2.33763 11.6624 1.75 10.9375 1.75ZM3.0625 0.4375C1.61275 0.4375 0.4375 1.61275 0.4375 3.0625V10.9375C0.4375 12.3872 1.61275 13.5625 3.0625 13.5625H10.9375C12.3872 13.5625 13.5625 12.3872 13.5625 10.9375V3.0625C13.5625 1.61275 12.3872 0.4375 10.9375 0.4375H3.0625Z" fill="#B6C0CD"/>
+                                        <path d="M10.2897 3.0625L7.30618 3.06271C6.94374 3.06274 6.64995 3.35657 6.64998 3.71901C6.65 4.08145 6.94384 4.37524 7.30628 4.37521L8.69681 4.37511L4.375 8.69692V7.29779C4.375 6.93535 4.08119 6.64154 3.71875 6.64154C3.35631 6.64154 3.0625 6.93535 3.0625 7.29779V10.2815C3.0625 10.4556 3.13164 10.6225 3.25472 10.7456C3.37779 10.8687 3.54472 10.9378 3.71877 10.9378L6.70252 10.9377C7.06496 10.9377 7.35876 10.6439 7.35875 10.2814C7.35874 9.91901 7.06492 9.6252 6.70249 9.62521L5.30283 9.62525L9.63354 5.29453V6.7025C9.63354 7.06494 9.92736 7.35875 10.2898 7.35875C10.6522 7.35875 10.946 7.06494 10.946 6.7025V3.71875C10.946 3.54469 10.8769 3.37777 10.7538 3.25469C10.6307 3.13162 10.4638 3.06249 10.2897 3.0625Z" fill="#B6C0CD"/>
+                                    </svg>
+                                    <div class="overview-chart-title">Inference seconds</div>
+                                    <div class="overview-chart-value" id="metersChart4Value">476.2K</div>
+                                    <div class="overview-chart-canvas">
+                                        <canvas id="metersChart4"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -1233,13 +1304,13 @@
                 <div class="modal-filters">
                     <div class="pill-button">
                         <span class="pill-label">Date range</span>
-                        <span class="pill-value">1 year</span>
+                        <span class="pill-value purple">1 year</span>
                         <svg class="pill-chevron" width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
                             <path d="M4.427 6.427a.75.75 0 011.06 0L8 8.94l2.513-2.513a.75.75 0 111.06 1.06l-3.043 3.044a.75.75 0 01-1.06 0L4.427 7.487a.75.75 0 010-1.06z"/>
                         </svg>
                     </div>
                     <div class="pill-button">
-                        <span class="pill-value">Monthly</span>
+                        <span class="pill-value purple">Monthly</span>
                         <svg class="pill-chevron" width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
                             <path d="M4.427 6.427a.75.75 0 011.06 0L8 8.94l2.513-2.513a.75.75 0 111.06 1.06l-3.043 3.044a.75.75 0 01-1.06 0L4.427 7.487a.75.75 0 010-1.06z"/>
                         </svg>

@@ -884,12 +884,26 @@ body {
 #invoicesSubscriptionRevenueValue,
 #invoicesSubscriptionGrowthValue,
 #metersSubscriptionRevenueValue,
-#metersSubscriptionGrowthValue {
+#metersSubscriptionGrowthValue,
+#metersChart1Value,
+#metersChart2Value,
+#metersChart3Value,
+#metersChart4Value {
     font-weight: 700;
     font-size: 20px;
     margin-bottom: 16px;
     margin-top: 0;
 }
+
+/* Apply larger font size only to MRR value in subscriptions overview, not revenue page sidebar */
+#tab-overview #mrrValue {
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 16px;
+    margin-top: 0;
+}
+
+/* Revenue page MRR value will inherit billing-metric-module styling automatically for small font */
 
 /* Subscribers responsive layout - matches overview-content behavior */
 .subscribers-content {
@@ -923,6 +937,11 @@ body {
     padding-bottom: 80px;
 }
 
+/* Add bottom padding to meters page */
+#meters-page {
+    padding-bottom: 80px;
+}
+
 .chart-open-icon {
     position: absolute;
     top: 12px;
@@ -951,6 +970,11 @@ body {
 .page-content {
     flex: 1;
     padding: 0 32px;
+}
+
+/* Home page specific styling */
+#home-page {
+    padding-bottom: 80px;
 }
 
 .generic-page-container {

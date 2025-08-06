@@ -85,6 +85,62 @@ const mockData = {
         }]
     },
 
+    // Invoice revenue bar chart data (combines subscription + meter revenue)
+    invoiceRevenueBarChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Invoice Revenue',
+            data: [4200, 4800, 4600, 5700, 6500, 6100, 7300, 7900, 7400, 7600, 8200, 8700],
+            backgroundColor: '#9966FF',
+            borderColor: '#9966FF',
+            borderWidth: 1
+        }]
+    },
+
+    // Invoice revenue growth chart data (calculated from invoice revenue data)
+    invoiceRevenueGrowthChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Invoice Revenue Growth (%)',
+            data: [0, 14.3, -4.2, 23.9, 14.0, -6.2, 19.7, 8.2, -6.3, 2.7, 7.9, 6.1],
+            borderColor: '#9966FF',
+            backgroundColor: 'rgba(153, 102, 255, 0.1)',
+            fill: false,
+            tension: 0.4,
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 4
+        }]
+    },
+
+    // Meter revenue bar chart data (from homepage meter data)
+    meterRevenueBarChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Meter Revenue',
+            data: [1400, 1900, 1700, 2300, 2600, 2600, 2800, 2800, 2400, 2700, 2900, 2900],
+            backgroundColor: '#9966FF',
+            borderColor: '#9966FF',
+            borderWidth: 1
+        }]
+    },
+
+    // Meter revenue growth chart data (calculated from meter revenue data)
+    meterRevenueGrowthChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Meter Revenue Growth (%)',
+            data: [0, 35.7, -10.5, 35.3, 13.0, 0.0, 7.7, 0.0, -14.3, 12.5, 7.4, 0.0],
+            borderColor: '#9966FF',
+            backgroundColor: 'rgba(153, 102, 255, 0.1)',
+            fill: false,
+            tension: 0.4,
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 4
+        }]
+    },
+
     subscriptionGrowthChartData: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [{
@@ -966,16 +1022,22 @@ function showPage(pageName) {
     } else if (pageName === 'invoices' || pageName.toLowerCase() === 'invoices') {
         // Show invoices page with tabs
         if (invoicesPage) invoicesPage.style.display = 'block';
-        // Initialize invoices tabs functionality
+        // Initialize invoices tabs functionality, sticky filters, and charts
         setTimeout(() => {
             initInvoicesTabs();
+            setupStickyFilters();
+            createInvoicesOverviewCharts();
+            setupInvoicesChartInteractivity();
         }, 100);
     } else if (pageName === 'meters' || pageName.toLowerCase() === 'meters') {
         // Show meters page with tabs
         if (metersPage) metersPage.style.display = 'block';
-        // Initialize meters tabs functionality
+        // Initialize meters tabs functionality, sticky filters, and charts
         setTimeout(() => {
             initMetersTabs();
+            setupStickyFilters();
+            createMetersOverviewCharts();
+            setupMetersChartInteractivity();
         }, 100);
     } else {
         // Show generic page with placeholder content
@@ -1272,29 +1334,29 @@ function createSubscriptionOverviewCharts() {
         new Chart(subscriptionBarCtx.getContext('2d'), {
             type: 'bar',
             data: mockData.subscriptionRevenueBarChartData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false,
+                    backgroundColor: '#1f2937',
+                    titleColor: '#f9fafb',
+                    bodyColor: '#f9fafb',
+                    borderColor: '#374151',
+                    borderWidth: 1
+                }
+            },
+            scales: {
+                x: {
+                        display: true,
+                    grid: {
                         display: false
                     },
-                    tooltip: {
-                        mode: 'index',
-                        intersect: false,
-                        backgroundColor: '#1f2937',
-                        titleColor: '#f9fafb',
-                        bodyColor: '#f9fafb',
-                        borderColor: '#374151',
-                        borderWidth: 1
-                    }
-                },
-                scales: {
-                    x: {
-                        display: true,
-                        grid: {
-                            display: false
-                        },
                         ticks: {
                             color: '#9ca3af',
                             font: {
@@ -1308,9 +1370,9 @@ function createSubscriptionOverviewCharts() {
                             color: '#f3f4f6',
                             borderDash: [2, 2]
                         },
-                        border: {
-                            display: false
-                        },
+                    border: {
+                        display: false
+                    },
                         min: 0,
                         max: 8000,
                         ticks: {
@@ -1367,50 +1429,50 @@ function createSubscriptionOverviewCharts() {
                         grid: {
                             display: false
                         },
-                        ticks: {
-                            color: '#9ca3af',
-                            font: {
-                                size: 12
-                            }
+                    ticks: {
+                        color: '#9ca3af',
+                        font: {
+                            size: 12
                         }
+                    }
+                },
+                y: {
+                    position: 'right',
+                    grid: {
+                        color: '#f3f4f6',
+                        borderDash: [2, 2]
                     },
-                    y: {
-                        position: 'right',
-                        grid: {
-                            color: '#f3f4f6',
-                            borderDash: [2, 2]
-                        },
-                        border: {
-                            display: false
-                        },
+                    border: {
+                        display: false
+                    },
                         min: -10,
                         max: 30,
-                        ticks: {
-                            color: '#9ca3af',
-                            font: {
+                    ticks: {
+                        color: '#9ca3af',
+                        font: {
                                 size: 11
-                            },
+                        },
                             stepSize: 10, // Creates ticks: -10, 0, 10, 20, 30
-                            callback: function(value) {
+                        callback: function(value) {
                                 return Math.round(value) + '%';
-                            }
                         }
-                    }
-                },
-                elements: {
-                    point: {
+                        }
+                }
+            },
+            elements: {
+                point: {
                         radius: 0,
                         hoverRadius: 4
-                    }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index'
                 }
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index'
             }
-        });
-    }
-    
+        }
+    });
+}
+
     // Create subscriber charts
     // Active Subscribers Chart
     const activeSubscribersCtx = document.getElementById('activeSubscribersChart');
@@ -2617,6 +2679,190 @@ function setupChurnChartInteractivity() {
     }
 }
 
+// Create Invoices Overview Charts
+function createInvoicesOverviewCharts() {
+    // Invoice Revenue Bar Chart for Invoices
+    const invoicesSubscriptionBarCtx = document.getElementById('invoicesSubscriptionRevenueBarChart');
+    if (invoicesSubscriptionBarCtx) {
+        new Chart(invoicesSubscriptionBarCtx.getContext('2d'), {
+            type: 'bar',
+            data: mockData.invoiceRevenueBarChartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        mode: 'index', intersect: false, backgroundColor: '#1f2937', titleColor: '#f9fafb', bodyColor: '#f9fafb', borderColor: '#374151', borderWidth: 1
+                    }
+                },
+                scales: {
+                    x: {
+                        display: true, grid: { display: false },
+                        ticks: { color: '#9ca3af', font: { size: 12 } }
+                    },
+                    y: {
+                        position: 'right', grid: { color: '#f3f4f6', borderDash: [2, 2] }, border: { display: false },
+                        min: 0, max: 10000,
+                        ticks: {
+                            color: '#9ca3af', font: { size: 11 }, stepSize: 2000,
+                            callback: function(value) { return '$' + Math.round(value).toLocaleString(); }
+                        }
+                    }
+                },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+    }
+
+    // Invoice Revenue Growth Line Chart for Invoices
+    const invoicesSubscriptionGrowthCtx = document.getElementById('invoicesSubscriptionGrowthChart');
+    if (invoicesSubscriptionGrowthCtx) {
+        new Chart(invoicesSubscriptionGrowthCtx.getContext('2d'), {
+            type: 'line',
+            data: mockData.invoiceRevenueGrowthChartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        mode: 'index', intersect: false, backgroundColor: '#1f2937', titleColor: '#f9fafb', bodyColor: '#f9fafb', borderColor: '#374151', borderWidth: 1,
+                        callbacks: { label: function(context) { return context.dataset.label + ': ' + context.parsed.y + '%'; } }
+                    }
+                },
+                scales: {
+                    x: {
+                        display: true, grid: { display: false },
+                        ticks: { color: '#9ca3af', font: { size: 12 } }
+                    },
+                    y: {
+                        position: 'right', grid: { color: '#f3f4f6', borderDash: [2, 2] }, border: { display: false },
+                        min: -10, max: 30,
+                        ticks: {
+                            color: '#9ca3af', font: { size: 11 }, stepSize: 10,
+                            callback: function(value) { return Math.round(value) + '%'; }
+                        }
+                    }
+                },
+                elements: { point: { radius: 0, hoverRadius: 4 } },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+    }
+}
+
+// Create Meters Overview Charts
+function createMetersOverviewCharts() {
+    // Meter Revenue Bar Chart for Meters
+    const metersSubscriptionBarCtx = document.getElementById('metersSubscriptionRevenueBarChart');
+    if (metersSubscriptionBarCtx) {
+        new Chart(metersSubscriptionBarCtx.getContext('2d'), {
+            type: 'bar',
+            data: mockData.meterRevenueBarChartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        mode: 'index', intersect: false, backgroundColor: '#1f2937', titleColor: '#f9fafb', bodyColor: '#f9fafb', borderColor: '#374151', borderWidth: 1
+                    }
+                },
+                scales: {
+                    x: {
+                        display: true, grid: { display: false },
+                        ticks: { color: '#9ca3af', font: { size: 12 } }
+                    },
+                    y: {
+                        position: 'right', grid: { color: '#f3f4f6', borderDash: [2, 2] }, border: { display: false },
+                        min: 0, max: 3000,
+                        ticks: {
+                            color: '#9ca3af', font: { size: 11 }, stepSize: 500,
+                            callback: function(value) { return '$' + Math.round(value).toLocaleString(); }
+                        }
+                    }
+                },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+    }
+
+    // Meter Revenue Growth Line Chart for Meters
+    const metersSubscriptionGrowthCtx = document.getElementById('metersSubscriptionGrowthChart');
+    if (metersSubscriptionGrowthCtx) {
+        new Chart(metersSubscriptionGrowthCtx.getContext('2d'), {
+            type: 'line',
+            data: mockData.meterRevenueGrowthChartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        mode: 'index', intersect: false, backgroundColor: '#1f2937', titleColor: '#f9fafb', bodyColor: '#f9fafb', borderColor: '#374151', borderWidth: 1,
+                        callbacks: { label: function(context) { return context.dataset.label + ': ' + context.parsed.y + '%'; } }
+                    }
+                },
+                scales: {
+                    x: {
+                        display: true, grid: { display: false },
+                        ticks: { color: '#9ca3af', font: { size: 12 } }
+                    },
+                    y: {
+                        position: 'right', grid: { color: '#f3f4f6', borderDash: [2, 2] }, border: { display: false },
+                        min: -20, max: 40,
+                        ticks: {
+                            color: '#9ca3af', font: { size: 11 }, stepSize: 10,
+                            callback: function(value) { return Math.round(value) + '%'; }
+                        }
+                    }
+                },
+                elements: { point: { radius: 0, hoverRadius: 4 } },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+    }
+}
+
+// Setup Invoices Chart Interactivity
+function setupInvoicesChartInteractivity() {
+    // Find chart containers for invoices page
+    const invoicesSubscriptionContainer = document.querySelector('#tab-invoices-overview .overview-chart-container:nth-child(1)');
+    const invoicesGrowthContainer = document.querySelector('#tab-invoices-overview .overview-chart-container:nth-child(2)');
+    
+    if (invoicesSubscriptionContainer) {
+        invoicesSubscriptionContainer.addEventListener('click', () => {
+            showModal('subscriptionRevenue');
+        });
+    }
+    
+    if (invoicesGrowthContainer) {
+        invoicesGrowthContainer.addEventListener('click', () => {
+            showModal('subscriptionRevenueGrowth');
+        });
+    }
+}
+
+// Setup Meters Chart Interactivity
+function setupMetersChartInteractivity() {
+    // Find chart containers for meters page
+    const metersSubscriptionContainer = document.querySelector('#tab-meters-overview .overview-chart-container:nth-child(1)');
+    const metersGrowthContainer = document.querySelector('#tab-meters-overview .overview-chart-container:nth-child(2)');
+    
+    if (metersSubscriptionContainer) {
+        metersSubscriptionContainer.addEventListener('click', () => {
+            showModal('subscriptionRevenue');
+        });
+    }
+    
+    if (metersGrowthContainer) {
+        metersGrowthContainer.addEventListener('click', () => {
+            showModal('subscriptionRevenueGrowth');
+        });
+    }
+}
+
 // Tab functionality for subscriptions page
 function initSubscriptionsTabs() {
     const tabButtons = document.querySelectorAll('.tab-button');
@@ -2690,8 +2936,15 @@ function initInvoicesTabs() {
             if (targetContent) {
                 targetContent.classList.add('active');
                 
-                // Initialize functionality for specific tabs if needed
-                // (placeholder for future functionality)
+                // Initialize functionality for specific tabs
+                if (targetTab === 'overview') {
+                    // Setup sticky filters and charts for the overview tab
+                    setTimeout(() => {
+                        setupStickyFilters();
+                        createInvoicesOverviewCharts();
+                        setupInvoicesChartInteractivity();
+                    }, 100);
+                }
             }
         });
     });
@@ -2721,8 +2974,15 @@ function initMetersTabs() {
             if (targetContent) {
                 targetContent.classList.add('active');
                 
-                // Initialize functionality for specific tabs if needed
-                // (placeholder for future functionality)
+                // Initialize functionality for specific tabs
+                if (targetTab === 'overview') {
+                    // Setup sticky filters and charts for the overview tab
+                    setTimeout(() => {
+                        setupStickyFilters();
+                        createMetersOverviewCharts();
+                        setupMetersChartInteractivity();
+                    }, 100);
+                }
             }
         });
     });
@@ -2816,6 +3076,8 @@ function setupStickyFilters() {
     // Find the visible billing-filters element (from the currently shown page)
     const revenuePage = document.getElementById('revenue-page');
     const subscriptionsPage = document.getElementById('subscriptions-page');
+    const invoicesPage = document.getElementById('invoices-page');
+    const metersPage = document.getElementById('meters-page');
     
     let billingFilters = null;
     
@@ -2824,6 +3086,10 @@ function setupStickyFilters() {
         billingFilters = revenuePage.querySelector('.billing-filters');
     } else if (subscriptionsPage && subscriptionsPage.style.display !== 'none') {
         billingFilters = subscriptionsPage.querySelector('.billing-filters');
+    } else if (invoicesPage && invoicesPage.style.display !== 'none') {
+        billingFilters = invoicesPage.querySelector('.billing-filters');
+    } else if (metersPage && metersPage.style.display !== 'none') {
+        billingFilters = metersPage.querySelector('.billing-filters');
     }
     
     const searchHeader = document.querySelector('.search-header');
@@ -2898,27 +3164,26 @@ function setupStickyFilters() {
 }
 
 function cleanupStickyFilters() {
-    // Clean up sticky filters from both revenue and subscriptions pages
+    // Clean up sticky filters from all pages with billing filters
     const revenuePage = document.getElementById('revenue-page');
     const subscriptionsPage = document.getElementById('subscriptions-page');
+    const invoicesPage = document.getElementById('invoices-page');
+    const metersPage = document.getElementById('meters-page');
     
     const revenueFilters = revenuePage ? revenuePage.querySelector('.billing-filters') : null;
     const subscriptionsFilters = subscriptionsPage ? subscriptionsPage.querySelector('.billing-filters') : null;
+    const invoicesFilters = invoicesPage ? invoicesPage.querySelector('.billing-filters') : null;
+    const metersFilters = metersPage ? metersPage.querySelector('.billing-filters') : null;
     
-    // Remove sticky class and clear inline styles from both
-    if (revenueFilters) {
-        revenueFilters.classList.remove('sticky');
-        revenueFilters.style.left = '';
-        revenueFilters.style.width = '';
-        revenueFilters.style.right = '';
-    }
-    
-    if (subscriptionsFilters) {
-        subscriptionsFilters.classList.remove('sticky');
-        subscriptionsFilters.style.left = '';
-        subscriptionsFilters.style.width = '';
-        subscriptionsFilters.style.right = '';
-    }
+    // Remove sticky class and clear inline styles from all pages
+    [revenueFilters, subscriptionsFilters, invoicesFilters, metersFilters].forEach(filters => {
+        if (filters) {
+            filters.classList.remove('sticky');
+            filters.style.left = '';
+            filters.style.width = '';
+            filters.style.right = '';
+        }
+    });
     
     // Remove event listeners
     if (window.stickyFiltersHandlers) {

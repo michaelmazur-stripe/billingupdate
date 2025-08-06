@@ -880,7 +880,11 @@ body {
 #churnActiveSubscribersValue,
 #churnActiveSubscribersGrowthValue,
 #churnNewSubscribersValue,
-#churnChurnedSubscribersValue {
+#churnChurnedSubscribersValue,
+#invoicesSubscriptionRevenueValue,
+#invoicesSubscriptionGrowthValue,
+#metersSubscriptionRevenueValue,
+#metersSubscriptionGrowthValue {
     font-weight: 700;
     font-size: 20px;
     margin-bottom: 16px;
@@ -901,6 +905,16 @@ body {
 
 /* Remove margin between title and value for subscription overview charts */
 #subscriptions-page .overview-chart-title {
+    margin-bottom: 0;
+}
+
+/* Remove margin between title and value for invoice overview charts */
+#invoices-page .overview-chart-title {
+    margin-bottom: 0;
+}
+
+/* Remove margin between title and value for meter overview charts */
+#meters-page .overview-chart-title {
     margin-bottom: 0;
 }
 
@@ -2279,6 +2293,8 @@ input:checked + .toggle-slider:before {
 #meters-page .content-header {
     padding: 0 0 4px 0;
 }
+
+
 
 /* Subscriptions Tabs */
 .subscriptions-tabs {

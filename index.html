@@ -973,9 +973,87 @@
                     </div>
                     <div class="tab-content-container">
                         <div class="tab-content active" id="tab-invoices-overview">
-                            <!-- Overview tab content -->
-                            <div class="tab-placeholder">
-                                <p>Invoices overview content coming soon...</p>
+                            <!-- Filter Pills Section -->
+                            <section class="billing-filters">
+                                <div class="pill-button">
+                                    <span class="pill-label">Date range</span>
+                                    <span class="pill-divider"></span>
+                                    <span class="pill-value purple">Last 12 months</span>
+                                    <svg class="pill-chevron" width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
+                                        <path d="M4.427 6.427a.75.75 0 011.06 0L8 8.94l2.513-2.513a.75.75 0 111.06 1.06l-3.043 3.044a.75.75 0 01-1.06 0L4.427 7.487a.75.75 0 010-1.06z"/>
+                                    </svg>
+                                </div>
+                                <div class="pill-button">
+                                    <span class="pill-value purple">Monthly</span>
+                                    <svg class="pill-chevron" width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
+                                        <path d="M4.427 6.427a.75.75 0 011.06 0L8 8.94l2.513-2.513a.75.75 0 111.06 1.06l-3.043 3.044a.75.75 0 01-1.06 0L4.427 7.487a.75.75 0 010-1.06z"/>
+                                    </svg>
+                                </div>
+                                <div class="pill-button compare">
+                                    <svg class="pill-plus-icon" width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="7" cy="7" r="6.5" fill="none" stroke="currentColor" stroke-width="1"/>
+                                        <path d="M7 4v6M4 7h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                    <span class="pill-value">Compare</span>
+                                    <svg class="pill-chevron" width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
+                                        <path d="M4.427 6.427a.75.75 0 011.06 0L8 8.94l2.513-2.513a.75.75 0 111.06 1.06l-3.043 3.044a.75.75 0 01-1.06 0L4.427 7.487a.75.75 0 010-1.06z"/>
+                                    </svg>
+                                </div>
+                                <div class="pill-button compare">
+                                    <svg class="pill-plus-icon" width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="7" cy="7" r="6.5" fill="none" stroke="currentColor" stroke-width="1"/>
+                                        <path d="M7 4v6M4 7h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                    <span class="pill-value">Product</span>
+                                    <svg class="pill-chevron" width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
+                                        <path d="M4.427 6.427a.75.75 0 011.06 0L8 8.94l2.513-2.513a.75.75 0 111.06 1.06l-3.043 3.044a.75.75 0 01-1.06 0L4.427 7.487a.75.75 0 010-1.06z"/>
+                                    </svg>
+                                </div>
+                                <div class="pill-button compare">
+                                    <svg class="pill-plus-icon" width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="7" cy="7" r="6.5" fill="none" stroke="currentColor" stroke-width="1"/>
+                                        <path d="M7 4v6M4 7h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                    <span class="pill-value">Price</span>
+                                    <svg class="pill-chevron" width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
+                                        <path d="M4.427 6.427a.75.75 0 011.06 0L8 8.94l2.513-2.513a.75.75 0 111.06 1.06l-3.043 3.044a.75.75 0 01-1.06 0L4.427 7.487a.75.75 0 010-1.06z"/>
+                                    </svg>
+                                </div>
+                            </section>
+
+                            <!-- Overview Section -->
+                            <section class="revenue-overview-section">
+                                <h2 class="revenue-overview-title">Earnings</h2>
+                                <p class="revenue-overview-description">
+                                    Invoice revenue and growth. Manage <u><button class="metrics-link" id="invoicesMetricsCalculationsLink">metric calculations</button></u>.
+                                </p>
+                            </section>
+                            
+                            <!-- Revenue Modules -->
+                            <div class="overview-content">
+                                <div class="overview-chart-container">
+                                    <svg class="chart-open-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9375 1.75H3.0625C2.33763 1.75 1.75 2.33763 1.75 3.0625V10.9375C1.75 11.6624 2.33763 12.25 3.0625 12.25H10.9375C11.6624 12.25 12.25 11.6624 12.25 10.9375V3.0625C12.25 2.33763 11.6624 1.75 10.9375 1.75ZM3.0625 0.4375C1.61275 0.4375 0.4375 1.61275 0.4375 3.0625V10.9375C0.4375 12.3872 1.61275 13.5625 3.0625 13.5625H10.9375C12.3872 13.5625 13.5625 12.3872 13.5625 10.9375V3.0625C13.5625 1.61275 12.3872 0.4375 10.9375 0.4375H3.0625Z" fill="#B6C0CD"/>
+                                        <path d="M10.2897 3.0625L7.30618 3.06271C6.94374 3.06274 6.64995 3.35657 6.64998 3.71901C6.65 4.08145 6.94384 4.37524 7.30628 4.37521L8.69681 4.37511L4.375 8.69692V7.29779C4.375 6.93535 4.08119 6.64154 3.71875 6.64154C3.35631 6.64154 3.0625 6.93535 3.0625 7.29779V10.2815C3.0625 10.4556 3.13164 10.6225 3.25472 10.7456C3.37779 10.8687 3.54472 10.9378 3.71877 10.9378L6.70252 10.9377C7.06496 10.9377 7.35876 10.6439 7.35875 10.2814C7.35874 9.91901 7.06492 9.6252 6.70249 9.62521L5.30283 9.62525L9.63354 5.29453V6.7025C9.63354 7.06494 9.92736 7.35875 10.2898 7.35875C10.6522 7.35875 10.946 7.06494 10.946 6.7025V3.71875C10.946 3.54469 10.8769 3.37777 10.7538 3.25469C10.6307 3.13162 10.4638 3.06249 10.2897 3.0625Z" fill="#B6C0CD"/>
+                                    </svg>
+                                    <div class="overview-chart-title">Invoice revenue</div>
+                                    <div class="overview-chart-value" id="invoicesSubscriptionRevenueValue">$78,400</div>
+                                    <div class="overview-chart-canvas">
+                                        <canvas id="invoicesSubscriptionRevenueBarChart"></canvas>
+                                    </div>
+                                </div>
+                                
+                                <div class="overview-chart-container">
+                                    <svg class="chart-open-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9375 1.75H3.0625C2.33763 1.75 1.75 2.33763 1.75 3.0625V10.9375C1.75 11.6624 2.33763 12.25 3.0625 12.25H10.9375C11.6624 12.25 12.25 11.6624 12.25 10.9375V3.0625C12.25 2.33763 11.6624 1.75 10.9375 1.75ZM3.0625 0.4375C1.61275 0.4375 0.4375 1.61275 0.4375 3.0625V10.9375C0.4375 12.3872 1.61275 13.5625 3.0625 13.5625H10.9375C12.3872 13.5625 13.5625 12.3872 13.5625 10.9375V3.0625C13.5625 1.61275 12.3872 0.4375 10.9375 0.4375H3.0625Z" fill="#B6C0CD"/>
+                                        <path d="M10.2897 3.0625L7.30618 3.06271C6.94374 3.06274 6.64995 3.35657 6.64998 3.71901C6.65 4.08145 6.94384 4.37524 7.30628 4.37521L8.69681 4.37511L4.375 8.69692V7.29779C4.375 6.93535 4.08119 6.64154 3.71875 6.64154C3.35631 6.64154 3.0625 6.93535 3.0625 7.29779V10.2815C3.0625 10.4556 3.13164 10.6225 3.25472 10.7456C3.37779 10.8687 3.54472 10.9378 3.71877 10.9378L6.70252 10.9377C7.06496 10.9377 7.35876 10.6439 7.35875 10.2814C7.35874 9.91901 7.06492 9.6252 6.70249 9.62521L5.30283 9.62525L9.63354 5.29453V6.7025C9.63354 7.06494 9.92736 7.35875 10.2898 7.35875C10.6522 7.35875 10.946 7.06494 10.946 6.7025V3.71875C10.946 3.54469 10.8769 3.37777 10.7538 3.25469C10.6307 3.13162 10.4638 3.06249 10.2897 3.0625Z" fill="#B6C0CD"/>
+                                    </svg>
+                                    <div class="overview-chart-title">Invoice revenue growth</div>
+                                    <div class="overview-chart-value" id="invoicesSubscriptionGrowthValue">+14.6%</div>
+                                    <div class="overview-chart-canvas">
+                                        <canvas id="invoicesSubscriptionGrowthChart"></canvas>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="tab-content" id="tab-invoices-invoices">
@@ -1005,9 +1083,87 @@
                     </div>
                     <div class="tab-content-container">
                         <div class="tab-content active" id="tab-meters-overview">
-                            <!-- Overview tab content -->
-                            <div class="tab-placeholder">
-                                <p>Meters overview content coming soon...</p>
+                            <!-- Filter Pills Section -->
+                            <section class="billing-filters">
+                                <div class="pill-button">
+                                    <span class="pill-label">Date range</span>
+                                    <span class="pill-divider"></span>
+                                    <span class="pill-value purple">Last 12 months</span>
+                                    <svg class="pill-chevron" width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
+                                        <path d="M4.427 6.427a.75.75 0 011.06 0L8 8.94l2.513-2.513a.75.75 0 111.06 1.06l-3.043 3.044a.75.75 0 01-1.06 0L4.427 7.487a.75.75 0 010-1.06z"/>
+                                    </svg>
+                                </div>
+                                <div class="pill-button">
+                                    <span class="pill-value purple">Monthly</span>
+                                    <svg class="pill-chevron" width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
+                                        <path d="M4.427 6.427a.75.75 0 011.06 0L8 8.94l2.513-2.513a.75.75 0 111.06 1.06l-3.043 3.044a.75.75 0 01-1.06 0L4.427 7.487a.75.75 0 010-1.06z"/>
+                                    </svg>
+                                </div>
+                                <div class="pill-button compare">
+                                    <svg class="pill-plus-icon" width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="7" cy="7" r="6.5" fill="none" stroke="currentColor" stroke-width="1"/>
+                                        <path d="M7 4v6M4 7h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                    <span class="pill-value">Compare</span>
+                                    <svg class="pill-chevron" width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
+                                        <path d="M4.427 6.427a.75.75 0 011.06 0L8 8.94l2.513-2.513a.75.75 0 111.06 1.06l-3.043 3.044a.75.75 0 01-1.06 0L4.427 7.487a.75.75 0 010-1.06z"/>
+                                    </svg>
+                                </div>
+                                <div class="pill-button compare">
+                                    <svg class="pill-plus-icon" width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="7" cy="7" r="6.5" fill="none" stroke="currentColor" stroke-width="1"/>
+                                        <path d="M7 4v6M4 7h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                    <span class="pill-value">Product</span>
+                                    <svg class="pill-chevron" width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
+                                        <path d="M4.427 6.427a.75.75 0 011.06 0L8 8.94l2.513-2.513a.75.75 0 111.06 1.06l-3.043 3.044a.75.75 0 01-1.06 0L4.427 7.487a.75.75 0 010-1.06z"/>
+                                    </svg>
+                                </div>
+                                <div class="pill-button compare">
+                                    <svg class="pill-plus-icon" width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="7" cy="7" r="6.5" fill="none" stroke="currentColor" stroke-width="1"/>
+                                        <path d="M7 4v6M4 7h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                    <span class="pill-value">Price</span>
+                                    <svg class="pill-chevron" width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
+                                        <path d="M4.427 6.427a.75.75 0 011.06 0L8 8.94l2.513-2.513a.75.75 0 111.06 1.06l-3.043 3.044a.75.75 0 01-1.06 0L4.427 7.487a.75.75 0 010-1.06z"/>
+                                    </svg>
+                                </div>
+                            </section>
+
+                            <!-- Overview Section -->
+                            <section class="revenue-overview-section">
+                                <h2 class="revenue-overview-title">Earnings</h2>
+                                <p class="revenue-overview-description">
+                                    Subscription revenue and growth. Manage <u><button class="metrics-link" id="metersMetricsCalculationsLink">metric calculations</button></u>.
+                                </p>
+                            </section>
+                            
+                            <!-- Revenue Modules -->
+                            <div class="overview-content">
+                                <div class="overview-chart-container">
+                                    <svg class="chart-open-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9375 1.75H3.0625C2.33763 1.75 1.75 2.33763 1.75 3.0625V10.9375C1.75 11.6624 2.33763 12.25 3.0625 12.25H10.9375C11.6624 12.25 12.25 11.6624 12.25 10.9375V3.0625C12.25 2.33763 11.6624 1.75 10.9375 1.75ZM3.0625 0.4375C1.61275 0.4375 0.4375 1.61275 0.4375 3.0625V10.9375C0.4375 12.3872 1.61275 13.5625 3.0625 13.5625H10.9375C12.3872 13.5625 13.5625 12.3872 13.5625 10.9375V3.0625C13.5625 1.61275 12.3872 0.4375 10.9375 0.4375H3.0625Z" fill="#B6C0CD"/>
+                                        <path d="M10.2897 3.0625L7.30618 3.06271C6.94374 3.06274 6.64995 3.35657 6.64998 3.71901C6.65 4.08145 6.94384 4.37524 7.30628 4.37521L8.69681 4.37511L4.375 8.69692V7.29779C4.375 6.93535 4.08119 6.64154 3.71875 6.64154C3.35631 6.64154 3.0625 6.93535 3.0625 7.29779V10.2815C3.0625 10.4556 3.13164 10.6225 3.25472 10.7456C3.37779 10.8687 3.54472 10.9378 3.71877 10.9378L6.70252 10.9377C7.06496 10.9377 7.35876 10.6439 7.35875 10.2814C7.35874 9.91901 7.06492 9.6252 6.70249 9.62521L5.30283 9.62525L9.63354 5.29453V6.7025C9.63354 7.06494 9.92736 7.35875 10.2898 7.35875C10.6522 7.35875 10.946 7.06494 10.946 6.7025V3.71875C10.946 3.54469 10.8769 3.37777 10.7538 3.25469C10.6307 3.13162 10.4638 3.06249 10.2897 3.0625Z" fill="#B6C0CD"/>
+                                    </svg>
+                                    <div class="overview-chart-title">Meter revenue</div>
+                                    <div class="overview-chart-value" id="metersSubscriptionRevenueValue">$30,700</div>
+                                    <div class="overview-chart-canvas">
+                                        <canvas id="metersSubscriptionRevenueBarChart"></canvas>
+                                    </div>
+                                </div>
+                                
+                                <div class="overview-chart-container">
+                                    <svg class="chart-open-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9375 1.75H3.0625C2.33763 1.75 1.75 2.33763 1.75 3.0625V10.9375C1.75 11.6624 2.33763 12.25 3.0625 12.25H10.9375C11.6624 12.25 12.25 11.6624 12.25 10.9375V3.0625C12.25 2.33763 11.6624 1.75 10.9375 1.75ZM3.0625 0.4375C1.61275 0.4375 0.4375 1.61275 0.4375 3.0625V10.9375C0.4375 12.3872 1.61275 13.5625 3.0625 13.5625H10.9375C12.3872 13.5625 13.5625 12.3872 13.5625 10.9375V3.0625C13.5625 1.61275 12.3872 0.4375 10.9375 0.4375H3.0625Z" fill="#B6C0CD"/>
+                                        <path d="M10.2897 3.0625L7.30618 3.06271C6.94374 3.06274 6.64995 3.35657 6.64998 3.71901C6.65 4.08145 6.94384 4.37524 7.30628 4.37521L8.69681 4.37511L4.375 8.69692V7.29779C4.375 6.93535 4.08119 6.64154 3.71875 6.64154C3.35631 6.64154 3.0625 6.93535 3.0625 7.29779V10.2815C3.0625 10.4556 3.13164 10.6225 3.25472 10.7456C3.37779 10.8687 3.54472 10.9378 3.71877 10.9378L6.70252 10.9377C7.06496 10.9377 7.35876 10.6439 7.35875 10.2814C7.35874 9.91901 7.06492 9.6252 6.70249 9.62521L5.30283 9.62525L9.63354 5.29453V6.7025C9.63354 7.06494 9.92736 7.35875 10.2898 7.35875C10.6522 7.35875 10.946 7.06494 10.946 6.7025V3.71875C10.946 3.54469 10.8769 3.37777 10.7538 3.25469C10.6307 3.13162 10.4638 3.06249 10.2897 3.0625Z" fill="#B6C0CD"/>
+                                    </svg>
+                                    <div class="overview-chart-title">Meter revenue growth</div>
+                                    <div class="overview-chart-value" id="metersSubscriptionGrowthValue">+7.1%</div>
+                                    <div class="overview-chart-canvas">
+                                        <canvas id="metersSubscriptionGrowthChart"></canvas>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="tab-content" id="tab-meters-meters">

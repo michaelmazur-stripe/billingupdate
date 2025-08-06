@@ -161,6 +161,125 @@ const mockData = {
         }]
     },
 
+    // Trial-specific chart data
+    newTrialsChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'New Trials',
+            data: [2650, 2420, 2890, 3150, 2980, 3240, 3180, 2890, 2650, 2780, 2520, 2847],
+            borderColor: '#9966FF',
+            backgroundColor: 'rgba(153, 102, 255, 0.1)',
+            fill: false,
+            tension: 0.4,
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 0
+        }]
+    },
+
+    trialConversionRateChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Trial Conversion Rate',
+            data: [22.1, 23.8, 24.2, 23.9, 24.5, 25.1, 24.8, 25.3, 24.9, 25.2, 24.6, 24.8],
+            borderColor: '#9966FF',
+            backgroundColor: 'rgba(153, 102, 255, 0.1)',
+            fill: false,
+            tension: 0.4,
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 0
+        }]
+    },
+
+    activeTrialsChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Active Trials',
+            data: [7850, 7920, 8150, 8350, 8280, 8450, 8380, 8180, 7950, 8120, 7890, 8156],
+            borderColor: '#9966FF',
+            backgroundColor: 'rgba(153, 102, 255, 0.1)',
+            fill: false,
+            tension: 0.4,
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 0
+        }]
+    },
+
+            convertedTrialsChartData: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'Converted Trials',
+                data: [585, 575, 700, 750, 720, 815, 790, 730, 665, 700, 620, 707],
+                borderColor: '#9966FF',
+                backgroundColor: 'rgba(153, 102, 255, 0.1)',
+                fill: false,
+                tension: 0.4,
+                borderWidth: 2,
+                pointRadius: 0,
+                pointHoverRadius: 0
+            }]
+        },
+
+        // Churn-specific chart data
+        subscriberChurnRateChartData: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'Subscriber Churn Rate',
+                data: [2.8, 3.1, 3.5, 3.2, 2.9, 3.4, 3.6, 3.3, 2.7, 3.0, 3.1, 3.2],
+                borderColor: '#9966FF',
+                backgroundColor: 'rgba(153, 102, 255, 0.1)',
+                fill: false,
+                tension: 0.4,
+                borderWidth: 2,
+                pointRadius: 0,
+                pointHoverRadius: 0
+            }]
+        },
+        churnedRevenueChartData: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'Churned Revenue',
+                data: [15200, 16800, 19200, 17500, 14900, 18600, 20100, 18200, 14200, 16400, 17100, 18456],
+                borderColor: '#9966FF',
+                backgroundColor: 'rgba(153, 102, 255, 0.1)',
+                fill: false,
+                tension: 0.4,
+                borderWidth: 2,
+                pointRadius: 0,
+                pointHoverRadius: 0
+            }]
+        },
+        grossMRRChurnRateChartData: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'Gross MRR Churn Rate',
+                data: [3.8, 4.2, 4.6, 4.3, 3.9, 4.5, 4.7, 4.4, 3.6, 4.0, 4.1, 4.1],
+                borderColor: '#9966FF',
+                backgroundColor: 'rgba(153, 102, 255, 0.1)',
+                fill: false,
+                tension: 0.4,
+                borderWidth: 2,
+                pointRadius: 0,
+                pointHoverRadius: 0
+            }]
+        },
+        netMRRChurnRateChartData: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'Net MRR Churn Rate',
+                data: [1.5, 1.8, 2.1, 1.9, 1.6, 2.0, 2.2, 1.9, 1.4, 1.7, 1.8, 1.8],
+                borderColor: '#9966FF',
+                backgroundColor: 'rgba(153, 102, 255, 0.1)',
+                fill: false,
+                tension: 0.4,
+                borderWidth: 2,
+                pointRadius: 0,
+                pointHoverRadius: 0
+            }]
+        },
+
     // Customer Economics Charts
     customerEconomicsChartData: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -802,6 +921,8 @@ function showPage(pageName) {
     const homePage = document.getElementById('home-page');
     const revenuePage = document.getElementById('revenue-page');
     const subscriptionsPage = document.getElementById('subscriptions-page');
+    const invoicesPage = document.getElementById('invoices-page');
+    const metersPage = document.getElementById('meters-page');
     const genericPage = document.getElementById('generic-page');
     const genericPageTitle = document.getElementById('generic-page-title');
     const pageNamePlaceholder = document.getElementById('page-name-placeholder');
@@ -810,6 +931,8 @@ function showPage(pageName) {
     if (homePage) homePage.style.display = 'none';
     if (revenuePage) revenuePage.style.display = 'none';
     if (subscriptionsPage) subscriptionsPage.style.display = 'none';
+    if (invoicesPage) invoicesPage.style.display = 'none';
+    if (metersPage) metersPage.style.display = 'none';
     if (genericPage) genericPage.style.display = 'none';
     
     // Clean up sticky filters when navigating away from revenue/subscriptions pages
@@ -839,6 +962,20 @@ function showPage(pageName) {
             setupStickyFilters();
             createSubscriptionOverviewCharts();
             setupSubscriptionChartInteractivity();
+        }, 100);
+    } else if (pageName === 'invoices' || pageName.toLowerCase() === 'invoices') {
+        // Show invoices page with tabs
+        if (invoicesPage) invoicesPage.style.display = 'block';
+        // Initialize invoices tabs functionality
+        setTimeout(() => {
+            initInvoicesTabs();
+        }, 100);
+    } else if (pageName === 'meters' || pageName.toLowerCase() === 'meters') {
+        // Show meters page with tabs
+        if (metersPage) metersPage.style.display = 'block';
+        // Initialize meters tabs functionality
+        setTimeout(() => {
+            initMetersTabs();
         }, 100);
     } else {
         // Show generic page with placeholder content
@@ -2148,6 +2285,338 @@ function createModalChart(data) {
     }
 }
 
+// Create Trials Charts (only subscriber charts)
+function createTrialsCharts() {
+    // New Trials Chart
+    const trialsActiveSubscribersCtx = document.getElementById('trialsActiveSubscribersChart');
+    if (trialsActiveSubscribersCtx) {
+        new Chart(trialsActiveSubscribersCtx.getContext('2d'), {
+            type: 'line',
+            data: mockData.newTrialsChartData,
+            options: createChartOptions(3500)
+        });
+    }
+
+    // Trial Conversion Rate Chart
+    const trialsActiveSubscribersGrowthCtx = document.getElementById('trialsActiveSubscribersGrowthChart');
+    if (trialsActiveSubscribersGrowthCtx) {
+        new Chart(trialsActiveSubscribersGrowthCtx.getContext('2d'), {
+            type: 'line',
+            data: mockData.trialConversionRateChartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        mode: 'index', intersect: false, backgroundColor: '#1f2937', titleColor: '#f9fafb', bodyColor: '#f9fafb', borderColor: '#374151', borderWidth: 1,
+                        callbacks: { label: function(context) { return context.dataset.label + ': ' + context.parsed.y + '%'; } }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false }, border: { display: false },
+                        ticks: {
+                            color: '#9ca3af', font: { size: 11 },
+                            callback: function(value, index) {
+                                if (index === 0 || index === 11) {
+                                    return this.getLabelForValue(value);
+                                }
+                                return '';
+                            }
+                        }
+                    },
+                    y: {
+                        position: 'right',
+                        grid: { color: '#f3f4f6', borderDash: [2, 2] },
+                        border: { display: false },
+                        min: 20, max: 30,
+                        ticks: {
+                            color: '#9ca3af', font: { size: 11 }, stepSize: 2.5,
+                            callback: function(value) { return Math.round(value * 10) / 10 + '%'; }
+                        }
+                    }
+                },
+                elements: { point: { radius: 0, hoverRadius: 0 } },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+    }
+
+    // Active Trials Chart
+    const trialsNewSubscribersCtx = document.getElementById('trialsNewSubscribersChart');
+    if (trialsNewSubscribersCtx) {
+        new Chart(trialsNewSubscribersCtx.getContext('2d'), {
+            type: 'line',
+            data: mockData.activeTrialsChartData,
+            options: createChartOptions(9000)
+        });
+    }
+
+    // Converted Trials Chart
+    const trialsChurnedSubscribersCtx = document.getElementById('trialsChurnedSubscribersChart');
+    if (trialsChurnedSubscribersCtx) {
+        new Chart(trialsChurnedSubscribersCtx.getContext('2d'), {
+            type: 'line',
+            data: mockData.convertedTrialsChartData,
+            options: createChartOptions(900)
+        });
+    }
+}
+
+// Setup click handlers for trials charts (only subscriber charts)
+function setupTrialsChartInteractivity() {
+    // Subscriber charts
+    const trialsActiveSubscribersContainer = document.querySelector('#trialsActiveSubscribersValue').closest('.overview-chart-container');
+    const trialsActiveSubscribersGrowthContainer = document.querySelector('#trialsActiveSubscribersGrowthValue').closest('.overview-chart-container');
+    const trialsNewSubscribersContainer = document.querySelector('#trialsNewSubscribersValue').closest('.overview-chart-container');
+    const trialsChurnedSubscribersContainer = document.querySelector('#trialsChurnedSubscribersValue').closest('.overview-chart-container');
+    
+    if (trialsActiveSubscribersContainer) {
+        trialsActiveSubscribersContainer.addEventListener('click', () => {
+            showModal('activeSubscribers');
+        });
+    }
+    
+    if (trialsActiveSubscribersGrowthContainer) {
+        trialsActiveSubscribersGrowthContainer.addEventListener('click', () => {
+            showModal('activeSubscribersGrowth');
+        });
+    }
+    
+    if (trialsNewSubscribersContainer) {
+        trialsNewSubscribersContainer.addEventListener('click', () => {
+            showModal('newSubscribers');
+        });
+    }
+    
+    if (trialsChurnedSubscribersContainer) {
+        trialsChurnedSubscribersContainer.addEventListener('click', () => {
+            showModal('churnedSubscribers');
+        });
+    }
+}
+
+// Create Churn Charts
+function createChurnCharts() {
+    // Subscriber Churn Rate Chart
+    const churnActiveSubscribersCtx = document.getElementById('churnActiveSubscribersChart');
+    if (churnActiveSubscribersCtx) {
+        new Chart(churnActiveSubscribersCtx.getContext('2d'), {
+            type: 'line',
+            data: mockData.subscriberChurnRateChartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        mode: 'index', intersect: false, backgroundColor: '#1f2937', titleColor: '#f9fafb', bodyColor: '#f9fafb', borderColor: '#374151', borderWidth: 1,
+                        callbacks: { label: function(context) { return context.dataset.label + ': ' + context.parsed.y + '%'; } }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false }, border: { display: false },
+                        ticks: {
+                            color: '#9ca3af', font: { size: 11 },
+                            callback: function(value, index) {
+                                if (index === 0 || index === 11) {
+                                    return this.getLabelForValue(value);
+                                }
+                                return '';
+                            }
+                        }
+                    },
+                    y: {
+                        position: 'right',
+                        grid: { color: '#f3f4f6', borderDash: [2, 2] },
+                        border: { display: false },
+                        min: 2, max: 5,
+                        ticks: {
+                            color: '#9ca3af', font: { size: 11 }, stepSize: 0.5,
+                            callback: function(value) { return Math.round(value * 10) / 10 + '%'; }
+                        }
+                    }
+                },
+                elements: { point: { radius: 0, hoverRadius: 0 } },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+    }
+
+    // Churned Revenue Chart
+    const churnActiveSubscribersGrowthCtx = document.getElementById('churnActiveSubscribersGrowthChart');
+    if (churnActiveSubscribersGrowthCtx) {
+        new Chart(churnActiveSubscribersGrowthCtx.getContext('2d'), {
+            type: 'line',
+            data: mockData.churnedRevenueChartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        mode: 'index', intersect: false, backgroundColor: '#1f2937', titleColor: '#f9fafb', bodyColor: '#f9fafb', borderColor: '#374151', borderWidth: 1,
+                        callbacks: { label: function(context) { return context.dataset.label + ': $' + context.parsed.y.toLocaleString(); } }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false }, border: { display: false },
+                        ticks: {
+                            color: '#9ca3af', font: { size: 11 },
+                            callback: function(value, index) {
+                                if (index === 0 || index === 11) {
+                                    return this.getLabelForValue(value);
+                                }
+                                return '';
+                            }
+                        }
+                    },
+                    y: {
+                        position: 'right',
+                        grid: { color: '#f3f4f6', borderDash: [2, 2] },
+                        border: { display: false },
+                        min: 10000, max: 25000,
+                        ticks: {
+                            color: '#9ca3af', font: { size: 11 }, stepSize: 5000,
+                            callback: function(value) { return '$' + (value / 1000) + 'k'; }
+                        }
+                    }
+                },
+                elements: { point: { radius: 0, hoverRadius: 0 } },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+    }
+
+    // Gross MRR Churn Rate Chart
+    const churnNewSubscribersCtx = document.getElementById('churnNewSubscribersChart');
+    if (churnNewSubscribersCtx) {
+        new Chart(churnNewSubscribersCtx.getContext('2d'), {
+            type: 'line',
+            data: mockData.grossMRRChurnRateChartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        mode: 'index', intersect: false, backgroundColor: '#1f2937', titleColor: '#f9fafb', bodyColor: '#f9fafb', borderColor: '#374151', borderWidth: 1,
+                        callbacks: { label: function(context) { return context.dataset.label + ': ' + context.parsed.y + '%'; } }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false }, border: { display: false },
+                        ticks: {
+                            color: '#9ca3af', font: { size: 11 },
+                            callback: function(value, index) {
+                                if (index === 0 || index === 11) {
+                                    return this.getLabelForValue(value);
+                                }
+                                return '';
+                            }
+                        }
+                    },
+                    y: {
+                        position: 'right',
+                        grid: { color: '#f3f4f6', borderDash: [2, 2] },
+                        border: { display: false },
+                        min: 3, max: 5,
+                        ticks: {
+                            color: '#9ca3af', font: { size: 11 }, stepSize: 0.5,
+                            callback: function(value) { return Math.round(value * 10) / 10 + '%'; }
+                        }
+                    }
+                },
+                elements: { point: { radius: 0, hoverRadius: 0 } },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+    }
+
+    // Net MRR Churn Rate Chart
+    const churnChurnedSubscribersCtx = document.getElementById('churnChurnedSubscribersChart');
+    if (churnChurnedSubscribersCtx) {
+        new Chart(churnChurnedSubscribersCtx.getContext('2d'), {
+            type: 'line',
+            data: mockData.netMRRChurnRateChartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        mode: 'index', intersect: false, backgroundColor: '#1f2937', titleColor: '#f9fafb', bodyColor: '#f9fafb', borderColor: '#374151', borderWidth: 1,
+                        callbacks: { label: function(context) { return context.dataset.label + ': ' + context.parsed.y + '%'; } }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false }, border: { display: false },
+                        ticks: {
+                            color: '#9ca3af', font: { size: 11 },
+                            callback: function(value, index) {
+                                if (index === 0 || index === 11) {
+                                    return this.getLabelForValue(value);
+                                }
+                                return '';
+                            }
+                        }
+                    },
+                    y: {
+                        position: 'right',
+                        grid: { color: '#f3f4f6', borderDash: [2, 2] },
+                        border: { display: false },
+                        min: 1, max: 3,
+                        ticks: {
+                            color: '#9ca3af', font: { size: 11 }, stepSize: 0.5,
+                            callback: function(value) { return Math.round(value * 10) / 10 + '%'; }
+                        }
+                    }
+                },
+                elements: { point: { radius: 0, hoverRadius: 0 } },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+    }
+}
+
+// Setup click handlers for churn charts (same as trials)
+function setupChurnChartInteractivity() {
+    // Subscriber charts
+    const churnActiveSubscribersContainer = document.querySelector('#churnActiveSubscribersValue').closest('.overview-chart-container');
+    const churnActiveSubscribersGrowthContainer = document.querySelector('#churnActiveSubscribersGrowthValue').closest('.overview-chart-container');
+    const churnNewSubscribersContainer = document.querySelector('#churnNewSubscribersValue').closest('.overview-chart-container');
+    const churnChurnedSubscribersContainer = document.querySelector('#churnChurnedSubscribersValue').closest('.overview-chart-container');
+    
+    if (churnActiveSubscribersContainer) {
+        churnActiveSubscribersContainer.addEventListener('click', () => {
+            showModal('activeSubscribers');
+        });
+    }
+    
+    if (churnActiveSubscribersGrowthContainer) {
+        churnActiveSubscribersGrowthContainer.addEventListener('click', () => {
+            showModal('activeSubscribersGrowth');
+        });
+    }
+    
+    if (churnNewSubscribersContainer) {
+        churnNewSubscribersContainer.addEventListener('click', () => {
+            showModal('newSubscribers');
+        });
+    }
+    
+    if (churnChurnedSubscribersContainer) {
+        churnChurnedSubscribersContainer.addEventListener('click', () => {
+            showModal('churnedSubscribers');
+        });
+    }
+}
+
 // Tab functionality for subscriptions page
 function initSubscriptionsTabs() {
     const tabButtons = document.querySelectorAll('.tab-button');
@@ -2168,6 +2637,92 @@ function initSubscriptionsTabs() {
             const targetContent = document.getElementById(`tab-${targetTab}`);
             if (targetContent) {
                 targetContent.classList.add('active');
+                
+                // Initialize functionality for specific tabs
+                if (targetTab === 'trials') {
+                    // Initialize trials tab with charts and sticky filters
+                    setTimeout(() => {
+                        setupStickyFilters();
+                        createTrialsCharts();
+                        setupTrialsChartInteractivity();
+                    }, 100);
+                } else if (targetTab === 'churn') {
+                    // Initialize churn tab with charts and sticky filters
+                    setTimeout(() => {
+                        setupStickyFilters();
+                        createChurnCharts();
+                        setupChurnChartInteractivity();
+                    }, 100);
+                } else if (targetTab === 'overview') {
+                    // Re-initialize overview tab when switching back
+                    setTimeout(() => {
+                        setupStickyFilters();
+                        createSubscriptionOverviewCharts();
+                        setupSubscriptionChartInteractivity();
+                    }, 100);
+                }
+            }
+        });
+    });
+}
+
+// Tab functionality for invoices page
+function initInvoicesTabs() {
+    const invoicesPage = document.getElementById('invoices-page');
+    if (!invoicesPage) return;
+    
+    const tabButtons = invoicesPage.querySelectorAll('.tab-button');
+    const tabContents = invoicesPage.querySelectorAll('.tab-content');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetTab = button.getAttribute('data-tab');
+            
+            // Remove active class from all buttons and contents within invoices page
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked button
+            button.classList.add('active');
+            
+            // Show corresponding tab content
+            const targetContent = document.getElementById(`tab-invoices-${targetTab}`);
+            if (targetContent) {
+                targetContent.classList.add('active');
+                
+                // Initialize functionality for specific tabs if needed
+                // (placeholder for future functionality)
+            }
+        });
+    });
+}
+
+// Tab functionality for meters page
+function initMetersTabs() {
+    const metersPage = document.getElementById('meters-page');
+    if (!metersPage) return;
+    
+    const tabButtons = metersPage.querySelectorAll('.tab-button');
+    const tabContents = metersPage.querySelectorAll('.tab-content');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetTab = button.getAttribute('data-tab');
+            
+            // Remove active class from all buttons and contents within meters page
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked button
+            button.classList.add('active');
+            
+            // Show corresponding tab content
+            const targetContent = document.getElementById(`tab-meters-${targetTab}`);
+            if (targetContent) {
+                targetContent.classList.add('active');
+                
+                // Initialize functionality for specific tabs if needed
+                // (placeholder for future functionality)
             }
         });
     });
@@ -2182,6 +2737,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize subscriptions tabs
     initSubscriptionsTabs();
+    
+    // Initialize invoices tabs
+    initInvoicesTabs();
+    
+    // Initialize meters tabs
+    initMetersTabs();
     
     // Start real-time updates after initial load
     setTimeout(() => {
@@ -2398,6 +2959,9 @@ class MetricsPanel {
         // Main panel triggers
         const metricsLink = document.getElementById('metricsCalculationsLink');
         const subscriptionsMetricsLink = document.getElementById('subscriptionsMetricsCalculationsLink');
+        const subscribersMetricsLink = document.getElementById('subscribersMetricsCalculationsLink');
+        const trialsSubscribersMetricsLink = document.getElementById('trialsSubscribersMetricsCalculationsLink');
+        const churnSubscribersMetricsLink = document.getElementById('churnSubscribersMetricsCalculationsLink');
         const customerEconomicsLink = document.getElementById('customerEconomicsLink');
         
         if (metricsLink) {
@@ -2411,7 +2975,31 @@ class MetricsPanel {
         if (subscriptionsMetricsLink) {
             subscriptionsMetricsLink.addEventListener('click', (e) => {
                 e.preventDefault();
-                this.currentPanelType = 'revenue';
+                this.currentPanelType = 'subscriptions';
+                this.openMainPanel();
+            });
+        }
+        
+        if (subscribersMetricsLink) {
+            subscribersMetricsLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.currentPanelType = 'subscribers';
+                this.openMainPanel();
+            });
+        }
+        
+        if (trialsSubscribersMetricsLink) {
+            trialsSubscribersMetricsLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.currentPanelType = 'trials';
+                this.openMainPanel();
+            });
+        }
+        
+        if (churnSubscribersMetricsLink) {
+            churnSubscribersMetricsLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.currentPanelType = 'churn';
                 this.openMainPanel();
             });
         }
@@ -2657,6 +3245,264 @@ class MetricsPanel {
                         checked: true
                     }
                 ]
+            },
+            'subscription-revenue': {
+                title: 'Subscription revenue',
+                shortDescription: 'Revenue from recurring subscription payments.',
+                description: 'This metric shows revenue from recurring subscription payments, calculated as the sum of all successful subscription billing cycles in the selected period. It includes all subscription charges but excludes one-time payments, usage charges, and other non-recurring revenue sources.',
+                controls: [
+                    {
+                        id: 'includeTrials',
+                        title: 'Include trial conversions',
+                        description: 'Include revenue from subscriptions that converted from trial periods',
+                        checked: true
+                    },
+                    {
+                        id: 'includeUpgrades',
+                        title: 'Include plan upgrades',
+                        description: 'Include additional revenue from subscription plan upgrades',
+                        checked: true
+                    }
+                ]
+            },
+            'subscription-revenue-growth': {
+                title: 'Subscription revenue growth',
+                shortDescription: 'Percentage growth in subscription revenue compared to previous period.',
+                description: 'This metric shows the percentage growth in subscription revenue compared to the previous period, calculated as the month-over-month change in subscription revenue. It helps track the growth trajectory of your subscription business and identifies trends in recurring revenue performance.',
+                controls: [
+                    {
+                        id: 'excludeChurn',
+                        title: 'Exclude churned accounts',
+                        description: 'Calculate growth excluding revenue lost from churned subscriptions',
+                        checked: false
+                    }
+                ]
+            },
+            'active-subscribers': {
+                title: 'Active subscribers',
+                shortDescription: 'Total number of subscribers with active recurring subscriptions.',
+                description: 'This metric shows the total number of active subscribers with ongoing subscriptions during the selected period. It includes all subscribers with valid, non-cancelled subscriptions regardless of billing frequency or subscription plan type.',
+                controls: [
+                    {
+                        id: 'includeTrialSubscribers',
+                        title: 'Include trial subscribers',
+                        description: 'Include subscribers currently in trial periods',
+                        checked: true
+                    },
+                    {
+                        id: 'includePausedSubscriptions',
+                        title: 'Include paused subscriptions',
+                        description: 'Include subscribers with temporarily paused subscriptions',
+                        checked: false
+                    }
+                ]
+            },
+            'active-subscribers-growth': {
+                title: 'Active subscribers growth',
+                shortDescription: 'Percentage growth in active subscriber count compared to previous period.',
+                description: 'This metric shows the percentage growth in active subscribers compared to the previous period, calculated as the month-over-month change in subscriber count. It helps track subscriber acquisition and retention trends.',
+                controls: [
+                    {
+                        id: 'excludeChurnedSubscribers',
+                        title: 'Net growth calculation',
+                        description: 'Calculate net growth including both new acquisitions and churned subscribers',
+                        checked: true
+                    }
+                ]
+            },
+            'new-subscribers': {
+                title: 'New subscribers',
+                shortDescription: 'Number of new subscribers acquired during the selected period.',
+                description: 'This metric shows the total number of new subscribers who started their first subscription during the selected period. It includes conversions from trials, direct signups, and subscribers acquired through different channels.',
+                controls: [
+                    {
+                        id: 'includeTrialConversions',
+                        title: 'Include trial conversions',
+                        description: 'Include subscribers who converted from trial to paid subscriptions',
+                        checked: true
+                    },
+                    {
+                        id: 'includeReactivations',
+                        title: 'Include reactivations',
+                        description: 'Include previously churned subscribers who reactivated',
+                        checked: false
+                    }
+                ]
+            },
+            'churned-subscribers': {
+                title: 'Churned subscribers',
+                shortDescription: 'Number of subscribers who cancelled their subscriptions during the selected period.',
+                description: 'This metric shows the total number of subscribers who cancelled or failed to renew their subscriptions during the selected period. It includes voluntary cancellations, payment failures, and expired subscriptions.',
+                controls: [
+                    {
+                        id: 'includePaymentFailures',
+                        title: 'Include payment failures',
+                        description: 'Include subscribers lost due to payment processing failures',
+                        checked: true
+                    },
+                    {
+                        id: 'excludeVoluntaryPauses',
+                        title: 'Exclude voluntary pauses',
+                        description: 'Exclude subscribers who voluntarily paused rather than cancelled',
+                        checked: true
+                    }
+                ]
+            },
+            
+            // Trials-specific metrics
+            'new-trials': {
+                title: 'New trials',
+                shortDescription: 'Number of new trial subscriptions started.',
+                description: 'This metric shows the total number of new trial subscriptions that were started during the selected period. It includes all trial sign-ups regardless of their conversion outcome or trial duration.',
+                controls: [
+                    {
+                        id: 'includeFreePlans',
+                        title: 'Include free plan trials',
+                        description: 'Include trials on free plans in the count',
+                        checked: true
+                    },
+                    {
+                        id: 'excludeEmployeeTrials',
+                        title: 'Exclude employee trials',
+                        description: 'Exclude trial accounts created by company employees',
+                        checked: true
+                    }
+                ]
+            },
+            'trial-conversion-rate': {
+                title: 'Trial conversion rate',
+                shortDescription: 'Percentage of trials that convert to paid subscriptions.',
+                description: 'This metric shows the percentage of trial subscriptions that successfully convert to paid subscriptions. The calculation includes trials that converted during the selected period, regardless of when the trial originally started.',
+                controls: [
+                    {
+                        id: 'includeExtendedTrials',
+                        title: 'Include extended trials',
+                        description: 'Include trials that were extended beyond the standard period',
+                        checked: true
+                    },
+                    {
+                        id: 'excludeDowngrades',
+                        title: 'Exclude plan downgrades',
+                        description: 'Exclude conversions to lower-tier plans from conversion rate',
+                        checked: false
+                    }
+                ]
+            },
+            'active-trials': {
+                title: 'Active trials',
+                shortDescription: 'Number of currently active trial subscriptions.',
+                description: 'This metric shows the total number of trial subscriptions that are currently active and have not yet expired or converted. It provides a snapshot of trial activity at the end of the selected period.',
+                controls: [
+                    {
+                        id: 'includeExpiredUnconverted',
+                        title: 'Include expired unconverted',
+                        description: 'Include trials that expired without converting',
+                        checked: false
+                    },
+                    {
+                        id: 'includeExtensions',
+                        title: 'Include trial extensions',
+                        description: 'Include trials that have been extended beyond standard duration',
+                        checked: true
+                    }
+                ]
+            },
+            'converted-trials': {
+                title: 'Converted trials',
+                shortDescription: 'Number of trials that converted to paid subscriptions.',
+                description: 'This metric shows the total number of trial subscriptions that successfully converted to paid subscriptions during the selected period. It tracks the effectiveness of your trial-to-paid conversion funnel.',
+                controls: [
+                    {
+                        id: 'includeImmediateConversions',
+                        title: 'Include immediate conversions',
+                        description: 'Include trials that converted before the trial period ended',
+                        checked: true
+                    },
+                    {
+                        id: 'trackByConversionDate',
+                        title: 'Track by conversion date',
+                        description: 'Count conversions by when they occurred, not when trial started',
+                        checked: true
+                    }
+                ]
+            },
+            
+            // Churn-specific metrics
+            'subscriber-churn-rate': {
+                title: 'Subscriber churn rate',
+                shortDescription: 'Percentage of subscribers who cancelled in the period.',
+                description: 'This metric shows the percentage of subscribers who cancelled their subscriptions during the selected period, calculated as cancelled subscribers divided by total subscribers at the beginning of the period. It measures customer retention and subscription business health.',
+                controls: [
+                    {
+                        id: 'includeInvoluntaryChurn',
+                        title: 'Include involuntary churn',
+                        description: 'Include cancellations due to payment failures and expired cards',
+                        checked: true
+                    },
+                    {
+                        id: 'excludeDowngrades',
+                        title: 'Exclude downgrades',
+                        description: 'Exclude plan downgrades from churn calculation',
+                        checked: true
+                    }
+                ]
+            },
+            'churned-revenue': {
+                title: 'Churned revenue',
+                shortDescription: 'Total revenue lost from cancelled subscriptions.',
+                description: 'This metric shows the total amount of recurring revenue lost due to subscription cancellations during the selected period. It includes the monthly recurring revenue that was lost when subscribers cancelled their subscriptions.',
+                controls: [
+                    {
+                        id: 'includeProrations',
+                        title: 'Include prorated amounts',
+                        description: 'Include prorated revenue adjustments for mid-cycle cancellations',
+                        checked: true
+                    },
+                    {
+                        id: 'excludeDowngradeRevenue',
+                        title: 'Exclude downgrade revenue',
+                        description: 'Exclude revenue lost due to plan downgrades rather than full cancellations',
+                        checked: false
+                    }
+                ]
+            },
+            'gross-mrr-churn-rate': {
+                title: 'Gross MRR churn rate',
+                shortDescription: 'Percentage of MRR lost from cancellations and downgrades.',
+                description: 'This metric shows the percentage of Monthly Recurring Revenue (MRR) lost due to subscription cancellations and downgrades during the selected period. It includes all forms of revenue reduction but excludes expansion revenue from existing customers.',
+                controls: [
+                    {
+                        id: 'includeDowngradeRevenue',
+                        title: 'Include downgrade revenue',
+                        description: 'Include MRR lost from plan downgrades in addition to cancellations',
+                        checked: true
+                    },
+                    {
+                        id: 'excludeSeasonalPauses',
+                        title: 'Exclude seasonal pauses',
+                        description: 'Exclude temporary subscription pauses from MRR churn calculation',
+                        checked: true
+                    }
+                ]
+            },
+            'net-mrr-churn-rate': {
+                title: 'Net MRR churn rate',
+                shortDescription: 'Net percentage of MRR lost after accounting for expansions.',
+                description: 'This metric shows the net percentage of Monthly Recurring Revenue (MRR) lost after accounting for expansion revenue from existing customers. It calculates gross MRR churn minus expansion MRR from upgrades and add-ons from existing subscribers.',
+                controls: [
+                    {
+                        id: 'includeExpansionRevenue',
+                        title: 'Include expansion revenue',
+                        description: 'Include MRR gained from existing customer upgrades and add-ons',
+                        checked: true
+                    },
+                    {
+                        id: 'excludeNewCustomerRevenue',
+                        title: 'Exclude new customer revenue',
+                        description: 'Exclude MRR from completely new customers in net churn calculation',
+                        checked: true
+                    }
+                ]
             }
         };
     }
@@ -2686,6 +3532,32 @@ class MetricsPanel {
                 'net-revenue',
                 'mrr',
                 'meter-revenue'
+            ];
+        } else if (this.currentPanelType === 'subscriptions') {
+            metricsToShow = [
+                'subscription-revenue',
+                'subscription-revenue-growth'
+            ];
+        } else if (this.currentPanelType === 'subscribers') {
+            metricsToShow = [
+                'active-subscribers',
+                'active-subscribers-growth',
+                'new-subscribers',
+                'churned-subscribers'
+            ];
+        } else if (this.currentPanelType === 'trials') {
+            metricsToShow = [
+                'new-trials',
+                'trial-conversion-rate',
+                'active-trials',
+                'converted-trials'
+            ];
+        } else if (this.currentPanelType === 'churn') {
+            metricsToShow = [
+                'subscriber-churn-rate',
+                'churned-revenue',
+                'gross-mrr-churn-rate',
+                'net-mrr-churn-rate'
             ];
         } else if (this.currentPanelType === 'customer-economics') {
             metricsToShow = [

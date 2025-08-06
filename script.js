@@ -73,6 +73,94 @@ const mockData = {
         }]
     },
 
+    // Subscription overview page specific charts
+    subscriptionRevenueBarChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Subscription Revenue',
+            data: [2800, 3200, 3100, 3900, 4500, 4200, 5100, 5600, 5200, 5400, 5900, 6300],
+            backgroundColor: '#9966FF',
+            borderColor: '#9966FF',
+            borderWidth: 1
+        }]
+    },
+
+    subscriptionGrowthChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Growth Rate (%)',
+            data: [8.5, 14.3, -3.1, 25.8, 15.4, -6.7, 21.4, 9.8, -7.1, 3.8, 9.3, 6.8],
+            borderColor: '#9966FF',
+            backgroundColor: 'rgba(153, 102, 255, 0.1)',
+            fill: false,
+            tension: 0.4,
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 0
+        }]
+    },
+
+    // Subscriber charts data
+    activeSubscribersChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Active Subscribers',
+            data: [9800, 10150, 10500, 10900, 11250, 11600, 11950, 12100, 12200, 12300, 12350, 12450],
+            borderColor: '#9966FF',
+            backgroundColor: 'rgba(153, 102, 255, 0.1)',
+            fill: false,
+            tension: 0.4,
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 0
+        }]
+    },
+
+    activeSubscribersGrowthChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Growth Rate (%)',
+            data: [5.2, 3.6, 3.4, 3.8, 3.2, 3.1, 3.0, 1.3, 0.8, 0.8, 0.4, 0.8],
+            borderColor: '#9966FF',
+            backgroundColor: 'rgba(153, 102, 255, 0.1)',
+            fill: false,
+            tension: 0.4,
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 0
+        }]
+    },
+
+    newSubscribersChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'New Subscribers',
+            data: [850, 920, 1100, 980, 1050, 1150, 1200, 1180, 1250, 1320, 1280, 1234],
+            borderColor: '#9966FF',
+            backgroundColor: 'rgba(153, 102, 255, 0.1)',
+            fill: false,
+            tension: 0.4,
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 0
+        }]
+    },
+
+    churnedSubscribersChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Churned Subscribers',
+            data: [120, 145, 135, 165, 158, 142, 138, 152, 148, 139, 142, 156],
+            borderColor: '#9966FF',
+            backgroundColor: 'rgba(153, 102, 255, 0.1)',
+            fill: false,
+            tension: 0.4,
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 0
+        }]
+    },
+
     // Customer Economics Charts
     customerEconomicsChartData: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -161,6 +249,134 @@ const mockData = {
                 { month: 'October', value: 2700, change: '+12.5%' },
                 { month: 'November', value: 2900, change: '+7.4%' },
                 { month: 'December', value: 2900, change: '0.0%' }
+            ]
+        },
+        // Subscription overview page specific modal data
+        subscriptionRevenueBar: {
+            title: "Subscription revenue",
+            value: "$54,500",
+            description: "This metric shows revenue from recurring subscription payments, calculated as the sum of all successful subscription billing cycles in the selected period.",
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            data: [2800, 3200, 3100, 3900, 4500, 4200, 5100, 5600, 5200, 5400, 5900, 6300],
+            tableData: [
+                { month: 'January', value: 2800, change: '+8.5%' },
+                { month: 'February', value: 3200, change: '+14.3%' },
+                { month: 'March', value: 3100, change: '-3.1%' },
+                { month: 'April', value: 3900, change: '+25.8%' },
+                { month: 'May', value: 4500, change: '+15.4%' },
+                { month: 'June', value: 4200, change: '-6.7%' },
+                { month: 'July', value: 5100, change: '+21.4%' },
+                { month: 'August', value: 5600, change: '+9.8%' },
+                { month: 'September', value: 5200, change: '-7.1%' },
+                { month: 'October', value: 5400, change: '+3.8%' },
+                { month: 'November', value: 5900, change: '+9.3%' },
+                { month: 'December', value: 6300, change: '+6.8%' }
+            ]
+        },
+        subscriptionGrowth: {
+            title: "Subscription revenue growth",
+            value: "+12.8%",
+            description: "This metric shows the percentage growth in subscription revenue compared to the previous period, calculated as the month-over-month change in subscription revenue.",
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            data: [8.5, 14.3, -3.1, 25.8, 15.4, -6.7, 21.4, 9.8, -7.1, 3.8, 9.3, 6.8],
+            tableData: [
+                { month: 'January', value: '8.5%', change: '+2.3%' },
+                { month: 'February', value: '14.3%', change: '+5.8%' },
+                { month: 'March', value: '-3.1%', change: '-17.4%' },
+                { month: 'April', value: '25.8%', change: '+28.9%' },
+                { month: 'May', value: '15.4%', change: '-10.4%' },
+                { month: 'June', value: '-6.7%', change: '-22.1%' },
+                { month: 'July', value: '21.4%', change: '+28.1%' },
+                { month: 'August', value: '9.8%', change: '-11.6%' },
+                { month: 'September', value: '-7.1%', change: '-16.9%' },
+                { month: 'October', value: '3.8%', change: '+10.9%' },
+                { month: 'November', value: '9.3%', change: '+5.5%' },
+                { month: 'December', value: '6.8%', change: '-2.5%' }
+            ]
+        },
+        // Subscriber modal data
+        activeSubscribers: {
+            title: "Active subscribers",
+            value: "12,450",
+            description: "This metric shows the total number of active subscribers with ongoing subscriptions during the selected period.",
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            data: [9800, 10150, 10500, 10900, 11250, 11600, 11950, 12100, 12200, 12300, 12350, 12450],
+            tableData: [
+                { month: 'January', value: 9800, change: '+5.2%' },
+                { month: 'February', value: 10150, change: '+3.6%' },
+                { month: 'March', value: 10500, change: '+3.4%' },
+                { month: 'April', value: 10900, change: '+3.8%' },
+                { month: 'May', value: 11250, change: '+3.2%' },
+                { month: 'June', value: 11600, change: '+3.1%' },
+                { month: 'July', value: 11950, change: '+3.0%' },
+                { month: 'August', value: 12100, change: '+1.3%' },
+                { month: 'September', value: 12200, change: '+0.8%' },
+                { month: 'October', value: 12300, change: '+0.8%' },
+                { month: 'November', value: 12350, change: '+0.4%' },
+                { month: 'December', value: 12450, change: '+0.8%' }
+            ]
+        },
+        activeSubscribersGrowth: {
+            title: "Active subscribers growth",
+            value: "+8.2%",
+            description: "This metric shows the percentage growth in active subscribers compared to the previous period.",
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            data: [5.2, 3.6, 3.4, 3.8, 3.2, 3.1, 3.0, 1.3, 0.8, 0.8, 0.4, 0.8],
+            tableData: [
+                { month: 'January', value: '5.2%', change: '+1.2%' },
+                { month: 'February', value: '3.6%', change: '-1.6%' },
+                { month: 'March', value: '3.4%', change: '-0.2%' },
+                { month: 'April', value: '3.8%', change: '+0.4%' },
+                { month: 'May', value: '3.2%', change: '-0.6%' },
+                { month: 'June', value: '3.1%', change: '-0.1%' },
+                { month: 'July', value: '3.0%', change: '-0.1%' },
+                { month: 'August', value: '1.3%', change: '-1.7%' },
+                { month: 'September', value: '0.8%', change: '-0.5%' },
+                { month: 'October', value: '0.8%', change: '0.0%' },
+                { month: 'November', value: '0.4%', change: '-0.4%' },
+                { month: 'December', value: '0.8%', change: '+0.4%' }
+            ]
+        },
+        newSubscribers: {
+            title: "New subscribers",
+            value: "1,234",
+            description: "This metric shows the number of new subscribers acquired during the selected period.",
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            data: [850, 920, 1100, 980, 1050, 1150, 1200, 1180, 1250, 1320, 1280, 1234],
+            tableData: [
+                { month: 'January', value: 850, change: '+12.5%' },
+                { month: 'February', value: 920, change: '+8.2%' },
+                { month: 'March', value: 1100, change: '+19.6%' },
+                { month: 'April', value: 980, change: '-10.9%' },
+                { month: 'May', value: 1050, change: '+7.1%' },
+                { month: 'June', value: 1150, change: '+9.5%' },
+                { month: 'July', value: 1200, change: '+4.3%' },
+                { month: 'August', value: 1180, change: '-1.7%' },
+                { month: 'September', value: 1250, change: '+5.9%' },
+                { month: 'October', value: 1320, change: '+5.6%' },
+                { month: 'November', value: 1280, change: '-3.0%' },
+                { month: 'December', value: 1234, change: '-3.6%' }
+            ]
+        },
+        churnedSubscribers: {
+            title: "Churned subscribers",
+            value: "156",
+            description: "This metric shows the number of subscribers who cancelled their subscriptions during the selected period.",
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            data: [120, 145, 135, 165, 158, 142, 138, 152, 148, 139, 142, 156],
+            tableData: [
+                { month: 'January', value: 120, change: '-8.5%' },
+                { month: 'February', value: 145, change: '+20.8%' },
+                { month: 'March', value: 135, change: '-6.9%' },
+                { month: 'April', value: 165, change: '+22.2%' },
+                { month: 'May', value: 158, change: '-4.2%' },
+                { month: 'June', value: 142, change: '-10.1%' },
+                { month: 'July', value: 138, change: '-2.8%' },
+                { month: 'August', value: 152, change: '+10.1%' },
+                { month: 'September', value: 148, change: '-2.6%' },
+                { month: 'October', value: 139, change: '-6.1%' },
+                { month: 'November', value: 142, change: '+2.2%' },
+                { month: 'December', value: 156, change: '+9.9%' }
             ]
         },
         totalRevenueGrowth: {
@@ -585,6 +801,7 @@ function showPage(pageName) {
     // Get page elements
     const homePage = document.getElementById('home-page');
     const revenuePage = document.getElementById('revenue-page');
+    const subscriptionsPage = document.getElementById('subscriptions-page');
     const genericPage = document.getElementById('generic-page');
     const genericPageTitle = document.getElementById('generic-page-title');
     const pageNamePlaceholder = document.getElementById('page-name-placeholder');
@@ -592,9 +809,10 @@ function showPage(pageName) {
     // Hide all page content first and cleanup page-specific functionality
     if (homePage) homePage.style.display = 'none';
     if (revenuePage) revenuePage.style.display = 'none';
+    if (subscriptionsPage) subscriptionsPage.style.display = 'none';
     if (genericPage) genericPage.style.display = 'none';
     
-    // Clean up sticky filters when navigating away from revenue page
+    // Clean up sticky filters when navigating away from revenue/subscriptions pages
     cleanupStickyFilters();
     
     if (pageName === 'home' || pageName.toLowerCase() === 'home') {
@@ -612,6 +830,15 @@ function showPage(pageName) {
             createCustomerEconomicsCharts();
             setupCustomerEconomicsInteractivity();
             setupStickyFilters();
+        }, 100);
+    } else if (pageName === 'subscriptions' || pageName.toLowerCase() === 'subscriptions') {
+        // Show subscriptions page with sticky filters and subscription charts
+        if (subscriptionsPage) subscriptionsPage.style.display = 'block';
+        // Setup sticky filters and create subscription charts for subscriptions page
+        setTimeout(() => {
+            setupStickyFilters();
+            createSubscriptionOverviewCharts();
+            setupSubscriptionChartInteractivity();
         }, 100);
     } else {
         // Show generic page with placeholder content
@@ -851,14 +1078,130 @@ function createCharts() {
     });
 }
 
-// Create Billing Page Charts
-function createBillingCharts() {
-    // Main stacked bar chart
-    const billingStackedCtx = document.getElementById('billingStackedChart');
-    if (billingStackedCtx) {
-        new Chart(billingStackedCtx.getContext('2d'), {
+// Setup click handlers for subscription overview charts
+function setupSubscriptionChartInteractivity() {
+    // Add click event listeners to first set of subscription overview chart containers
+    const subscriptionRevenueContainer = document.querySelector('#subscriptionRevenueValueSubs').closest('.overview-chart-container');
+    const subscriptionGrowthContainer = document.querySelector('#subscriptionGrowthValue').closest('.overview-chart-container');
+    
+    if (subscriptionRevenueContainer) {
+        subscriptionRevenueContainer.addEventListener('click', () => {
+            showModal('subscriptionRevenueBar');
+        });
+    }
+    
+    if (subscriptionGrowthContainer) {
+        subscriptionGrowthContainer.addEventListener('click', () => {
+            showModal('subscriptionGrowth');
+        });
+    }
+    
+    // Add click event listeners to subscriber chart containers
+    const activeSubscribersContainer = document.querySelector('#activeSubscribersValue').closest('.overview-chart-container');
+    const activeSubscribersGrowthContainer = document.querySelector('#activeSubscribersGrowthValue').closest('.overview-chart-container');
+    const newSubscribersContainer = document.querySelector('#newSubscribersValue').closest('.overview-chart-container');
+    const churnedSubscribersContainer = document.querySelector('#churnedSubscribersValue').closest('.overview-chart-container');
+    
+    if (activeSubscribersContainer) {
+        activeSubscribersContainer.addEventListener('click', () => {
+            showModal('activeSubscribers');
+        });
+    }
+    
+    if (activeSubscribersGrowthContainer) {
+        activeSubscribersGrowthContainer.addEventListener('click', () => {
+            showModal('activeSubscribersGrowth');
+        });
+    }
+    
+    if (newSubscribersContainer) {
+        newSubscribersContainer.addEventListener('click', () => {
+            showModal('newSubscribers');
+        });
+    }
+    
+    if (churnedSubscribersContainer) {
+        churnedSubscribersContainer.addEventListener('click', () => {
+            showModal('churnedSubscribers');
+        });
+    }
+}
+
+// Create Subscription Overview Charts (for subscriptions page)
+function createSubscriptionOverviewCharts() {
+    // Subscription Revenue Bar Chart
+    const subscriptionBarCtx = document.getElementById('subscriptionRevenueBarChart');
+    if (subscriptionBarCtx) {
+        new Chart(subscriptionBarCtx.getContext('2d'), {
             type: 'bar',
-            data: mockData.billingStackedChartData,
+            data: mockData.subscriptionRevenueBarChartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: '#1f2937',
+                        titleColor: '#f9fafb',
+                        bodyColor: '#f9fafb',
+                        borderColor: '#374151',
+                        borderWidth: 1
+                    }
+                },
+                scales: {
+                    x: {
+                        display: true,
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#9ca3af',
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    y: {
+                        position: 'right',
+                        grid: {
+                            color: '#f3f4f6',
+                            borderDash: [2, 2]
+                        },
+                        border: {
+                            display: false
+                        },
+                        min: 0,
+                        max: 8000,
+                        ticks: {
+                            color: '#9ca3af',
+                            font: {
+                                size: 11
+                            },
+                            stepSize: 2000, // Creates ticks: 0, 2000, 4000, 6000, 8000
+                            callback: function(value) {
+                                return '$' + Math.round(value).toLocaleString();
+                            }
+                        }
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                }
+            }
+        });
+    }
+
+    // Subscription Growth Line Chart
+    const subscriptionGrowthCtx = document.getElementById('subscriptionGrowthChart');
+    if (subscriptionGrowthCtx) {
+        new Chart(subscriptionGrowthCtx.getContext('2d'), {
+            type: 'line',
+            data: mockData.subscriptionGrowthChartData,
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
@@ -876,14 +1219,14 @@ function createBillingCharts() {
                         borderWidth: 1,
                         callbacks: {
                             label: function(context) {
-                                return context.dataset.label + ': ' + formatCurrency(context.parsed.y);
+                                return context.dataset.label + ': ' + context.parsed.y + '%';
                             }
                         }
                     }
                 },
                 scales: {
                     x: {
-                        stacked: true,
+                        display: true,
                         grid: {
                             display: false
                         },
@@ -895,7 +1238,6 @@ function createBillingCharts() {
                         }
                     },
                     y: {
-                        stacked: true,
                         position: 'right',
                         grid: {
                             color: '#f3f4f6',
@@ -904,18 +1246,24 @@ function createBillingCharts() {
                         border: {
                             display: false
                         },
-                        min: 0,
-                        max: 100000,
+                        min: -10,
+                        max: 30,
                         ticks: {
-                            stepSize: 25000,
                             color: '#9ca3af',
                             font: {
-                                size: 12
+                                size: 11
                             },
+                            stepSize: 10, // Creates ticks: -10, 0, 10, 20, 30
                             callback: function(value) {
-                                return formatCurrency(value);
+                                return Math.round(value) + '%';
                             }
                         }
+                    }
+                },
+                elements: {
+                    point: {
+                        radius: 0,
+                        hoverRadius: 4
                     }
                 },
                 interaction: {
@@ -925,6 +1273,199 @@ function createBillingCharts() {
             }
         });
     }
+    
+    // Create subscriber charts
+    // Active Subscribers Chart
+    const activeSubscribersCtx = document.getElementById('activeSubscribersChart');
+    if (activeSubscribersCtx) {
+        new Chart(activeSubscribersCtx.getContext('2d'), {
+            type: 'line',
+            data: mockData.activeSubscribersChartData,
+            options: createChartOptions(15000)
+        });
+    }
+
+    // Active Subscribers Growth Chart
+    const activeSubscribersGrowthCtx = document.getElementById('activeSubscribersGrowthChart');
+    if (activeSubscribersGrowthCtx) {
+        new Chart(activeSubscribersGrowthCtx.getContext('2d'), {
+            type: 'line',
+            data: mockData.activeSubscribersGrowthChartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: '#1f2937',
+                        titleColor: '#f9fafb',
+                        bodyColor: '#f9fafb',
+                        borderColor: '#374151',
+                        borderWidth: 1,
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.parsed.y + '%';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        border: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#9ca3af',
+                            font: {
+                                size: 11
+                            },
+                            callback: function(value, index) {
+                                if (index === 0 || index === 11) {
+                                    return this.getLabelForValue(value);
+                                }
+                                return '';
+                            }
+                        }
+                    },
+                    y: {
+                        position: 'right',
+                        grid: {
+                            color: '#f3f4f6',
+                            borderDash: [2, 2]
+                        },
+                        border: {
+                            display: false
+                        },
+                        min: 0,
+                        max: 6,
+                        ticks: {
+                            color: '#9ca3af',
+                            font: {
+                                size: 11
+                            },
+                            stepSize: 2,
+                            callback: function(value) {
+                                return Math.round(value) + '%';
+                            }
+                        }
+                    }
+                },
+                elements: {
+                    point: {
+                        radius: 0,
+                        hoverRadius: 0
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                }
+            }
+        });
+    }
+
+    // New Subscribers Chart
+    const newSubscribersCtx = document.getElementById('newSubscribersChart');
+    if (newSubscribersCtx) {
+        new Chart(newSubscribersCtx.getContext('2d'), {
+            type: 'line',
+            data: mockData.newSubscribersChartData,
+            options: createChartOptions(1600)
+        });
+    }
+
+    // Churned Subscribers Chart
+    const churnedSubscribersCtx = document.getElementById('churnedSubscribersChart');
+    if (churnedSubscribersCtx) {
+        new Chart(churnedSubscribersCtx.getContext('2d'), {
+            type: 'line',
+            data: mockData.churnedSubscribersChartData,
+            options: createChartOptions(200)
+        });
+    }
+}
+
+// Create Billing Page Charts
+function createBillingCharts() {
+    // Main stacked bar chart
+    const billingStackedCtx = document.getElementById('billingStackedChart');
+    if (billingStackedCtx) {
+        new Chart(billingStackedCtx.getContext('2d'), {
+            type: 'bar',
+            data: mockData.billingStackedChartData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    mode: 'index',
+                    intersect: false,
+                    backgroundColor: '#1f2937',
+                    titleColor: '#f9fafb',
+                    bodyColor: '#f9fafb',
+                    borderColor: '#374151',
+                        borderWidth: 1,
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + formatCurrency(context.parsed.y);
+                            }
+                        }
+                }
+            },
+            scales: {
+                x: {
+                        stacked: true,
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: '#9ca3af',
+                        font: {
+                            size: 12
+                        }
+                    }
+                },
+                y: {
+                        stacked: true,
+                    position: 'right',
+                    grid: {
+                        color: '#f3f4f6',
+                        borderDash: [2, 2]
+                    },
+                    border: {
+                        display: false
+                    },
+                        min: 0,
+                        max: 100000,
+                    ticks: {
+                            stepSize: 25000,
+                        color: '#9ca3af',
+                        font: {
+                            size: 12
+                        },
+                        callback: function(value) {
+                                return formatCurrency(value);
+                            }
+                        }
+                }
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index'
+            }
+        }
+    });
+}
 
     // Billing metric module charts
     Object.keys(mockData.billingMetricData).forEach(metricKey => {
@@ -1607,12 +2148,40 @@ function createModalChart(data) {
     }
 }
 
+// Tab functionality for subscriptions page
+function initSubscriptionsTabs() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetTab = button.getAttribute('data-tab');
+            
+            // Remove active class from all buttons and contents
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked button
+            button.classList.add('active');
+            
+            // Show corresponding tab content
+            const targetContent = document.getElementById(`tab-${targetTab}`);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+        });
+    });
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Show home page by default
     showPage('home');
     
     initDashboard();
+    
+    // Initialize subscriptions tabs
+    initSubscriptionsTabs();
     
     // Start real-time updates after initial load
     setTimeout(() => {
@@ -1683,7 +2252,19 @@ function setupCustomerEconomicsInteractivity() {
 }
 
 function setupStickyFilters() {
-    const billingFilters = document.querySelector('.billing-filters');
+    // Find the visible billing-filters element (from the currently shown page)
+    const revenuePage = document.getElementById('revenue-page');
+    const subscriptionsPage = document.getElementById('subscriptions-page');
+    
+    let billingFilters = null;
+    
+    // Check which page is currently visible and get the corresponding billing-filters
+    if (revenuePage && revenuePage.style.display !== 'none') {
+        billingFilters = revenuePage.querySelector('.billing-filters');
+    } else if (subscriptionsPage && subscriptionsPage.style.display !== 'none') {
+        billingFilters = subscriptionsPage.querySelector('.billing-filters');
+    }
+    
     const searchHeader = document.querySelector('.search-header');
     
     if (!billingFilters || !searchHeader) return;
@@ -1756,14 +2337,26 @@ function setupStickyFilters() {
 }
 
 function cleanupStickyFilters() {
-    const billingFilters = document.querySelector('.billing-filters');
+    // Clean up sticky filters from both revenue and subscriptions pages
+    const revenuePage = document.getElementById('revenue-page');
+    const subscriptionsPage = document.getElementById('subscriptions-page');
     
-    // Remove sticky class and clear inline styles
-    if (billingFilters) {
-        billingFilters.classList.remove('sticky');
-        billingFilters.style.left = '';
-        billingFilters.style.width = '';
-        billingFilters.style.right = '';
+    const revenueFilters = revenuePage ? revenuePage.querySelector('.billing-filters') : null;
+    const subscriptionsFilters = subscriptionsPage ? subscriptionsPage.querySelector('.billing-filters') : null;
+    
+    // Remove sticky class and clear inline styles from both
+    if (revenueFilters) {
+        revenueFilters.classList.remove('sticky');
+        revenueFilters.style.left = '';
+        revenueFilters.style.width = '';
+        revenueFilters.style.right = '';
+    }
+    
+    if (subscriptionsFilters) {
+        subscriptionsFilters.classList.remove('sticky');
+        subscriptionsFilters.style.left = '';
+        subscriptionsFilters.style.width = '';
+        subscriptionsFilters.style.right = '';
     }
     
     // Remove event listeners
@@ -1804,10 +2397,19 @@ class MetricsPanel {
     initEventListeners() {
         // Main panel triggers
         const metricsLink = document.getElementById('metricsCalculationsLink');
+        const subscriptionsMetricsLink = document.getElementById('subscriptionsMetricsCalculationsLink');
         const customerEconomicsLink = document.getElementById('customerEconomicsLink');
         
         if (metricsLink) {
             metricsLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.currentPanelType = 'revenue';
+                this.openMainPanel();
+            });
+        }
+        
+        if (subscriptionsMetricsLink) {
+            subscriptionsMetricsLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.currentPanelType = 'revenue';
                 this.openMainPanel();

@@ -1,0 +1,5 @@
+---
+description:Only make changes to the content I am referring to. Do not make style changes to pages unless explicitly told to. If you think you need to make other changes to other pages ask before coding. 
+globs:
+alwaysApply: true
+---

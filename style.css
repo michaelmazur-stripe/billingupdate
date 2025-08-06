@@ -357,7 +357,7 @@ body {
     top: 0;
     background: #ffffff;
     z-index: 40;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
 }
 
 .search-header-content {
@@ -536,18 +536,7 @@ body {
     position: relative;
 }
 
-.today-right::before {
-    content: '';
-    position: absolute;
-    top: calc(50% - 28px);
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
-    width: 100%;
-    height: 1px;
-    background-color: #e5e7eb;
-    z-index: 1;
-}
+
 
 .metric-group {
     display: flex;
@@ -594,19 +583,36 @@ body {
 
 .balance-card,
 .debits-card {
-    background: #ffffff;
+    background: transparent;
     border: none;
-    border-radius: 8px;
-    padding: 20px;
+    border-radius: 0;
+    padding: 0;
     margin: 0;
     box-sizing: border-box;
+}
+
+/* Add horizontal dividing line between balance cards */
+.balance-card {
+    position: relative;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+}
+
+.balance-card::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #e5e7eb;
 }
 
 .balance-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
 .balance-header span {
@@ -736,6 +742,11 @@ body {
 }
 
 .pill-value {
+    color: #374151;
+    font-weight: 500;
+}
+
+.pill-value.purple {
     color: #635bff;
     font-weight: 500;
 }
@@ -851,6 +862,47 @@ body {
     font-weight: 400;
     color: #353A44;
     margin-bottom: 16px;
+}
+
+/* Bold values for subscription overview charts */
+#subscriptionRevenueValueSubs,
+#subscriptionGrowthValue,
+#subscriptionRevenueValueSubs2,
+#subscriptionGrowthValue2,
+#activeSubscribersValue,
+#activeSubscribersGrowthValue,
+#newSubscribersValue,
+#churnedSubscribersValue {
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 16px;
+    margin-top: 0;
+}
+
+/* Subscribers 2x2 grid layout */
+.subscribers-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.subscribers-row {
+    display: flex;
+    gap: 24px;
+}
+
+.subscribers-row .overview-chart-container {
+    flex: 1;
+}
+
+/* Remove margin between title and value for subscription overview charts */
+#subscriptions-page .overview-chart-title {
+    margin-bottom: 0;
+}
+
+/* Add bottom padding to subscriptions page */
+#subscriptions-page {
+    padding-bottom: 80px;
 }
 
 .chart-open-icon {
@@ -1557,7 +1609,6 @@ tr:hover {
     z-index: 30;
     padding: 16px 0; /* Vertical padding only */
     margin: 0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     /* Left, right, and width will be set dynamically by JavaScript */
 }
 
@@ -2190,4 +2241,103 @@ input:checked + .toggle-slider:before {
 .customer-economics-content {
     margin-top: 24px;
     padding-bottom: 80px;
+}
+
+/* Remove divider from subscriptions page content header */
+#subscriptions-page .content-header::after {
+    display: none;
+}
+
+/* Reduce padding underneath subscriptions page title */
+#subscriptions-page .content-header {
+    padding: 0 0 4px 0;
+}
+
+/* Subscriptions Tabs */
+.subscriptions-tabs {
+    margin-top: 0;
+}
+
+.tab-nav {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 24px;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.15px;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.tab-button:first-child {
+    padding-left: 0;
+}
+
+.tab-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: #6366f1;
+    transition: width 0.2s ease;
+}
+
+.tab-button:hover {
+    color: #374151;
+    background-color: #f9fafb;
+}
+
+.tab-button.active {
+    color: #6366f1;
+    background-color: transparent;
+}
+
+.tab-button.active::after {
+    width: calc(100% - 40px); /* Subtract horizontal padding */
+}
+
+.tab-button:first-child.active::after {
+    width: calc(100% - 20px); /* Only subtract right padding for first tab */
+}
+
+.tab-button.active:hover {
+    background-color: transparent;
+}
+
+.tab-content-container {
+    min-height: 200px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-placeholder {
+    padding: 40px 20px;
+    text-align: center;
+    color: #6b7280;
+    background-color: #f9fafb;
+    border: 1px dashed #d1d5db;
+    border-radius: 8px;
+}
+
+.tab-placeholder p {
+    margin: 0;
+    font-size: 14px;
 }

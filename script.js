@@ -43,6 +43,21 @@ const mockData = {
         }]
     },
 
+    totalRevenueGrowthChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Total Revenue Growth (%)',
+            data: [0, 21.4, -5.9, 29.2, 14.5, -4.2, 16.2, 6.3, -9.5, 6.6, 8.6, 4.5],
+            borderColor: '#635bff',
+            backgroundColor: 'rgba(99, 91, 255, 0.1)',
+            fill: false,
+            tension: 0.4,
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 0
+        }]
+    },
+
     subscriptionRevenueChartData: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [{
@@ -882,7 +897,7 @@ function formatNumber(num) {
 }
 
 // Helper function to create chart options
-function createChartOptions(maxValue) {
+function createChartOptions(maxValue, isPercentage = false) {
     return {
         responsive: true,
         maintainAspectRatio: false,
@@ -897,7 +912,12 @@ function createChartOptions(maxValue) {
                 titleColor: '#f9fafb',
                 bodyColor: '#f9fafb',
                 borderColor: '#374151',
-                borderWidth: 1
+                borderWidth: 1,
+                callbacks: isPercentage ? {
+                    label: function(context) {
+                        return context.dataset.label + ': ' + context.parsed.y + '%';
+                    }
+                } : undefined
             }
         },
         scales: {
@@ -931,16 +951,16 @@ function createChartOptions(maxValue) {
                 border: {
                     display: false
                 },
-                min: 0,
+                min: isPercentage ? -10 : 0,
                 max: maxValue,
                 ticks: {
                     color: '#9ca3af',
                     font: {
                         size: 11
                     },
-                    stepSize: maxValue / 3, // This creates exactly 4 ticks (0, stepSize, 2*stepSize, 3*stepSize)
+                    stepSize: isPercentage ? 10 : maxValue / 3, // For percentage: -10, 0, 10, 20, 30
                     callback: function(value) {
-                        return '$' + value.toLocaleString();
+                        return isPercentage ? value + '%' : '$' + value.toLocaleString();
                     }
                 }
             }
@@ -961,10 +981,44 @@ function createChartOptions(maxValue) {
     };
 }
 
+// Setup Overview Chart Interactivity (Home Page)
+function setupOverviewChartInteractivity() {
+    // Add click event listeners to overview chart containers
+    const totalRevenueContainer = document.querySelector('#totalRevenueValue').closest('.overview-chart-container');
+    const totalRevenueGrowthContainer = document.querySelector('#totalRevenueGrowthValue').closest('.overview-chart-container');
+    const subscriptionRevenueContainer = document.querySelector('#subscriptionRevenueValue').closest('.overview-chart-container');
+    const meterRevenueContainer = document.querySelector('#meterRevenueValue').closest('.overview-chart-container');
+    
+    if (totalRevenueContainer) {
+        totalRevenueContainer.addEventListener('click', () => {
+            showModal('totalRevenue');
+        });
+    }
+    
+    if (totalRevenueGrowthContainer) {
+        totalRevenueGrowthContainer.addEventListener('click', () => {
+            showModal('totalRevenueGrowth');
+        });
+    }
+    
+    if (subscriptionRevenueContainer) {
+        subscriptionRevenueContainer.addEventListener('click', () => {
+            showModal('subscriptionRevenue');
+        });
+    }
+    
+    if (meterRevenueContainer) {
+        meterRevenueContainer.addEventListener('click', () => {
+            showModal('meterRevenue');
+        });
+    }
+}
+
 // Initialize Dashboard
 function initDashboard() {
     updateMetrics();
     createCharts();
+    setupOverviewChartInteractivity();
     setupNavigationInteractivity();
     addInteractivity();
     setupModalInteractivity();
@@ -1260,6 +1314,14 @@ function createCharts() {
         options: createChartOptions(12000) // 0, 4000, 8000, 12000
     });
 
+    // Total Revenue Growth Chart
+    const totalRevenueGrowthCtx = document.getElementById('totalRevenueGrowthChart').getContext('2d');
+    new Chart(totalRevenueGrowthCtx, {
+        type: 'line',
+        data: mockData.totalRevenueGrowthChartData,
+        options: createChartOptions(30, true) // percentage chart with -10 to 30 range
+    });
+
     // Subscription Revenue Chart
     const subscriptionRevenueCtx = document.getElementById('subscriptionRevenueChart').getContext('2d');
     new Chart(subscriptionRevenueCtx, {
@@ -1369,7 +1431,7 @@ function createSubscriptionOverviewCharts() {
                         grid: {
                             color: '#f3f4f6',
                             borderDash: [2, 2]
-                        },
+                    },
                     border: {
                         display: false
                     },
@@ -1427,8 +1489,8 @@ function createSubscriptionOverviewCharts() {
                     x: {
                         display: true,
                         grid: {
-                            display: false
-                        },
+                        display: false
+                    },
                     ticks: {
                         color: '#9ca3af',
                         font: {

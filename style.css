@@ -811,12 +811,12 @@ body {
 }
 
 .overview-content {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 24px;
 }
 
 .overview-chart-container {
-    flex: 1;
     background: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 8px;
@@ -1097,14 +1097,9 @@ tr:hover {
 /* Responsive Design */
 @media (max-width: 1500px) {
     .overview-content {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 24px;
-    }
-    
-    .overview-content .overview-chart-container {
-        flex: 0 0 calc(50% - 12px);
-        max-width: calc(50% - 12px);
     }
 }
 
@@ -1122,7 +1117,9 @@ tr:hover {
     }
     
     .overview-content {
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
     }
     
     .subscribers-content {

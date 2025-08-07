@@ -974,6 +974,89 @@ function formatNumber(num) {
     return new Intl.NumberFormat('en-US').format(num);
 }
 
+// Helper function to create chart options for subscriber counts
+function createSubscriberChartOptions(maxValue) {
+    return {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                mode: 'index',
+                intersect: false,
+                backgroundColor: '#1f2937',
+                titleColor: '#f9fafb',
+                bodyColor: '#f9fafb',
+                borderColor: '#374151',
+                borderWidth: 1
+            }
+        },
+        scales: {
+            x: {
+                grid: {
+                    display: false
+                },
+                border: {
+                    display: false
+                },
+                ticks: {
+                    color: '#9ca3af',
+                    font: {
+                        size: 11
+                    },
+                    callback: function(value, index) {
+                        // Only show Jan (index 0) and Dec (index 11)
+                        if (index === 0 || index === 11) {
+                            return this.getLabelForValue(value);
+                        }
+                        return '';
+                    }
+                }
+            },
+            y: {
+                position: 'right',
+                grid: {
+                    color: '#f3f4f6',
+                    borderDash: [2, 2]
+                },
+                border: {
+                    display: false
+                },
+                min: 0,
+                max: maxValue,
+                ticks: {
+                    color: '#9ca3af',
+                    font: {
+                        size: 11
+                    },
+                    stepSize: maxValue / 3,
+                    callback: function(value) {
+                        return Math.round(value).toLocaleString();
+                    }
+                }
+            }
+        },
+        elements: {
+            point: {
+                radius: 0,
+                hoverRadius: 0,
+                backgroundColor: '#635bff',
+                borderColor: '#635bff'
+            },
+            line: {
+                borderColor: '#635bff',
+                backgroundColor: 'rgba(99, 91, 255, 0.1)'
+            }
+        },
+        interaction: {
+            intersect: false,
+            mode: 'index'
+        }
+    };
+}
+
 // Helper function to create chart options
 function createChartOptions(maxValue, isPercentage = false) {
     return {
@@ -1038,7 +1121,7 @@ function createChartOptions(maxValue, isPercentage = false) {
                     },
                     stepSize: isPercentage ? 10 : maxValue / 3, // For percentage: -10, 0, 10, 20, 30
                     callback: function(value) {
-                        return isPercentage ? value + '%' : '$' + value.toLocaleString();
+                        return isPercentage ? value + '%' : '$' + Math.round(value).toLocaleString();
                     }
                 }
             }
@@ -1143,6 +1226,10 @@ function showPage(pageName) {
             setupCustomerEconomicsInteractivity();
             // Update billing chart total after charts are created
             updateBillingChartTotal();
+            // Setup info icon tooltip with additional delay to ensure DOM is ready
+            setTimeout(() => {
+                setupInfoIconTooltip();
+            }, 200);
         }, 100);
         
         // Setup sticky filters with proper cleanup first
@@ -1345,11 +1432,21 @@ function updateMetrics() {
     document.getElementById('meterRevenueValue').textContent = formatCurrency(mockData.overviewTotals.usageRevenue);
 }
 
+// Store chart instances for cleanup
+let chartInstances = {};
+
 // Create Charts
 function createCharts() {
+    // Destroy existing charts to prevent canvas reuse errors
+    Object.keys(chartInstances).forEach(key => {
+        if (chartInstances[key]) {
+            chartInstances[key].destroy();
+            delete chartInstances[key];
+        }
+    });
     // Today Chart (small line chart)
     const todayCtx = document.getElementById('todayChart').getContext('2d');
-    new Chart(todayCtx, {
+    chartInstances.todayChart = new Chart(todayCtx, {
         type: 'line',
         data: mockData.todayChartData,
         options: {
@@ -1405,7 +1502,7 @@ function createCharts() {
     
     // Total Revenue Chart
     const totalRevenueCtx = document.getElementById('totalRevenueChart').getContext('2d');
-    new Chart(totalRevenueCtx, {
+    chartInstances.totalRevenueChart = new Chart(totalRevenueCtx, {
         type: 'line',
         data: mockData.totalRevenueChartData,
         options: createChartOptions(12000) // 0, 4000, 8000, 12000
@@ -1413,7 +1510,7 @@ function createCharts() {
 
     // Total Revenue Growth Chart
     const totalRevenueGrowthCtx = document.getElementById('totalRevenueGrowthChart').getContext('2d');
-    new Chart(totalRevenueGrowthCtx, {
+    chartInstances.totalRevenueGrowthChart = new Chart(totalRevenueGrowthCtx, {
         type: 'line',
         data: mockData.totalRevenueGrowthChartData,
         options: createChartOptions(30, true) // percentage chart with -10 to 30 range
@@ -1421,7 +1518,7 @@ function createCharts() {
 
     // Subscription Revenue Chart
     const subscriptionRevenueCtx = document.getElementById('subscriptionRevenueChart').getContext('2d');
-    new Chart(subscriptionRevenueCtx, {
+    chartInstances.subscriptionRevenueChart = new Chart(subscriptionRevenueCtx, {
         type: 'line',
         data: mockData.subscriptionRevenueChartData,
         options: createChartOptions(9000) // 0, 3000, 6000, 9000
@@ -1714,7 +1811,7 @@ function createSubscriptionOverviewCharts() {
         new Chart(activeSubscribersCtx.getContext('2d'), {
             type: 'line',
             data: mockData.activeSubscribersChartData,
-            options: createChartOptions(15000)
+            options: createSubscriberChartOptions(15000)
         });
     }
 
@@ -1750,56 +1847,56 @@ function createSubscriptionOverviewCharts() {
                     x: {
                         grid: {
                             display: false
-                        },
-                        border: {
-                            display: false
-                        },
-                        ticks: {
-                            color: '#9ca3af',
-                            font: {
-                                size: 11
-                            },
-                            callback: function(value, index) {
-                                if (index === 0 || index === 11) {
-                                    return this.getLabelForValue(value);
-                                }
-                                return '';
-                            }
-                        }
                     },
-                    y: {
-                        position: 'right',
-                        grid: {
-                            color: '#f3f4f6',
-                            borderDash: [2, 2]
+                    border: {
+                        display: false
+                    },
+                    ticks: {
+                        color: '#9ca3af',
+                        font: {
+                            size: 11
                         },
-                        border: {
-                            display: false
-                        },
-                        min: 0,
-                        max: 6,
-                        ticks: {
-                            color: '#9ca3af',
-                            font: {
-                                size: 11
-                            },
-                            stepSize: 2,
-                            callback: function(value) {
-                                return Math.round(value) + '%';
+                        callback: function(value, index) {
+                            if (index === 0 || index === 11) {
+                                return this.getLabelForValue(value);
                             }
+                            return '';
                         }
                     }
                 },
-                elements: {
-                    point: {
-                        radius: 0,
-                        hoverRadius: 0
+                y: {
+                    position: 'right',
+                    grid: {
+                        color: '#f3f4f6',
+                        borderDash: [2, 2]
+                    },
+                    border: {
+                        display: false
+                    },
+                    min: 0,
+                        max: 6,
+                    ticks: {
+                        color: '#9ca3af',
+                        font: {
+                            size: 11
+                        },
+                            stepSize: 2,
+                        callback: function(value) {
+                                return Math.round(value) + '%';
+                        }
                     }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index'
                 }
+            },
+            elements: {
+                point: {
+                    radius: 0,
+                        hoverRadius: 0
+                }
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index'
+            }
             }
         });
     }
@@ -1808,9 +1905,9 @@ function createSubscriptionOverviewCharts() {
     const newSubscribersCtx = document.getElementById('newSubscribersChart');
     if (newSubscribersCtx) {
         new Chart(newSubscribersCtx.getContext('2d'), {
-            type: 'line',
+        type: 'line',
             data: mockData.newSubscribersChartData,
-            options: createChartOptions(1600)
+            options: createSubscriberChartOptions(1600)
         });
     }
 
@@ -1818,9 +1915,9 @@ function createSubscriptionOverviewCharts() {
     const churnedSubscribersCtx = document.getElementById('churnedSubscribersChart');
     if (churnedSubscribersCtx) {
         new Chart(churnedSubscribersCtx.getContext('2d'), {
-            type: 'line',
+        type: 'line',
             data: mockData.churnedSubscribersChartData,
-            options: createChartOptions(200)
+            options: createSubscriberChartOptions(200)
         });
     }
 }
@@ -1887,7 +1984,12 @@ function createBillingCharts() {
                             size: 12
                         },
                         callback: function(value) {
-                                return formatCurrency(value);
+                                return new Intl.NumberFormat('en-US', {
+                                    style: 'currency',
+                                    currency: 'USD',
+                                    minimumFractionDigits: 0,
+                                    maximumFractionDigits: 0
+                                }).format(value);
                             }
                         }
                 }
@@ -1906,7 +2008,7 @@ function createBillingCharts() {
         const ctx = document.getElementById(canvasId);
         if (ctx) {
             new Chart(ctx.getContext('2d'), {
-                type: 'line',
+        type: 'line',
                 data: mockData.billingMetricData[metricKey].chartData,
                 options: createChartOptions(Math.max(...mockData.billingMetricData[metricKey].chartData.datasets[0].data) * 1.2)
             });
@@ -2263,10 +2365,34 @@ function showModal(chartType) {
     
     if (!modal || !data) return;
     
+    // Map chart types to metric keys for getting definitions
+    const chartTypeToMetricKey = {
+        'totalRevenue': 'total-committed-revenue',
+        'totalRevenueGrowth': 'total-revenue-growth',
+        'subscriptionRevenue': 'subscription-revenue',
+        'subscriptionRevenueBar': 'subscription-revenue',
+        'subscriptionGrowth': 'subscription-revenue-growth',
+        'meterRevenue': 'meter-revenue',
+        'mrr': 'mrr',
+        'arpu': 'arpu',
+        'lifetimeValue': 'lifetime-value',
+        'netDollarRetention': 'net-dollar-retention',
+        'invoiceRevenue': 'invoice-revenue',
+        'invoiceRevenueGrowth': 'invoice-revenue-growth'
+    };
+    
+    // Get the metric definition if available
+    let calculationText = data.description;
+    const metricKey = chartTypeToMetricKey[chartType];
+    if (metricKey && window.metricsPanel && window.metricsPanel.metrics && window.metricsPanel.metrics[metricKey]) {
+        const metricDefinition = window.metricsPanel.metrics[metricKey];
+        calculationText = metricDefinition.description;
+    }
+    
     // Update modal content
     document.getElementById('modalMetricName').textContent = data.title;
     document.getElementById('modalMetricValue').textContent = data.value;
-    document.getElementById('modalCalculationText').textContent = data.description;
+    document.getElementById('modalCalculationText').textContent = calculationText;
     
     // Update table - horizontal layout
     const tableHead = document.getElementById('modalTableHead');
@@ -2593,7 +2719,7 @@ function createTrialsCharts() {
         new Chart(trialsActiveSubscribersCtx.getContext('2d'), {
             type: 'line',
             data: mockData.newTrialsChartData,
-            options: createChartOptions(3500)
+            options: createSubscriberChartOptions(3500)
         });
     }
 
@@ -2633,7 +2759,7 @@ function createTrialsCharts() {
                         min: 20, max: 30,
                         ticks: {
                             color: '#9ca3af', font: { size: 11 }, stepSize: 2.5,
-                            callback: function(value) { return Math.round(value * 10) / 10 + '%'; }
+                            callback: function(value) { return Math.round(value) + '%'; }
                         }
                     }
                 },
@@ -2649,7 +2775,7 @@ function createTrialsCharts() {
         new Chart(trialsNewSubscribersCtx.getContext('2d'), {
             type: 'line',
             data: mockData.activeTrialsChartData,
-            options: createChartOptions(9000)
+            options: createSubscriberChartOptions(9000)
         });
     }
 
@@ -2659,7 +2785,7 @@ function createTrialsCharts() {
         new Chart(trialsChurnedSubscribersCtx.getContext('2d'), {
             type: 'line',
             data: mockData.convertedTrialsChartData,
-            options: createChartOptions(900)
+            options: createSubscriberChartOptions(900)
         });
     }
 }
@@ -2735,7 +2861,7 @@ function createChurnCharts() {
                         min: 2, max: 5,
                         ticks: {
                             color: '#9ca3af', font: { size: 11 }, stepSize: 0.5,
-                            callback: function(value) { return Math.round(value * 10) / 10 + '%'; }
+                            callback: function(value) { return Math.round(value) + '%'; }
                         }
                     }
                 },
@@ -2781,7 +2907,7 @@ function createChurnCharts() {
                         min: 10000, max: 25000,
                         ticks: {
                             color: '#9ca3af', font: { size: 11 }, stepSize: 5000,
-                            callback: function(value) { return '$' + (value / 1000) + 'k'; }
+                            callback: function(value) { return '$' + Math.round(value / 1000) + 'k'; }
                         }
                     }
                 },
@@ -2827,7 +2953,7 @@ function createChurnCharts() {
                         min: 3, max: 5,
                         ticks: {
                             color: '#9ca3af', font: { size: 11 }, stepSize: 0.5,
-                            callback: function(value) { return Math.round(value * 10) / 10 + '%'; }
+                            callback: function(value) { return Math.round(value) + '%'; }
                         }
                     }
                 },
@@ -2873,7 +2999,7 @@ function createChurnCharts() {
                         min: 1, max: 3,
                         ticks: {
                             color: '#9ca3af', font: { size: 11 }, stepSize: 0.5,
-                            callback: function(value) { return Math.round(value * 10) / 10 + '%'; }
+                            callback: function(value) { return Math.round(value) + '%'; }
                         }
                     }
                 },
@@ -3208,13 +3334,13 @@ function setupInvoicesChartInteractivity() {
     
     if (invoicesSubscriptionContainer) {
         invoicesSubscriptionContainer.addEventListener('click', () => {
-            showModal('subscriptionRevenue');
+            showModal('invoiceRevenue');
         });
     }
     
     if (invoicesGrowthContainer) {
         invoicesGrowthContainer.addEventListener('click', () => {
-            showModal('subscriptionRevenueGrowth');
+            showModal('invoiceRevenueGrowth');
         });
     }
 }
@@ -3596,6 +3722,148 @@ function updateBillingChartTotal() {
     }
 }
 
+// Setup Info Icon Tooltip Functionality
+function setupInfoIconTooltip() {
+    // Find all info icons on the page
+    const infoIcons = document.querySelectorAll('.billing-chart-info-icon');
+    
+    infoIcons.forEach(infoIcon => {
+        // Get the metric key from the icon's data attribute
+        const metricKey = infoIcon.getAttribute('data-metric');
+        
+        // Find the corresponding tooltip
+        const tooltip = infoIcon.closest('.billing-chart-info-icon-container').querySelector('.info-tooltip');
+        
+        if (!tooltip || !metricKey) {
+            return;
+        }
+        
+        setupSingleTooltip(infoIcon, tooltip, metricKey);
+    });
+}
+
+// Setup functionality for a single tooltip
+function setupSingleTooltip(infoIcon, tooltip, metricKey) {
+    
+    // Function to populate tooltip content
+    function populateTooltipContent() {
+        // Access metrics data from MetricsPanel instance
+        const metricsPanel = window.metricsPanel;
+        
+        if (!metricsPanel || !metricsPanel.metrics || !metricsPanel.metrics[metricKey]) {
+            // Show fallback content with inline "View more" link
+            const tooltipContent = tooltip.querySelector('.tooltip-content');
+            let fallbackContent = `<p>A sum of your billing revenue and usage charges measured by meters. Usage and billing revenue have been committed by customers but may not have yet been collected. <a href="#" class="tooltip-view-more-link" data-metric="${metricKey}">View more</a></p><div class="tooltip-settings"><div class="tooltip-setting-item">Monthly recurring revenue is included</div><div class="tooltip-setting-item">One time discounts are included</div><div class="tooltip-setting-item">Free credits are included</div></div>`;
+            
+            tooltipContent.innerHTML = fallbackContent;
+            
+            // Add click event listener to the fallback View more link
+            const fallbackViewMoreLink = tooltipContent.querySelector('.tooltip-view-more-link');
+            if (fallbackViewMoreLink) {
+                fallbackViewMoreLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation(); // Prevent event from bubbling up to chart elements
+                    e.stopImmediatePropagation(); // Prevent other handlers on the same element
+                    
+                    // Hide the tooltip
+                    tooltip.classList.remove('visible');
+                    // Open the metric definition panel directly to the detail view
+                    const metricsPanel = window.metricsPanel;
+                    if (metricsPanel && metricsPanel.metrics[metricKey]) {
+                        metricsPanel.currentPanelType = 'revenue';
+                        metricsPanel.currentMetric = metricKey;
+                        
+                        // Set up the panel content and open directly to detail panel
+                        const metricData = metricsPanel.metrics[metricKey];
+                        if (metricData && metricsPanel.metricDetailPanel) {
+                            metricsPanel.updateDetailPanelContent(metricData);
+                            metricsPanel.metricDetailPanel.classList.add('open');
+                            document.body.style.overflow = 'hidden';
+                        }
+                    }
+                });
+            }
+            return;
+        }
+        
+        const metricData = metricsPanel.metrics[metricKey];
+        const tooltipContent = tooltip.querySelector('.tooltip-content');
+        
+        // Build tooltip content with inline "View more" link
+        let content = `<p>${metricData.description} <a href="#" class="tooltip-view-more-link" data-metric="${metricKey}">View more</a></p>`;
+        
+        // Add settings list with inline status
+        if (metricData.controls && metricData.controls.length > 0) {
+            content += '<div class="tooltip-settings">';
+            metricData.controls.forEach(control => {
+                // Determine if the setting title is plural by checking common plural patterns
+                const isPlural = control.title.toLowerCase().endsWith('s') && 
+                                !control.title.toLowerCase().endsWith('ss') && 
+                                !control.title.toLowerCase().endsWith('us') &&
+                                !control.title.toLowerCase().endsWith('is');
+                const verb = isPlural ? 'are' : 'is';
+                
+                if (control.checked) {
+                    content += `<div class="tooltip-setting-item">${control.title} ${verb} included</div>`;
+                } else {
+                    content += `<div class="tooltip-setting-item">${control.title} ${verb} <strong>not included</strong></div>`;
+                }
+            });
+            content += '</div>';
+        }
+        
+        tooltipContent.innerHTML = content;
+        
+        // Add click event listener to the View more link
+        const viewMoreLink = tooltipContent.querySelector('.tooltip-view-more-link');
+        if (viewMoreLink) {
+            viewMoreLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation(); // Prevent event from bubbling up to chart elements
+                e.stopImmediatePropagation(); // Prevent other handlers on the same element
+                
+                // Hide the tooltip
+                tooltip.classList.remove('visible');
+                // Open the metric definition panel directly to the detail view
+                const metricsPanel = window.metricsPanel;
+                if (metricsPanel && metricsPanel.metrics[metricKey]) {
+                    metricsPanel.currentPanelType = 'revenue'; // Set to revenue since this is the total revenue metric
+                    metricsPanel.currentMetric = metricKey;
+                    
+                    // Set up the panel content and open directly to detail panel
+                    const metricData = metricsPanel.metrics[metricKey];
+                    if (metricData && metricsPanel.metricDetailPanel) {
+                        metricsPanel.updateDetailPanelContent(metricData);
+                        metricsPanel.metricDetailPanel.classList.add('open');
+                        document.body.style.overflow = 'hidden';
+                    }
+                }
+            });
+        }
+    }
+    
+    // Show tooltip on hover
+    infoIcon.addEventListener('mouseenter', () => {
+        populateTooltipContent();
+        tooltip.classList.add('visible');
+    });
+    
+    // Hide tooltip when mouse leaves
+    infoIcon.addEventListener('mouseleave', () => {
+        tooltip.classList.remove('visible');
+    });
+    
+    // Also hide tooltip when mouse leaves the tooltip itself
+    tooltip.addEventListener('mouseleave', () => {
+        tooltip.classList.remove('visible');
+    });
+    
+    // Keep tooltip visible when hovering over it
+    tooltip.addEventListener('mouseenter', () => {
+        tooltip.classList.add('visible');
+    });
+}
+
 // Metrics Calculations Panel Functionality
 class MetricsPanel {
     constructor() {
@@ -3618,6 +3886,8 @@ class MetricsPanel {
         const trialsSubscribersMetricsLink = document.getElementById('trialsSubscribersMetricsCalculationsLink');
         const churnSubscribersMetricsLink = document.getElementById('churnSubscribersMetricsCalculationsLink');
         const customerEconomicsLink = document.getElementById('customerEconomicsLink');
+        const invoicesMetricsLink = document.getElementById('invoicesMetricsCalculationsLink');
+        const metersMetricsLink = document.getElementById('metersMetricsCalculationsLink');
         
         if (metricsLink) {
             metricsLink.addEventListener('click', (e) => {
@@ -3663,6 +3933,22 @@ class MetricsPanel {
             customerEconomicsLink.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.currentPanelType = 'customer-economics';
+                this.openMainPanel();
+            });
+        }
+        
+        if (invoicesMetricsLink) {
+            invoicesMetricsLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.currentPanelType = 'invoices';
+                this.openMainPanel();
+            });
+        }
+        
+        if (metersMetricsLink) {
+            metersMetricsLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.currentPanelType = 'meters';
                 this.openMainPanel();
             });
         }
@@ -3725,13 +4011,13 @@ class MetricsPanel {
     setupMetricData() {
         this.metrics = {
             'total-committed-revenue': {
-                title: 'Total committed revenue',
+                title: 'Total revenue',
                 shortDescription: 'A sum of your recurring revenue and usage charges.',
-                description: 'A sum of your billing revenue and usage charges measured by meters. Usage and billing revenue have been committed by customers but may not have yet been collected. Decide whether discounts, credits, and uncollected committed revenue are included in your calculation.',
+                description: 'A sum of your billing revenue and usage charges measured by meters. Usage and billing revenue have been committed by customers but may not have yet been collected.',
                 controls: [
                     {
                         id: 'toggleMRR',
-                        title: 'Monthly recurring revenue',
+                        title: 'Monthly recurring revenue (MRR)',
                         description: 'Include revenue that is committed in total revenue but has not yet been collected',
                         checked: true
                     },
@@ -3752,21 +4038,8 @@ class MetricsPanel {
             'total-revenue-growth': {
                 title: 'Total revenue growth',
                 shortDescription: 'Percent change of revenue over a given period of time.',
-                description: 'Percent change of revenue over a given period of time. Configure how growth is calculated and what time periods to compare.',
-                controls: [
-                    {
-                        id: 'toggleYearOverYear',
-                        title: 'Year-over-year comparison',
-                        description: 'Compare current period to same period last year',
-                        checked: true
-                    },
-                    {
-                        id: 'toggleSeasonalAdjustment',
-                        title: 'Seasonal adjustment',
-                        description: 'Apply seasonal adjustments to growth calculations',
-                        checked: false
-                    }
-                ]
+                description: 'Percent change of revenue over a given period of time.',
+                controls: []
             },
             'gross-revenue': {
                 title: 'Gross revenue',
@@ -3807,9 +4080,9 @@ class MetricsPanel {
                 ]
             },
             'mrr': {
-                title: 'MRR',
+                title: 'Monthly recurring revenue (MRR)',
                 shortDescription: 'Current months committed subscription revenue.',
-                description: 'Current months committed subscription revenue. Configure how subscription changes and prorations are handled.',
+                description: 'Current months committed subscription revenue.',
                 controls: [
                     {
                         id: 'toggleProrations',
@@ -3847,11 +4120,11 @@ class MetricsPanel {
             'arpu': {
                 title: 'Average revenue per user (ARPU)',
                 shortDescription: 'Average monthly revenue per active user.',
-                description: 'Average monthly revenue generated per active user. Configure how users are counted and revenue is attributed.',
+                description: 'Average monthly revenue generated per active user.',
                 controls: [
                     {
                         id: 'toggleActiveUsers',
-                        title: 'Active users only',
+                        title: 'Active users',
                         description: 'Include only users with activity in the period',
                         checked: true
                     },
@@ -3866,40 +4139,14 @@ class MetricsPanel {
             'lifetime-value': {
                 title: 'Lifetime value',
                 shortDescription: 'Predicted total revenue per customer.',
-                description: 'Predicted total revenue a customer will generate over their entire relationship. Configure prediction model and time horizons.',
-                controls: [
-                    {
-                        id: 'togglePredictionModel',
-                        title: 'Machine learning predictions',
-                        description: 'Use ML models for lifetime value predictions',
-                        checked: true
-                    },
-                    {
-                        id: 'toggleChurnAdjustment',
-                        title: 'Churn adjustment',
-                        description: 'Adjust predictions based on churn probability',
-                        checked: true
-                    }
-                ]
+                description: 'Predicted total revenue a customer will generate over their entire relationship.',
+                controls: []
             },
             'net-dollar-retention': {
                 title: 'Net dollar retention',
                 shortDescription: 'Percentage of recurring revenue retained.',
                 description: 'Percentage of recurring revenue retained from existing customers including expansions and contractions.',
-                controls: [
-                    {
-                        id: 'toggleExpansions',
-                        title: 'Include expansions',
-                        description: 'Include revenue expansions in NDR calculation',
-                        checked: true
-                    },
-                    {
-                        id: 'toggleDowngrades',
-                        title: 'Include downgrades',
-                        description: 'Include revenue contractions in NDR calculation',
-                        checked: true
-                    }
-                ]
+                controls: []
             },
             'subscription-revenue': {
                 title: 'Subscription revenue',
@@ -4158,6 +4405,60 @@ class MetricsPanel {
                         checked: true
                     }
                 ]
+            },
+            
+            // Invoice-specific metrics
+            'invoice-revenue': {
+                title: 'Invoice revenue',
+                shortDescription: 'Total revenue generated from issued invoices.',
+                description: 'Total revenue generated from issued invoices including subscription charges and one-time fees.',
+                controls: [
+                    {
+                        id: 'includeOneTimeCharges',
+                        title: 'One-time charges',
+                        description: 'Include one-time fees and setup charges in invoice revenue',
+                        checked: true
+                    },
+                    {
+                        id: 'includePendingInvoices',
+                        title: 'Pending invoices',
+                        description: 'Include revenue from invoices that have been sent but not yet paid',
+                        checked: false
+                    }
+                ]
+            },
+            'invoice-revenue-growth': {
+                title: 'Invoice revenue growth',
+                shortDescription: 'Percent change of invoice revenue over time.',
+                description: 'Percent change of invoice revenue over time.',
+                controls: []
+            },
+            
+            // Meter-specific metrics
+            'meter-revenue': {
+                title: 'Meter revenue',
+                shortDescription: 'Revenue generated from metered usage.',
+                description: 'Revenue generated from metered usage including all billable usage events.',
+                controls: [
+                    {
+                        id: 'includeTrialUsage',
+                        title: 'Trial usage',
+                        description: 'Include usage during trial periods in meter revenue calculation',
+                        checked: false
+                    },
+                    {
+                        id: 'includeOverageCharges',
+                        title: 'Overage charges',
+                        description: 'Include charges for usage above plan limits',
+                        checked: true
+                    }
+                ]
+            },
+            'meter-revenue-growth': {
+                title: 'Meter revenue growth',
+                shortDescription: 'Percent change of meter revenue over time.',
+                description: 'Percent change of meter revenue over time.',
+                controls: []
             }
         };
     }
@@ -4220,6 +4521,16 @@ class MetricsPanel {
                 'arpu',
                 'lifetime-value',
                 'net-dollar-retention'
+            ];
+        } else if (this.currentPanelType === 'invoices') {
+            metricsToShow = [
+                'invoice-revenue',
+                'invoice-revenue-growth'
+            ];
+        } else if (this.currentPanelType === 'meters') {
+            metricsToShow = [
+                'meter-revenue',
+                'meter-revenue-growth'
             ];
         }
         
@@ -4303,11 +4614,11 @@ class MetricsPanel {
         if (controlsContainer && metricData.controls) {
             controlsContainer.innerHTML = '';
             
-            // Store original settings
+            // Store current settings as baseline for change detection
             this.originalSettings = {};
             
             metricData.controls.forEach(control => {
-                // Store original value
+                // Store current value (reflects any previously saved changes)
                 this.originalSettings[control.id] = control.checked;
                 
                 const controlItem = document.createElement('div');
@@ -4382,6 +4693,9 @@ class MetricsPanel {
     applyMetricSettings() {
         const applyButton = document.querySelector('.metric-detail-apply');
         if (applyButton && !applyButton.disabled) {
+            // Save current settings to the metric data
+            this.saveCurrentSettings();
+            
             // Show loading state
             const originalText = applyButton.textContent;
             applyButton.textContent = 'Applying...';
@@ -4404,43 +4718,79 @@ class MetricsPanel {
         }
     }
     
+    saveCurrentSettings() {
+        if (!this.currentMetric || !this.metrics[this.currentMetric]) {
+            return;
+        }
+        
+        const metricData = this.metrics[this.currentMetric];
+        const controlsContainer = document.querySelector('.metric-detail-controls');
+        
+        if (controlsContainer && metricData.controls) {
+            metricData.controls.forEach(control => {
+                const checkbox = document.getElementById(control.id);
+                if (checkbox) {
+                    // Update the metric data with the current checkbox state
+                    control.checked = checkbox.checked;
+                }
+            });
+        }
+    }
+    
     showToastNotification() {
         // Create toast element
         const toast = document.createElement('div');
         toast.className = 'toast-notification';
         toast.innerHTML = `
             <div class="toast-content">
-                <svg class="toast-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18ZM13.7071 8.70711C14.0976 8.31658 14.0976 7.68342 13.7071 7.29289C13.3166 6.90237 12.6834 6.90237 12.2929 7.29289L9 10.5858L7.70711 9.29289C7.31658 8.90237 6.68342 8.90237 6.29289 9.29289C5.90237 9.68342 5.90237 10.3166 6.29289 10.7071L8.29289 12.7071C8.68342 13.0976 9.31658 13.0976 9.70711 12.7071L13.7071 8.70711Z" fill="#10b981"/>
-                </svg>
-                <div class="toast-text">
-                    <div class="toast-title">Metric calculation updated successfully</div>
-                    <div class="toast-subtitle">Changes will be reflected in 24 hours</div>
-                </div>
+                <div class="toast-text">Update successful, allow 24 hours for changes to appear.</div>
+                <button class="toast-close" aria-label="Close">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 4L4 12M4 4l8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
             </div>
         `;
         
         // Add to document
         document.body.appendChild(toast);
         
-        // Trigger animation
-        setTimeout(() => {
-            toast.classList.add('show');
-        }, 100);
-        
-        // Remove after 4 seconds
-        setTimeout(() => {
+        // Add close button functionality
+        const closeButton = toast.querySelector('.toast-close');
+        const closeToast = () => {
             toast.classList.remove('show');
             setTimeout(() => {
                 if (toast.parentNode) {
                     toast.parentNode.removeChild(toast);
                 }
             }, 300);
+        };
+        
+        if (closeButton) {
+            closeButton.addEventListener('click', closeToast);
+        }
+        
+        // Trigger animation
+        setTimeout(() => {
+            toast.classList.add('show');
+        }, 100);
+        
+        // Auto-remove after 4 seconds (optional, since user can close manually)
+        setTimeout(() => {
+            if (toast.parentNode) {
+                closeToast();
+            }
         }, 4000);
     }
 }
 
 // Initialize metrics panel when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    new MetricsPanel();
+    // Initialize the metrics panel functionality and make it globally accessible
+    window.metricsPanel = new MetricsPanel();
+    
+    // Setup tooltip when DOM is ready
+    setTimeout(() => {
+        setupInfoIconTooltip();
+    }, 1000);
 }); 

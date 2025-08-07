@@ -1850,6 +1850,8 @@ tr:hover {
 
 .modal-calculation-section {
     margin-bottom: 16px;
+    width: 600px;
+    max-width: 100%;
 }
 
 .modal-calculation-title {
@@ -1999,7 +2001,130 @@ tr:hover {
     font-size: 14px;
     font-weight: 600;
     color: #1a1a1a;
-    margin: 0 0 2px 0;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.billing-chart-title-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.billing-chart-info-icon-container {
+    position: relative;
+    margin-left: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.billing-chart-info-icon {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    display: block;
+}
+
+.billing-chart-info-icon:hover {
+    opacity: 0.7;
+}
+
+.info-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    color: #353A44;
+    border-radius: 8px;
+    padding: 16px;
+    width: 320px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    border: 1px solid #E5E7EB;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.4;
+    pointer-events: auto;
+}
+
+.info-tooltip::before {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #ffffff;
+}
+
+.info-tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid #E5E7EB;
+    z-index: -1;
+}
+
+.info-tooltip.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Proper tooltip visibility */
+
+.tooltip-content p {
+    margin: 0 0 12px 0;
+}
+
+.tooltip-content p:last-child {
+    margin-bottom: 0;
+}
+
+.tooltip-settings {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #E5E7EB;
+}
+
+.tooltip-setting-item {
+    font-size: 12px;
+    color: #6B7280;
+    margin-bottom: 3px;
+}
+
+.tooltip-setting-item:last-child {
+    margin-bottom: 0;
+}
+
+.tooltip-view-more-link {
+    color: #6366f1;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.tooltip-view-more-link:hover {
+    color: #4f46e5;
+    text-decoration: underline;
 }
 
 .billing-chart-total {
@@ -2093,8 +2218,21 @@ tr:hover {
 
 .overview-chart-container.billing-metric-module .overview-chart-title {
     font-size: 12px;
-    margin-bottom: 2px !important;
+    margin: 0 !important;
     line-height: 1.2 !important;
+}
+
+.overview-chart-container.billing-metric-module .billing-chart-title-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.overview-chart-container.billing-metric-module .billing-chart-info-icon-container {
+    position: relative;
+    margin-left: 4px;
+    display: flex;
+    align-items: center;
 }
 
 .overview-chart-container.billing-metric-module .overview-chart-value {
@@ -2496,15 +2634,15 @@ input:checked + .toggle-slider:before {
     bottom: 48px;
     left: 50%;
     transform: translateX(-50%) translateY(100%);
-    background: white;
-    border: 1px solid #e5e7eb;
+    background: #353A44;
     border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    padding: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    padding: 16px 20px;
     z-index: 1001;
     opacity: 0;
     transition: all 0.3s ease;
     max-width: 400px;
+    min-width: 280px;
 }
 
 .toast-notification.show {
@@ -2514,30 +2652,42 @@ input:checked + .toggle-slider:before {
 
 .toast-content {
     display: flex;
-    align-items: flex-start;
-    gap: 12px;
-}
-
-.toast-icon {
-    flex-shrink: 0;
-    margin-top: 2px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
 }
 
 .toast-text {
     flex: 1;
-}
-
-.toast-title {
+    color: #ffffff;
     font-size: 14px;
-    font-weight: 600;
-    color: #111827;
-    margin: 0 0 4px 0;
+    font-weight: 400;
+    margin: 0;
 }
 
-.toast-subtitle {
-    font-size: 13px;
-    color: #6b7280;
-    margin: 0;
+.toast-close {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.toast-close:hover {
+    opacity: 1;
+}
+
+.toast-close svg {
+    width: 16px;
+    height: 16px;
 }
 
 /* Customer Economics Section */

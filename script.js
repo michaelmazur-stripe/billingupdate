@@ -4013,14 +4013,8 @@ class MetricsPanel {
             'total-committed-revenue': {
                 title: 'Total revenue',
                 shortDescription: 'A sum of your recurring revenue and usage charges.',
-                description: 'A sum of your billing revenue and usage charges measured by meters. Usage and billing revenue have been committed by customers but may not have yet been collected.',
+                description: 'A sum of your subscription revenue and metered usage revenue. Your subscription revenue is your monthly recurring revenue (MRR). Your usage revenue is the total earned from your metered usage.',
                 controls: [
-                    {
-                        id: 'toggleMRR',
-                        title: 'Monthly recurring revenue (MRR)',
-                        description: 'Include revenue that is committed in total revenue but has not yet been collected',
-                        checked: true
-                    },
                     {
                         id: 'toggleDiscounts',
                         title: 'One time discounts',

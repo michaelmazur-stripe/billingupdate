@@ -682,6 +682,32 @@
                                 <path d="M10.2897 3.0625L7.30618 3.06271C6.94374 3.06274 6.64995 3.35657 6.64998 3.71901C6.65 4.08145 6.94384 4.37524 7.30628 4.37521L8.69681 4.37511L4.375 8.69692V7.29779C4.375 6.93535 4.08119 6.64154 3.71875 6.64154C3.35631 6.64154 3.0625 6.93535 3.0625 7.29779V10.2815C3.0625 10.4556 3.13164 10.6225 3.25472 10.7456C3.37779 10.8687 3.54472 10.9378 3.71877 10.9378L6.70252 10.9377C7.06496 10.9377 7.35876 10.6439 7.35875 10.2814C7.35874 9.91901 7.06492 9.6252 6.70249 9.62521L5.30283 9.62525L9.63354 5.29453V6.7025C9.63354 7.06494 9.92736 7.35875 10.2898 7.35875C10.6522 7.35875 10.946 7.06494 10.946 6.7025V3.71875C10.946 3.54469 10.8769 3.37777 10.7538 3.25469C10.6307 3.13162 10.4638 3.06249 10.2897 3.0625Z" fill="#B6C0CD"/>
                             </svg>
                         </div>
+                        
+                        <div class="overview-chart-container billing-metric-module" data-chart="utilizationRate">
+                            <div class="billing-chart-title-container">
+                                <div class="overview-chart-title">Utilization rate</div>
+                                <div class="billing-chart-info-icon-container">
+                                    <svg class="billing-chart-info-icon" width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" data-metric="utilization-rate">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11 2.5H5C3.61929 2.5 2.5 3.61929 2.5 5V11C2.5 12.3807 3.61929 13.5 5 13.5H11C12.3807 13.5 13.5 12.3807 13.5 11V5C13.5 3.61929 12.3807 2.5 11 2.5ZM5 1C2.79086 1 1 2.79086 1 5V11C1 13.2091 2.79086 15 5 15H11C13.2091 15 15 13.2091 15 11V5C15 2.79086 13.2091 1 11 1H5Z" fill="#99A5B8"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25 8C6.25 7.58579 6.58579 7.25 7 7.25H8.25C8.66421 7.25 9 7.58579 9 8V11.5C9 11.9142 8.66421 12.25 8.25 12.25C7.83579 12.25 7.5 11.9142 7.5 11.5V8.75H7C6.58579 8.75 6.25 8.41421 6.25 8Z" fill="#99A5B8"/>
+                                        <path d="M6.75 5C6.75 4.31075 7.31075 3.75 8 3.75C8.68925 3.75 9.25 4.31075 9.25 5C9.25 5.68925 8.68925 6.25 8 6.25C7.31075 6.25 6.75 5.68925 6.75 5Z" fill="#99A5B8"/>
+                                    </svg>
+                                    <div class="info-tooltip" id="utilizationRateTooltip">
+                                        <div class="tooltip-content">
+                                            <!-- Content will be populated dynamically -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="overview-chart-value" id="utilizationRateValue">68% <span class="amount-growth">-5.6%</span></div>
+                            <div class="overview-chart-canvas">
+                                <canvas id="utilizationRateChart"></canvas>
+                            </div>
+                            <svg class="chart-open-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9375 1.75H3.0625C2.33763 1.75 1.75 2.33763 1.75 3.0625V10.9375C1.75 11.6624 2.33763 12.25 3.0625 12.25H10.9375C11.6624 12.25 12.25 11.6624 12.25 10.9375V3.0625C12.25 2.33763 11.6624 1.75 10.9375 1.75ZM3.0625 0.4375C1.61275 0.4375 0.4375 1.61275 0.4375 3.0625V10.9375C0.4375 12.3872 1.61275 13.5625 3.0625 13.5625H10.9375C12.3872 13.5625 13.5625 12.3872 13.5625 10.9375V3.0625C13.5625 1.61275 12.3872 0.4375 10.9375 0.4375H3.0625Z" fill="#B6C0CD"/>
+                                <path d="M10.2897 3.0625L7.30618 3.06271C6.94374 3.06274 6.64995 3.35657 6.64998 3.71901C6.65 4.08145 6.94384 4.37524 7.30628 4.37521L8.69681 4.37511L4.375 8.69692V7.29779C4.375 6.93535 4.08119 6.64154 3.71875 6.64154C3.35631 6.64154 3.0625 6.93535 3.0625 7.29779V10.2815C3.0625 10.4556 3.13164 10.6225 3.25472 10.7456C3.37779 10.8687 3.54472 10.9378 3.71877 10.9378L6.70252 10.9377C7.06496 10.9377 7.35876 10.6439 7.35875 10.2814C7.35874 9.91901 7.06492 9.6252 6.70249 9.62521L5.30283 9.62525L9.63354 5.29453V6.7025C9.63354 7.06494 9.92736 7.35875 10.2898 7.35875C10.6522 7.35875 10.946 7.06494 10.946 6.7025V3.71875C10.946 3.54469 10.8769 3.37777 10.7538 3.25469C10.6307 3.13162 10.4638 3.06249 10.2897 3.0625Z" fill="#B6C0CD"/>
+                            </svg>
+                        </div>
                     </div>
                 </section>
             </div>
@@ -783,7 +809,7 @@
                                             <div class="info-tooltip" id="subscriptionRevenueTooltip">
                                                 <div class="tooltip-content">
                                                     <!-- Content will be populated dynamically -->
-                                                </div>
+                        </div>
                                             </div>
                                         </div>
                                     </div>
@@ -809,7 +835,7 @@
                                             <div class="info-tooltip" id="subscriptionRevenueGrowthTooltip">
                                                 <div class="tooltip-content">
                                                     <!-- Content will be populated dynamically -->
-                                                </div>
+                        </div>
                                             </div>
                                         </div>
                                     </div>
@@ -835,8 +861,8 @@
                                             <div class="info-tooltip" id="mrrTooltip">
                                                 <div class="tooltip-content">
                                                     <!-- Content will be populated dynamically -->
-                                                </div>
-                                            </div>
+                        </div>
+                    </div>
                                         </div>
                                     </div>
                                     <div class="overview-chart-value" id="mrrValue">$46,800 <span class="amount-growth">+7.8%</span></div>
@@ -872,16 +898,16 @@
                                             <div class="info-tooltip" id="activeSubscribersTooltip">
                                                 <div class="tooltip-content">
                                                     <!-- Content will be populated dynamically -->
-                                                </div>
-                                            </div>
+                            </div>
+                        </div>
                                         </div>
                                     </div>
                                     <div class="overview-chart-value" id="activeSubscribersValue">12,450 <span class="amount-growth">+5.7%</span></div>
                                     <div class="overview-chart-canvas">
                                         <canvas id="activeSubscribersChart"></canvas>
-                            </div>
                         </div>
-                                
+                    </div>
+                    
                                 <div class="overview-chart-container">
                                     <svg class="chart-open-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9375 1.75H3.0625C2.33763 1.75 1.75 2.33763 1.75 3.0625V10.9375C1.75 11.6624 2.33763 12.25 3.0625 12.25H10.9375C11.6624 12.25 12.25 11.6624 12.25 10.9375V3.0625C12.25 2.33763 11.6624 1.75 10.9375 1.75ZM3.0625 0.4375C1.61275 0.4375 0.4375 1.61275 0.4375 3.0625V10.9375C0.4375 12.3872 1.61275 13.5625 3.0625 13.5625H10.9375C12.3872 13.5625 13.5625 12.3872 13.5625 10.9375V3.0625C13.5625 1.61275 12.3872 0.4375 10.9375 0.4375H3.0625Z" fill="#B6C0CD"/>
@@ -898,8 +924,8 @@
                                             <div class="info-tooltip" id="activeSubscribersGrowthTooltip">
                                                 <div class="tooltip-content">
                                                     <!-- Content will be populated dynamically -->
-                                                </div>
-                                            </div>
+                        </div>
+                        </div>
                                         </div>
                                     </div>
                                     <div class="overview-chart-value" id="activeSubscribersGrowthValue">+8.2% <span class="amount-growth">+0.9%</span></div>
@@ -1656,7 +1682,7 @@
                                             <div class="info-tooltip" id="meterRevenueTooltip">
                                                 <div class="tooltip-content">
                                                     <!-- Content will be populated dynamically -->
-                                                </div>
+                    </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1689,6 +1715,32 @@
                                     <div class="overview-chart-value" id="metersSubscriptionGrowthValue">+7.1% <span class="amount-growth">+1.8%</span></div>
                                     <div class="overview-chart-canvas">
                                         <canvas id="metersSubscriptionGrowthChart"></canvas>
+                                    </div>
+                                </div>
+                                
+                                <div class="overview-chart-container">
+                                    <svg class="chart-open-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9375 1.75H3.0625C2.33763 1.75 1.75 2.33763 1.75 3.0625V10.9375C1.75 11.6624 2.33763 12.25 3.0625 12.25H10.9375C11.6624 12.25 12.25 11.6624 12.25 10.9375V3.0625C12.25 2.33763 11.6624 1.75 10.9375 1.75ZM3.0625 0.4375C1.61275 0.4375 0.4375 1.61275 0.4375 3.0625V10.9375C0.4375 12.3872 1.61275 13.5625 3.0625 13.5625H10.9375C12.3872 13.5625 13.5625 12.3872 13.5625 10.9375V3.0625C13.5625 1.61275 12.3872 0.4375 10.9375 0.4375H3.0625Z" fill="#B6C0CD"/>
+                                        <path d="M10.2897 3.0625L7.30618 3.06271C6.94374 3.06274 6.64995 3.35657 6.64998 3.71901C6.65 4.08145 6.94384 4.37524 7.30628 4.37521L8.69681 4.37511L4.375 8.69692V7.29779C4.375 6.93535 4.08119 6.64154 3.71875 6.64154C3.35631 6.64154 3.0625 6.93535 3.0625 7.29779V10.2815C3.0625 10.4556 3.13164 10.6225 3.25472 10.7456C3.37779 10.8687 3.54472 10.9378 3.71877 10.9378L6.70252 10.9377C7.06496 10.9377 7.35876 10.6439 7.35875 10.2814C7.35874 9.91901 7.06492 9.6252 6.70249 9.62521L5.30283 9.62525L9.63354 5.29453V6.7025C9.63354 7.06494 9.92736 7.35875 10.2898 7.35875C10.6522 7.35875 10.946 7.06494 10.946 6.7025V3.71875C10.946 3.54469 10.8769 3.37777 10.7538 3.25469C10.6307 3.13162 10.4638 3.06249 10.2897 3.0625Z" fill="#B6C0CD"/>
+                                    </svg>
+                                    <div class="billing-chart-title-container">
+                                        <div class="overview-chart-title">Aggregate usage</div>
+                                        <div class="billing-chart-info-icon-container">
+                                            <svg class="billing-chart-info-icon" width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" data-metric="aggregate-usage">
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11 2.5H5C3.61929 2.5 2.5 3.61929 2.5 5V11C2.5 12.3807 3.61929 13.5 5 13.5H11C12.3807 13.5 13.5 12.3807 13.5 11V5C13.5 3.61929 12.3807 2.5 11 2.5ZM5 1C2.79086 1 1 2.79086 1 5V11C1 13.2091 2.79086 15 5 15H11C13.2091 15 15 13.2091 15 11V5C15 2.79086 13.2091 1 11 1H5Z" fill="#99A5B8"/>
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.25 8C6.25 7.58579 6.58579 7.25 7 7.25H8.25C8.66421 7.25 9 7.58579 9 8V11.5C9 11.9142 8.66421 12.25 8.25 12.25C7.83579 12.25 7.5 11.9142 7.5 11.5V8.75H7C6.58579 8.75 6.25 8.41421 6.25 8Z" fill="#99A5B8"/>
+                                                <path d="M6.75 5C6.75 4.31075 7.31075 3.75 8 3.75C8.68925 3.75 9.25 4.31075 9.25 5C9.25 5.68925 8.68925 6.25 8 6.25C7.31075 6.25 6.75 5.68925 6.75 5Z" fill="#99A5B8"/>
+                                            </svg>
+                                            <div class="info-tooltip" id="aggregateUsageTooltip">
+                                                <div class="tooltip-content">
+                                                    <!-- Content will be populated dynamically -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="overview-chart-value" id="aggregateUsageValue">1.24B <span class="amount-growth">+18.2%</span></div>
+                                    <div class="overview-chart-canvas">
+                                        <canvas id="aggregateUsageChart"></canvas>
                                     </div>
                                 </div>
                             </div>

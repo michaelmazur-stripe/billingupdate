@@ -213,6 +213,18 @@ const mockData = {
         }]
     },
 
+    // Aggregate usage chart data combining all meters usage
+    aggregateUsageChartData: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+            label: 'Total Aggregate Usage (Billions)',
+            data: [0.95, 1.08, 1.22, 1.15, 1.34, 1.41, 1.28, 1.19, 1.37, 1.45, 1.24, 1.31],
+            backgroundColor: '#9966FF',
+            borderColor: '#9966FF',
+            borderWidth: 1
+        }]
+    },
+
     subscriptionGrowthChartData: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [{
@@ -814,6 +826,48 @@ const mockData = {
                 { month: 'November', value: 130, change: '-3.0%' },
                 { month: 'December', value: 128, change: '-1.5%' }
             ]
+        },
+        aggregateUsage: {
+            title: "Aggregate usage",
+            value: "1.24B",
+            description: "This metric shows the total number of API calls across all your meters, including data processing, compute operations, and other billable usage events.",
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            data: [950000000, 1080000000, 1220000000, 1150000000, 1340000000, 1410000000, 1280000000, 1190000000, 1370000000, 1450000000, 1240000000, 1310000000],
+            tableData: [
+                { month: 'January', value: '950M', change: '+12.4%' },
+                { month: 'February', value: '1.08B', change: '+13.7%' },
+                { month: 'March', value: '1.22B', change: '+13.0%' },
+                { month: 'April', value: '1.15B', change: '-5.7%' },
+                { month: 'May', value: '1.34B', change: '+16.5%' },
+                { month: 'June', value: '1.41B', change: '+5.2%' },
+                { month: 'July', value: '1.28B', change: '-9.2%' },
+                { month: 'August', value: '1.19B', change: '-7.0%' },
+                { month: 'September', value: '1.37B', change: '+15.1%' },
+                { month: 'October', value: '1.45B', change: '+5.8%' },
+                { month: 'November', value: '1.24B', change: '-14.5%' },
+                { month: 'December', value: '1.31B', change: '+5.6%' }
+            ]
+        },
+        utilizationRate: {
+            title: "Utilization rate",
+            value: "68%",
+            description: "This metric shows the average percentage of subscription data limits used by customers each month. It measures how much of their allocated subscription capacity (data, API calls, storage, etc.) your users are consuming relative to their plan limits.",
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            data: [62, 65, 58, 66, 69, 73, 75, 78, 71, 68, 72, 68],
+            tableData: [
+                { month: 'January', value: '62%', change: '+3.2%', description: 'Average utilization across 2,847 active users' },
+                { month: 'February', value: '65%', change: '+4.8%', description: 'Average utilization across 2,931 active users' },
+                { month: 'March', value: '58%', change: '-10.8%', description: 'Average utilization across 2,765 active users' },
+                { month: 'April', value: '66%', change: '+13.8%', description: 'Average utilization across 3,012 active users' },
+                { month: 'May', value: '69%', change: '+4.5%', description: 'Average utilization across 3,156 active users' },
+                { month: 'June', value: '73%', change: '+5.8%', description: 'Average utilization across 3,289 active users' },
+                { month: 'July', value: '75%', change: '+2.7%', description: 'Average utilization across 3,401 active users' },
+                { month: 'August', value: '78%', change: '+4.0%', description: 'Average utilization across 3,524 active users' },
+                { month: 'September', value: '71%', change: '-9.0%', description: 'Average utilization across 3,387 active users' },
+                { month: 'October', value: '68%', change: '-4.2%', description: 'Average utilization across 3,198 active users' },
+                { month: 'November', value: '72%', change: '+5.9%', description: 'Average utilization across 3,245 active users' },
+                { month: 'December', value: '68%', change: '-5.6%', description: 'Average utilization across 3,089 active users' }
+            ]
         }
     },
     
@@ -949,6 +1003,22 @@ const mockData = {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 datasets: [{
                     data: [22400, 24600, 26100, 27800, 28900, 29200, 29800, 30100, 29600, 30200, 30400, 30700],
+                    borderColor: '#635bff',
+                    backgroundColor: 'rgba(99, 91, 255, 0.1)',
+                    fill: false,
+                    tension: 0.4,
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    pointHoverRadius: 0
+                }]
+            }
+        },
+        utilizationRate: {
+            value: '68%',
+            chartData: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    data: [62, 65, 58, 66, 69, 73, 75, 78, 71, 68, 72, 68],
                     borderColor: '#635bff',
                     backgroundColor: 'rgba(99, 91, 255, 0.1)',
                     fill: false,
@@ -2220,6 +2290,66 @@ function createCustomerEconomicsCharts() {
             }
         });
     }
+
+    // Utilization Rate Chart
+    const utilizationRateCtx = document.getElementById('utilizationRateChart');
+    if (utilizationRateCtx) {
+        new Chart(utilizationRateCtx.getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    data: [62, 65, 58, 66, 69, 73, 75, 78, 71, 68, 72, 68],
+                    borderColor: '#635bff',
+                    backgroundColor: 'rgba(99, 91, 255, 0.1)',
+                    fill: false,
+                    tension: 0.4,
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    pointHoverRadius: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: '#1f2937',
+                        titleColor: '#f9fafb',
+                        bodyColor: '#f9fafb',
+                        borderColor: '#374151',
+                        borderWidth: 1,
+                        callbacks: { label: function(context) { return context.parsed.y + '%'; } }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        border: { display: false },
+                        ticks: {
+                            color: '#9ca3af',
+                            font: { size: 11 },
+                            callback: function(value, index) {
+                                if (index === 0 || index === 11) return this.getLabelForValue(value);
+                                return '';
+                            }
+                        }
+                    },
+                    y: {
+                        min: 50,
+                        max: 85,
+                        grid: { display: false },
+                        border: { display: false },
+                        ticks: { display: false }
+                    }
+                },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+    }
 }
 
 // Add Interactivity
@@ -2378,7 +2508,9 @@ function showModal(chartType) {
         'lifetimeValue': 'lifetime-value',
         'netDollarRetention': 'net-dollar-retention',
         'invoiceRevenue': 'invoice-revenue',
-        'invoiceRevenueGrowth': 'invoice-revenue-growth'
+        'invoiceRevenueGrowth': 'invoice-revenue-growth',
+        'aggregateUsage': 'aggregate-usage',
+        'utilizationRate': 'utilization-rate'
     };
     
     // Get the metric definition if available
@@ -2489,8 +2621,12 @@ function showModal(chartType) {
         
         // Format values based on metric type
         const formatValue = (value, title) => {
-            if (title.toLowerCase().includes('retention') || title.toLowerCase().includes('growth')) {
-                return `${value}%`;
+            if (title.toLowerCase().includes('retention') || title.toLowerCase().includes('growth') || title.toLowerCase().includes('utilization')) {
+                // For percentage-based metrics, return value as-is if it already has % or add % if it doesn't
+                return value.toString().includes('%') ? value : `${value}%`;
+            } else if (title.toLowerCase().includes('usage') || title.toLowerCase().includes('calls')) {
+                // For usage metrics, return the value as-is since it's already formatted (e.g., "1.24B", "950M")
+                return value;
             } else {
                 return formatCurrency(value);
             }
@@ -2624,6 +2760,10 @@ function createModalChart(data) {
             }
         });
     } else {
+        // Check if this is an aggregate usage chart or utilization rate chart for special formatting
+        const isUsageChart = data.title.toLowerCase().includes('usage') || data.title.toLowerCase().includes('calls');
+        const isUtilizationChart = data.title.toLowerCase().includes('utilization');
+        
         // Default line chart for other metrics
         modalChart = new Chart(ctx.getContext('2d'), {
             type: 'line',
@@ -2661,7 +2801,22 @@ function createModalChart(data) {
                         borderWidth: 1,
                         callbacks: {
                             label: function(context) {
-                                return formatCurrency(context.parsed.y);
+                                if (isUsageChart) {
+                                    // Format usage numbers with B/M abbreviations
+                                    const value = context.parsed.y;
+                                    if (value >= 1000000000) {
+                                        return (value / 1000000000).toFixed(2) + 'B calls';
+                                    } else if (value >= 1000000) {
+                                        return (value / 1000000).toFixed(0) + 'M calls';
+                                    } else {
+                                        return value.toLocaleString() + ' calls';
+                                    }
+                                } else if (isUtilizationChart) {
+                                    // Format utilization as percentage
+                                    return context.parsed.y + '%';
+                                } else {
+                                    return formatCurrency(context.parsed.y);
+                                }
                             }
                         }
                     }
@@ -2697,7 +2852,21 @@ function createModalChart(data) {
                                 size: 12
                             },
                             callback: function(value) {
-                                return formatCurrency(value);
+                                if (isUsageChart) {
+                                    // Format y-axis with B abbreviations for usage charts
+                                    if (value >= 1000000000) {
+                                        return (value / 1000000000).toFixed(1) + 'B';
+                                    } else if (value >= 1000000) {
+                                        return (value / 1000000).toFixed(0) + 'M';
+                                    } else {
+                                        return value.toLocaleString();
+                                    }
+                                } else if (isUtilizationChart) {
+                                    // Format y-axis as whole percentages for utilization charts
+                                    return Math.round(value) + '%';
+                                } else {
+                                    return formatCurrency(value);
+                                }
                             }
                         }
                     }
@@ -3118,6 +3287,50 @@ function createInvoicesOverviewCharts() {
 
 // Create Meters Overview Charts
 function createMetersOverviewCharts() {
+    // Aggregate Usage Bar Chart
+    const aggregateUsageCtx = document.getElementById('aggregateUsageChart');
+    if (aggregateUsageCtx) {
+        new Chart(aggregateUsageCtx.getContext('2d'), {
+            type: 'bar',
+            data: mockData.aggregateUsageChartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        mode: 'index', intersect: false, backgroundColor: '#1f2937', titleColor: '#f9fafb', bodyColor: '#f9fafb', borderColor: '#374151', borderWidth: 1,
+                        callbacks: {
+                            label: function(context) {
+                                const value = context.parsed.y;
+                                if (value >= 1) {
+                                    return (value).toFixed(2) + 'B calls';
+                                } else {
+                                    return (value * 1000).toFixed(0) + 'M calls';
+                                }
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        display: true, grid: { display: false },
+                        ticks: { color: '#9ca3af', font: { size: 12 } }
+                    },
+                    y: {
+                        position: 'right', grid: { color: '#f3f4f6', borderDash: [2, 2] }, border: { display: false },
+                        min: 0, max: 1.6,
+                        ticks: {
+                            color: '#9ca3af', font: { size: 11 }, stepSize: 0.4,
+                            callback: function(value) { return Math.round(value * 10) / 10 + 'B'; }
+                        }
+                    }
+                },
+                interaction: { intersect: false, mode: 'index' }
+            }
+        });
+    }
+
     // Meter Revenue Bar Chart for Meters
     const metersSubscriptionBarCtx = document.getElementById('metersSubscriptionRevenueBarChart');
     if (metersSubscriptionBarCtx) {
@@ -3350,6 +3563,7 @@ function setupMetersChartInteractivity() {
     // Find chart containers for meters page
     const metersSubscriptionContainer = document.querySelector('#tab-meters-overview .overview-chart-container:nth-child(1)');
     const metersGrowthContainer = document.querySelector('#tab-meters-overview .overview-chart-container:nth-child(2)');
+    const aggregateUsageContainer = document.querySelector('#tab-meters-overview .overview-chart-container:nth-child(3)');
     
     if (metersSubscriptionContainer) {
         metersSubscriptionContainer.addEventListener('click', () => {
@@ -3360,6 +3574,12 @@ function setupMetersChartInteractivity() {
     if (metersGrowthContainer) {
         metersGrowthContainer.addEventListener('click', () => {
             showModal('subscriptionRevenueGrowth');
+        });
+    }
+    
+    if (aggregateUsageContainer) {
+        aggregateUsageContainer.addEventListener('click', () => {
+            showModal('aggregateUsage');
         });
     }
 }
@@ -4142,6 +4362,12 @@ class MetricsPanel {
                 description: 'Percentage of recurring revenue retained from existing customers including expansions and contractions.',
                 controls: []
             },
+            'utilization-rate': {
+                title: 'Utilization rate',
+                shortDescription: 'Average percentage of subscription data limits used by customers.',
+                description: 'Average percentage of subscription data limits used by customers each month. This metric shows how much of their allocated subscription capacity (data, API calls, storage, etc.) your users are consuming relative to their plan limits.',
+                controls: []
+            },
             'subscription-revenue': {
                 title: 'Subscription revenue',
                 shortDescription: 'Revenue from recurring subscription payments.',
@@ -4453,6 +4679,25 @@ class MetricsPanel {
                 shortDescription: 'Percent change of meter revenue over time.',
                 description: 'Percent change of meter revenue over time.',
                 controls: []
+            },
+            'aggregate-usage': {
+                title: 'Aggregate usage',
+                shortDescription: 'Total number of API calls across all your meters.',
+                description: 'Aggregate usage shows the absolute number of API calls your meters have made across all your services. This includes all successful metered API requests, data processing calls, and compute operations that contribute to your usage billing.',
+                controls: [
+                    {
+                        id: 'includeTestModeUsage',
+                        title: 'Test mode usage',
+                        description: 'Include usage from test mode requests in the aggregate calculation',
+                        checked: false
+                    },
+                    {
+                        id: 'includeFailedRequests',
+                        title: 'Failed requests',
+                        description: 'Include failed API requests in the usage aggregate',
+                        checked: false
+                    }
+                ]
             }
         };
     }
@@ -4514,7 +4759,8 @@ class MetricsPanel {
             metricsToShow = [
                 'arpu',
                 'lifetime-value',
-                'net-dollar-retention'
+                'net-dollar-retention',
+                'utilization-rate'
             ];
         } else if (this.currentPanelType === 'invoices') {
             metricsToShow = [
@@ -4524,7 +4770,8 @@ class MetricsPanel {
         } else if (this.currentPanelType === 'meters') {
             metricsToShow = [
                 'meter-revenue',
-                'meter-revenue-growth'
+                'meter-revenue-growth',
+                'aggregate-usage'
             ];
         }
         

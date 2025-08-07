@@ -2629,6 +2629,373 @@ input:checked + .toggle-slider:before {
 }
 
 /* Toast Notification */
+/* Invoice List Styles */
+.invoice-list-container {
+    padding: 0;
+    background: #ffffff;
+}
+
+.invoice-filters {
+    padding: 16px 0 16px 0;
+    border-bottom: none;
+}
+
+.invoice-status-pills {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.invoice-pill {
+    flex: 1;
+    height: 48px;
+    padding: 0 16px 0 8px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #6b7280;
+    font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+.invoice-pill:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+    color: #374151;
+}
+
+.invoice-pill.active {
+    background: #ffffff;
+    color: #533AFD;
+    border-color: #533AFD;
+    font-weight: 600;
+}
+
+.invoice-table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0 16px 0;
+    border-bottom: 1px solid #f3f4f6;
+    background: #ffffff;
+}
+
+.invoice-table-filters {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.invoice-filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffff;
+    border: 1px dashed #d1d5db;
+    border-radius: 20px;
+    padding: 4px 12px;
+    height: 24px;
+    font-size: 14px;
+    color: #6b7280;
+    font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.invoice-filter-btn:hover {
+    border-color: #9ca3af;
+    background: #f9fafb;
+}
+
+.invoice-filter-btn.active,
+.invoice-filter-btn.selected {
+    border: 1px dashed #533AFD;
+    color: #533AFD;
+    background: #ffffff;
+}
+
+.invoice-filter-btn.active svg,
+.invoice-filter-btn.selected svg {
+    color: #533AFD;
+}
+
+.invoice-filter-btn svg {
+    width: 12px;
+    height: 12px;
+    color: #6b7280;
+    opacity: 1;
+}
+
+.invoice-filter-btn .pill-plus-icon {
+    width: 14px;
+    height: 14px;
+    color: #6b7280;
+    flex-shrink: 0;
+}
+
+.invoice-filter-btn.active .pill-plus-icon,
+.invoice-filter-btn.selected .pill-plus-icon {
+    color: #533AFD;
+}
+
+.invoice-table-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.invoice-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffff;
+    border: 1px dashed #d1d5db;
+    border-radius: 20px;
+    padding: 4px 12px;
+    height: 24px;
+    font-size: 14px;
+    color: #6b7280;
+    font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.invoice-action-btn:hover {
+    border-color: #9ca3af;
+    background: #f9fafb;
+}
+
+.invoice-action-btn svg {
+    width: 12px;
+    height: 12px;
+    color: #6b7280;
+    opacity: 1;
+}
+
+.invoice-table-wrapper {
+    overflow-x: auto;
+    max-height: calc(100vh - 300px);
+    overflow-y: auto;
+}
+
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    background: #ffffff;
+}
+
+.invoice-table th {
+    background: #ffffff;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    color: #6b7280;
+    border-bottom: 1px solid #f3f4f6;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.invoice-table th:first-child {
+    padding-left: 32px;
+}
+
+.invoice-table th:last-child {
+    padding-right: 32px;
+    width: 40px;
+}
+
+.invoice-table tbody tr {
+    transition: background-color 0.15s ease;
+    cursor: pointer;
+}
+
+.invoice-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.invoice-table td {
+    padding: 2px 16px;
+    border-bottom: 1px solid #f3f4f6;
+    color: #1f2937;
+    vertical-align: middle;
+    white-space: nowrap;
+    height: 20px;
+}
+
+.invoice-table td:first-child {
+    padding-left: 32px;
+}
+
+.invoice-table td:last-child {
+    padding-right: 32px;
+    text-align: center;
+}
+
+
+
+.invoice-total {
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.invoice-currency {
+    color: #6b7280;
+    font-size: 12px;
+    margin-left: 4px;
+}
+
+.invoice-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.invoice-status.paid {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.invoice-status.open {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.invoice-status.draft {
+    background: #f3f4f6;
+    color: #6b7280;
+}
+
+.invoice-status.past-due {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.invoice-frequency {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #6b7280;
+}
+
+.invoice-frequency-icon {
+    width: 12px;
+    height: 12px;
+    opacity: 0.6;
+}
+
+.invoice-number {
+    color: #6b7280;
+    font-weight: 400;
+}
+
+.invoice-customer {
+    color: #6b7280;
+    font-weight: 400;
+}
+
+.invoice-email {
+    color: #6b7280;
+}
+
+.invoice-date {
+    color: #6b7280;
+}
+
+.invoice-actions {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.invoice-table tbody tr:hover .invoice-actions {
+    opacity: 1;
+}
+
+.invoice-actions-btn {
+    padding: 4px;
+    border: none;
+    background: none;
+    color: #6b7280;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+}
+
+.invoice-actions-btn:hover {
+    background: #f3f4f6;
+    color: #1f2937;
+}
+
+.invoice-pagination-footer {
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+    background: #ffffff;
+    border-top: 1px solid #e5e7eb;
+    z-index: 20;
+}
+
+.pagination-info {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.pagination-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.pagination-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #6b7280;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background: #f9fafb;
+    border-color: #d1d5db;
+    color: #1f2937;
+}
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-btn svg {
+    width: 12px;
+    height: 12px;
+}
+
 .toast-notification {
     position: fixed;
     bottom: 48px;
@@ -2742,6 +3109,10 @@ input:checked + .toggle-slider:before {
     gap: 0;
     border-bottom: 1px solid #e5e7eb;
     margin-bottom: 24px;
+}
+
+#invoices-page .tab-nav {
+    margin-bottom: 0;
 }
 
 .tab-button {

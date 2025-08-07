@@ -871,6 +871,30 @@ const mockData = {
         }
     },
     
+    // AI Company Invoice Data
+    invoices: [
+        { id: 'AI2024-0001', customer: 'TechCorp Solutions', email: 'billing@techcorp.ai', total: 4250.00, currency: 'USD', status: 'Paid', frequency: 'Monthly', service: 'AI Platform Subscription', due: 'Aug 15', created: 'Aug 1, 2:30 PM', finalized: 'Aug 1, 2:30 PM' },
+        { id: 'API-DRAFT-0089', customer: 'DataFlow Inc', email: 'accounts@dataflow.com', total: 0.00, currency: 'USD', status: 'Draft', frequency: 'Daily', service: 'API Usage', due: '—', created: 'Aug 1, 2:15 PM', finalized: '—' },
+        { id: 'ML2024-0156', customer: 'Neural Networks Ltd', email: 'finance@neuralnet.co.uk', total: 12500.00, currency: 'USD', status: 'Open', frequency: 'Monthly', service: 'Custom Model Training', due: 'Aug 20', created: 'Aug 1, 1:45 PM', finalized: '—' },
+        { id: 'CONS-DRAFT-0034', customer: 'StartupAI', email: 'billing@startup.ai', total: 2500.00, currency: 'USD', status: 'Draft', frequency: 'One-time', service: 'AI Consulting', due: '—', created: 'Aug 1, 1:30 PM', finalized: '—' },
+        { id: 'API2024-0445', customer: 'CloudVision Corp', email: 'payments@cloudvision.io', total: 850.75, currency: 'USD', status: 'Past due', frequency: 'Daily', service: 'Computer Vision API', due: 'Jul 28', created: 'Jul 28, 3:20 PM', finalized: 'Jul 28, 3:20 PM' },
+        { id: 'DATA-0298', customer: 'AnalyticsPro', email: 'invoices@analytics.pro', total: 1875.00, currency: 'USD', status: 'Paid', frequency: 'Monthly', service: 'Data Processing', due: '—', created: 'Aug 1, 12:45 PM', finalized: 'Aug 1, 12:45 PM' },
+        { id: 'ML-DRAFT-0067', customer: 'RoboTech Industries', email: 'finance@robotech.com', total: 0.00, currency: 'USD', status: 'Draft', frequency: 'Monthly', service: 'Machine Learning Platform', due: '—', created: 'Aug 1, 12:30 PM', finalized: '—' },
+        { id: 'API2024-0446', customer: 'SmartRetail Solutions', email: 'billing@smartretail.ai', total: 3200.00, currency: 'USD', status: 'Open', frequency: 'Monthly', service: 'Recommendation Engine', due: 'Aug 18', created: 'Aug 1, 11:15 AM', finalized: '—' },
+        { id: 'NLP2024-0112', customer: 'LinguaAI', email: 'accounts@linguaai.com', total: 5600.00, currency: 'USD', status: 'Paid', frequency: 'Monthly', service: 'Natural Language Processing', due: '—', created: 'Aug 1, 10:30 AM', finalized: 'Aug 1, 10:30 AM' },
+        { id: 'CONS2024-0078', customer: 'HealthTech Innovations', email: 'billing@healthtech.ai', total: 8900.00, currency: 'USD', status: 'Open', frequency: 'One-time', service: 'Healthcare AI Consulting', due: 'Aug 25', created: 'Aug 1, 9:45 AM', finalized: '—' },
+        { id: 'API-DRAFT-0090', customer: 'FinanceBot Ltd', email: 'payments@financebot.co', total: 125.50, currency: 'USD', status: 'Draft', frequency: 'Daily', service: 'Financial Analysis API', due: '—', created: 'Aug 1, 9:20 AM', finalized: '—' },
+        { id: 'SAAS2024-0233', customer: 'AutoDrive Systems', email: 'billing@autodrive.ai', total: 15000.00, currency: 'USD', status: 'Paid', frequency: 'Monthly', service: 'Autonomous Vehicle AI', due: '—', created: 'Aug 1, 8:30 AM', finalized: 'Aug 1, 8:30 AM' },
+        { id: 'ML2024-0157', customer: 'GameAI Studios', email: 'finance@gameai.studio', total: 2750.00, currency: 'USD', status: 'Open', frequency: 'Monthly', service: 'Game AI Development', due: 'Aug 22', created: 'Aug 1, 8:00 AM', finalized: '—' },
+        { id: 'API2024-0447', customer: 'VoiceFlow Inc', email: 'billing@voiceflow.ai', total: 950.25, currency: 'USD', status: 'Paid', frequency: 'Daily', service: 'Speech Recognition API', due: '—', created: 'Aug 1, 7:45 AM', finalized: 'Aug 1, 7:45 AM' },
+        { id: 'DATA-DRAFT-0156', customer: 'BigData Corp', email: 'accounts@bigdata.ai', total: 0.00, currency: 'USD', status: 'Draft', frequency: 'Monthly', service: 'Data Analytics Platform', due: '—', created: 'Aug 1, 7:15 AM', finalized: '—' },
+        { id: 'EDGE2024-0089', customer: 'EdgeCompute Solutions', email: 'billing@edgecompute.io', total: 6750.00, currency: 'USD', status: 'Open', frequency: 'Monthly', service: 'Edge AI Processing', due: 'Aug 19', created: 'Aug 1, 6:30 AM', finalized: '—' },
+        { id: 'API2024-0448', customer: 'TranslateAI', email: 'payments@translate.ai', total: 1200.00, currency: 'USD', status: 'Past due', frequency: 'Daily', service: 'Translation API', due: 'Jul 30', created: 'Jul 30, 4:20 PM', finalized: 'Jul 30, 4:20 PM' },
+        { id: 'ML2024-0158', customer: 'PredictiveAnalytics Co', email: 'finance@predictive.ai', total: 4500.00, currency: 'USD', status: 'Paid', frequency: 'Monthly', service: 'Predictive Modeling', due: '—', created: 'Aug 1, 5:45 AM', finalized: 'Aug 1, 5:45 AM' },
+        { id: 'CHAT-DRAFT-0045', customer: 'ChatBot Solutions', email: 'billing@chatbot.ai', total: 750.00, currency: 'USD', status: 'Draft', frequency: 'Monthly', service: 'Conversational AI', due: '—', created: 'Aug 1, 5:20 AM', finalized: '—' },
+        { id: 'API2024-0449', customer: 'ImageRecognition Pro', email: 'accounts@imagerecog.ai', total: 3400.00, currency: 'USD', status: 'Open', frequency: 'Monthly', service: 'Image Recognition API', due: 'Aug 16', created: 'Aug 1, 4:30 AM', finalized: '—' }
+    ],
+    
     activities: [
         {
             icon: '💳',
@@ -3665,10 +3689,149 @@ function initInvoicesTabs() {
                         createInvoicesOverviewCharts();
                         setupInvoicesChartInteractivity();
                     }, 100);
+                } else if (targetTab === 'invoices') {
+                    // Initialize invoice list functionality
+                    setTimeout(() => {
+                        initInvoiceList();
+                    }, 100);
                 }
             }
         });
     });
+}
+
+// Invoice List Functionality
+let currentInvoiceFilter = 'all';
+
+function initInvoiceList() {
+    populateInvoiceTable();
+    setupInvoiceListInteractivity();
+    updatePaginationInfo('all');
+}
+
+function populateInvoiceTable(statusFilter = 'all') {
+    const tbody = document.getElementById('invoice-table-body');
+    if (!tbody) return;
+    
+    tbody.innerHTML = '';
+    
+    // Filter invoices based on status
+    const filteredInvoices = statusFilter === 'all' ? 
+        mockData.invoices : 
+        mockData.invoices.filter(invoice => {
+            const invoiceStatus = invoice.status.toLowerCase().replace(' ', '-');
+            return invoiceStatus === statusFilter;
+        });
+    
+    filteredInvoices.forEach(invoice => {
+        const row = document.createElement('tr');
+        
+        // Format total amount
+        const totalFormatted = invoice.total === 0 ? '$0.00' : 
+            `$${invoice.total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        
+        // Format status class
+        const statusClass = invoice.status.toLowerCase().replace(' ', '-');
+        
+        // Get frequency icon
+        const frequencyIcon = getFrequencyIcon(invoice.frequency);
+        
+        row.innerHTML = `
+            <td>
+                <span class="invoice-total">${totalFormatted}</span>
+                <span class="invoice-currency">USD</span>
+            </td>
+            <td>
+                <div class="invoice-frequency">
+                    ${frequencyIcon}
+                    ${invoice.frequency}
+                </div>
+            </td>
+            <td>
+                <div class="invoice-status ${statusClass}">${invoice.status}</div>
+            </td>
+            <td><span class="invoice-number">${invoice.id}</span></td>
+            <td><span class="invoice-customer">${invoice.customer || '—'}</span></td>
+            <td><span class="invoice-email">${invoice.email}</span></td>
+            <td><span class="invoice-date">${invoice.due}</span></td>
+            <td><span class="invoice-date">${invoice.created}</span></td>
+            <td><span class="invoice-date">${invoice.finalized}</span></td>
+            <td>
+                <div class="invoice-actions">
+                    <button class="invoice-actions-btn" title="More actions">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <circle cx="8" cy="2" r="1.5"/>
+                            <circle cx="8" cy="8" r="1.5"/>
+                            <circle cx="8" cy="14" r="1.5"/>
+                        </svg>
+                    </button>
+                </div>
+            </td>
+        `;
+        
+        tbody.appendChild(row);
+    });
+}
+
+function getFrequencyIcon(frequency) {
+    switch (frequency.toLowerCase()) {
+        case 'daily':
+            return `<svg class="invoice-frequency-icon" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8 2a6 6 0 100 12A6 6 0 008 2zM7 6a1 1 0 112 0v2.5l1.5 1a1 1 0 11-1 1.732L8 10.5A1 1 0 017 9.5V6z"/>
+                    </svg>`;
+        case 'monthly':
+            return `<svg class="invoice-frequency-icon" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M3.5 2A1.5 1.5 0 002 3.5v9A1.5 1.5 0 003.5 14h9a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0012.5 2h-9zM3 5h10v7.5a.5.5 0 01-.5.5h-9a.5.5 0 01-.5-.5V5z"/>
+                    </svg>`;
+        case 'one-time':
+            return `<svg class="invoice-frequency-icon" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8 2a6 6 0 100 12A6 6 0 008 2z"/>
+                    </svg>`;
+        default:
+            return '';
+    }
+}
+
+function setupInvoiceListInteractivity() {
+    // Status pill interactions (functional filtering)
+    const statusPills = document.querySelectorAll('.invoice-pill');
+    statusPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            // Remove active state from all pills
+            statusPills.forEach(p => p.classList.remove('active'));
+            
+            // Add active state to clicked pill
+            pill.classList.add('active');
+            
+            // Get filter status and apply filter
+            const filterStatus = pill.getAttribute('data-status');
+            currentInvoiceFilter = filterStatus;
+            
+            // Repopulate table with filtered data
+            populateInvoiceTable(filterStatus);
+            
+            // Update pagination info
+            updatePaginationInfo(filterStatus);
+        });
+    });
+    
+    // Table row hover effects are handled by CSS
+    // Pagination is currently disabled since we only have 20 items
+}
+
+function updatePaginationInfo(statusFilter = 'all') {
+    const paginationRange = document.getElementById('pagination-range');
+    if (!paginationRange) return;
+    
+    // Count filtered invoices
+    const filteredCount = statusFilter === 'all' ? 
+        mockData.invoices.length : 
+        mockData.invoices.filter(invoice => {
+            const invoiceStatus = invoice.status.toLowerCase().replace(' ', '-');
+            return invoiceStatus === statusFilter;
+        }).length;
+    
+    paginationRange.textContent = `1-${filteredCount} of ${filteredCount}`;
 }
 
 // Tab functionality for meters page

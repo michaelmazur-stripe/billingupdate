@@ -31,7 +31,7 @@ const mockData = {
     totalRevenueChartData: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [{
-            label: 'Total Revenue',
+            label: 'Monthly Committed Revenue (MCR)',
             data: [4200, 5100, 4800, 6200, 7100, 6800, 7900, 8400, 7600, 8100, 8800, 9200],
             borderColor: '#635bff',
             backgroundColor: 'rgba(99, 91, 255, 0.1)',
@@ -46,7 +46,7 @@ const mockData = {
     totalRevenueGrowthChartData: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [{
-            label: 'Total Revenue Growth (%)',
+            label: 'MCR Growth Rate (%)',
             data: [0, 21.4, -5.9, 29.2, 14.5, -4.2, 16.2, 6.3, -9.5, 6.6, 8.6, 4.5],
             borderColor: '#635bff',
             backgroundColor: 'rgba(99, 91, 255, 0.1)',
@@ -112,7 +112,7 @@ const mockData = {
         }]
     },
 
-    // Invoice revenue bar chart data (combines subscription + meter revenue)
+    // Invoice revenue bar chart data (combines subscription + monthly usage revenue)
     invoiceRevenueBarChartData: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [{
@@ -140,11 +140,11 @@ const mockData = {
         }]
     },
 
-    // Meter revenue bar chart data (from homepage meter data)
+    // Monthly usage revenue bar chart data (from homepage meter data)
     meterRevenueBarChartData: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [{
-            label: 'Meter Revenue',
+            label: 'Monthly Usage Revenue',
             data: [1400, 1900, 1700, 2300, 2600, 2600, 2800, 2800, 2400, 2700, 2900, 2900],
             backgroundColor: '#9966FF',
             borderColor: '#9966FF',
@@ -152,11 +152,11 @@ const mockData = {
         }]
     },
 
-    // Meter revenue growth chart data (calculated from meter revenue data)
+    // Monthly usage revenue growth chart data (calculated from monthly usage revenue data)
     meterRevenueGrowthChartData: {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [{
-            label: 'Meter Revenue Growth (%)',
+            label: 'Monthly Usage Revenue Growth (%)',
             data: [0, 35.7, -10.5, 35.3, 13.0, 0.0, 7.7, 0.0, -14.3, 12.5, 7.4, 0.0],
             borderColor: '#9966FF',
             backgroundColor: 'rgba(153, 102, 255, 0.1)',
@@ -448,9 +448,9 @@ const mockData = {
     // Detailed chart data for modal
     modalChartData: {
         totalRevenue: {
-            title: "Total revenue",
+            title: "Monthly committed revenue (MCR)",
             value: "$85,200",
-            description: "This metric represents the total revenue generated from all payment transactions during the selected time period.",
+            description: "This metric represents the monthly committed revenue generated from all payment transactions during the selected time period.",
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             data: [4200, 5100, 4800, 6200, 7100, 6800, 7900, 8400, 7600, 8100, 8800, 9200],
             tableData: [
@@ -639,7 +639,7 @@ const mockData = {
             ]
         },
         totalRevenueGrowth: {
-            title: "Total revenue growth",
+            title: "MCR growth rate",
             value: "18%",
             description: "This metric shows the percentage growth in total revenue compared to the previous period, calculated as the change in total revenue over time.",
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -660,7 +660,7 @@ const mockData = {
             ]
         },
         grossRevenue: {
-            title: "Gross revenue",
+            title: "Gross payment volume",
             value: "$89,460",
             description: "This metric represents the total revenue before any deductions, including taxes, fees, and refunds, providing a complete view of income generated.",
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -681,7 +681,7 @@ const mockData = {
             ]
         },
         netRevenue: {
-            title: "Net revenue",
+            title: "Net payment volume",
             value: "$81,940",
             description: "This metric represents revenue after deducting taxes, processing fees, and refunds, showing the actual income retained by the business.",
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -723,7 +723,7 @@ const mockData = {
             ]
         },
         meterRevenue: {
-            title: "Meter revenue",
+            title: "Monthly usage revenue",
             value: "$30,700",
             description: "This metric represents revenue generated from metered usage billing, calculated from meter events and their associated pricing tiers during the selected period.",
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -1594,7 +1594,7 @@ function createCharts() {
         }
     });
     
-    // Total Revenue Chart
+    // Monthly Committed Revenue Chart
     const totalRevenueCtx = document.getElementById('totalRevenueChart').getContext('2d');
     chartInstances.totalRevenueChart = new Chart(totalRevenueCtx, {
         type: 'line',
@@ -1602,7 +1602,7 @@ function createCharts() {
         options: createChartOptions(12000) // 0, 4000, 8000, 12000
     });
 
-    // Total Revenue Growth Chart
+    // MCR Growth Rate Chart
     const totalRevenueGrowthCtx = document.getElementById('totalRevenueGrowthChart').getContext('2d');
     chartInstances.totalRevenueGrowthChart = new Chart(totalRevenueGrowthCtx, {
         type: 'line',
@@ -2558,7 +2558,7 @@ function showModal(chartType) {
     tableHead.innerHTML = '';
     tableBody.innerHTML = '';
     
-    // Check if this is the new breakdown format (total revenue) or the old format
+            // Check if this is the new breakdown format (monthly committed revenue) or the old format
     if (data.tableData.length > 0 && data.tableData[0].hasOwnProperty('jan')) {
         // New breakdown format - show revenue type breakdown
         const headerRow = document.createElement('tr');
@@ -2694,8 +2694,8 @@ function createModalChart(data) {
         modalChart.destroy();
     }
     
-    // Check if this is the total revenue chart - use stacked bar chart
-    if (data.title === 'Total revenue') {
+            // Check if this is the monthly committed revenue chart - use stacked bar chart
+        if (data.title === 'Monthly committed revenue (MCR)') {
         modalChart = new Chart(ctx.getContext('2d'), {
             type: 'bar',
             data: {
@@ -3355,7 +3355,7 @@ function createMetersOverviewCharts() {
         });
     }
 
-    // Meter Revenue Bar Chart for Meters
+    // Monthly Usage Revenue Bar Chart for Meters
     const metersSubscriptionBarCtx = document.getElementById('metersSubscriptionRevenueBarChart');
     if (metersSubscriptionBarCtx) {
         new Chart(metersSubscriptionBarCtx.getContext('2d'), {
@@ -3389,7 +3389,7 @@ function createMetersOverviewCharts() {
         });
     }
 
-    // Meter Revenue Growth Line Chart for Meters
+    // Monthly Usage Revenue Growth Line Chart for Meters
     const metersSubscriptionGrowthCtx = document.getElementById('metersSubscriptionGrowthChart');
     if (metersSubscriptionGrowthCtx) {
         new Chart(metersSubscriptionGrowthCtx.getContext('2d'), {
@@ -4173,7 +4173,7 @@ function setupSingleTooltip(infoIcon, tooltip, metricKey) {
         const tooltipContent = tooltip.querySelector('.tooltip-content');
         
         // Build tooltip content with inline "View more" link
-        let content = `<p>${metricData.description} <a href="#" class="tooltip-view-more-link" data-metric="${metricKey}">View more</a></p>`;
+        let content = `<p>${metricData.shortDescription} <a href="#" class="tooltip-view-more-link" data-metric="${metricKey}">View more</a></p>`;
         
         // Add settings list with inline status
         if (metricData.controls && metricData.controls.length > 0) {
@@ -4210,7 +4210,7 @@ function setupSingleTooltip(infoIcon, tooltip, metricKey) {
                 // Open the metric definition panel directly to the detail view
                 const metricsPanel = window.metricsPanel;
                 if (metricsPanel && metricsPanel.metrics[metricKey]) {
-                    metricsPanel.currentPanelType = 'revenue'; // Set to revenue since this is the total revenue metric
+                    metricsPanel.currentPanelType = 'revenue'; // Set to revenue since this is the monthly committed revenue metric
                     metricsPanel.currentMetric = metricKey;
                     
                     // Set up the panel content and open directly to detail panel
@@ -4275,7 +4275,7 @@ class MetricsPanel {
         if (metricsLink) {
             metricsLink.addEventListener('click', (e) => {
                 e.preventDefault();
-                this.currentPanelType = 'revenue';
+                this.currentPanelType = 'earnings';
                 this.openMainPanel();
             });
         }
@@ -4394,135 +4394,76 @@ class MetricsPanel {
     setupMetricData() {
         this.metrics = {
             'total-committed-revenue': {
-                title: 'Total revenue',
-                shortDescription: 'A sum of your recurring revenue and usage charges.',
-                description: 'A sum of your subscription revenue and metered usage revenue. Your subscription revenue is your monthly recurring revenue (MRR). Your usage revenue is the total earned from your metered usage.',
+                title: 'Monthly committed revenue (MCR)',
+                shortDescription: 'How much money your business would earn this month from all active paid subscriptions and metered usage so far, assuming nothing changes for the rest of the month.',
+                description: 'How much money your business would earn this month from all active paid subscriptions and metered usage so far, assuming nothing changes for the rest of the month. The sum of Monthly Recurring Revenue (MRR) and Monthly Usage Revenue at the point in time measured.',
                 controls: [
                     {
                         id: 'toggleDiscounts',
                         title: 'One time discounts',
-                        description: 'Include one time discounts in your total revenue',
+                        description: 'Include one time discounts in your monthly committed revenue',
                         checked: true
                     },
                     {
                         id: 'toggleCredits',
                         title: 'Free credits',
-                        description: 'Include free credits in your total revenue',
+                        description: 'Include free credits in your monthly committed revenue',
                         checked: true
                     }
                 ]
             },
             'total-revenue-growth': {
-                title: 'Total revenue growth',
-                shortDescription: 'Percent change of revenue over a given period of time.',
-                description: 'Percent change of revenue over a given period of time.',
+                title: 'MCR growth rate',
+                shortDescription: 'The percentage change in what your business would earn this month from subscriptions and usage, compared to the previous period.',
+                description: 'The percentage change in what your business would earn this month from subscriptions and usage, compared to the previous period. The percentage change in Monthly Committed Revenue (MRR + Monthly Usage Revenue) between the current period and the immediately preceding period, excluding trials, free plans, taxes, and discounts.',
                 controls: []
             },
             'gross-revenue': {
-                title: 'Gross revenue',
-                shortDescription: 'Total revenue minus Stripe expenses.',
-                description: 'Total revenue minus Stripe expenses. Configure which fees and expenses are included in the calculation.',
-                controls: [
-                    {
-                        id: 'toggleProcessingFees',
-                        title: 'Processing fees',
-                        description: 'Include Stripe processing fees in expense calculation',
-                        checked: true
-                    },
-                    {
-                        id: 'toggleChargebackFees',
-                        title: 'Chargeback fees',
-                        description: 'Include chargeback fees in expense calculation',
-                        checked: true
-                    }
-                ]
+                title: 'Gross payment volume',
+                shortDescription: 'How much money your business has earned from settled payments before any deductions.',
+                description: 'How much money your business has earned from settled payments before any deductions. The total revenue from payments that are successfully settled to your Stripe balance, excluding pending or failed payments, and before any deductions for fees, refunds, disputes, or transfers.',
+                controls: []
+            },
+            'gross-volume': {
+                title: 'Gross volume',
+                shortDescription: 'How much money your business has earned from settled payments before any deductions.',
+                description: 'How much money your business has earned from settled payments before any deductions. The total revenue from payments that are successfully settled to your Stripe balance, excluding pending or failed payments, and before any deductions for fees, refunds, disputes, or transfers.',
+                controls: []
             },
             'net-revenue': {
-                title: 'Net revenue',
-                shortDescription: 'Gross revenue that has landed in your account.',
-                description: 'Gross revenue that has landed in your account. Configure how pending and refunded amounts are handled.',
-                controls: [
-                    {
-                        id: 'togglePendingPayouts',
-                        title: 'Pending payouts',
-                        description: 'Include pending payouts in net revenue calculation',
-                        checked: false
-                    },
-                    {
-                        id: 'toggleRefunds',
-                        title: 'Refunds',
-                        description: 'Subtract refunds from net revenue',
-                        checked: true
-                    }
-                ]
+                title: 'Net payment volume',
+                shortDescription: 'How much money your business has earned from settled payments after fees, refunds, disputes, and transfers are deducted.',
+                description: 'How much money your business has earned from settled payments after fees, refunds, disputes, and transfers are deducted. The total revenue from payments that are successfully settled to your Stripe balance, minus Stripe fees, refunds, dispute amounts, and Connect transfers. Pending or failed payments are excluded.',
+                controls: []
             },
             'mrr': {
                 title: 'Monthly recurring revenue (MRR)',
-                shortDescription: 'Current months committed subscription revenue.',
-                description: 'Current months committed subscription revenue.',
-                controls: [
-                    {
-                        id: 'toggleProrations',
-                        title: 'Prorations',
-                        description: 'Include prorated charges in MRR calculation',
-                        checked: true
-                    },
-                    {
-                        id: 'toggleAnnualSubscriptions',
-                        title: 'Annual subscriptions',
-                        description: 'Include annual subscriptions normalized to monthly',
-                        checked: true
-                    }
-                ]
+                shortDescription: 'How much money your business would earn this month from all active paid subscriptions if nothing changed for the rest of the month.',
+                description: 'How much money your business would earn this month from all active paid subscriptions if nothing changed for the rest of the month. Monthly recurring revenue is the monthly-normalized value of all active and past_due subscriptions, excluding trials, free plans, taxes, and metered usage products.',
+                controls: []
             },
             'meter-revenue': {
-                title: 'Meter revenue',
-                shortDescription: 'Average revenue measured by your meters.',
-                description: 'Average revenue measured by your meters. Configure how usage is aggregated and calculated.',
-                controls: [
-                    {
-                        id: 'toggleAggregation',
-                        title: 'Usage aggregation',
-                        description: 'Use sum aggregation for usage calculations',
-                        checked: true
-                    },
-                    {
-                        id: 'toggleTiering',
-                        title: 'Tiered pricing',
-                        description: 'Apply tiered pricing to usage calculations',
-                        checked: false
-                    }
-                ]
+                title: 'Monthly usage revenue',
+                shortDescription: 'How much money your business would earn this month from metered usage assuming no additional usage for the rest of the month.',
+                description: 'How much money your business would earn this month from metered usage assuming no additional usage for the rest of the month. Monthly usage revenue is the total value generated from usage across all meters in a given month, excluding taxes and discounts.',
+                controls: []
             },
             'arpu': {
                 title: 'Average revenue per user (ARPU)',
-                shortDescription: 'Average monthly revenue per active user.',
-                description: 'Average monthly revenue generated per active user.',
-                controls: [
-                    {
-                        id: 'toggleActiveUsers',
-                        title: 'Active users',
-                        description: 'Include only users with activity in the period',
-                        checked: true
-                    },
-                    {
-                        id: 'toggleTrialUsers',
-                        title: 'Trial users',
-                        description: 'Include users in trial periods in ARPU calculation',
-                        checked: false
-                    }
-                ]
+                shortDescription: 'How much money your business would earn per active customer this month, based on monthly committed revenue.',
+                description: 'How much money your business would earn per active customer this month, based on monthly committed revenue. Monthly Committed Revenue divided by the number of active customers in the same period. An active customer is one with an active subscription or any non-zero metered usage.',
+                controls: []
             },
             'lifetime-value': {
                 title: 'Lifetime value',
-                shortDescription: 'Predicted total revenue per customer.',
-                description: 'Predicted total revenue a customer will generate over their entire relationship.',
+                shortDescription: 'How much money your business would earn from a customer over their entire relationship with you, based on monthly committed revenue.',
+                description: 'How much money your business would earn from a customer over their entire relationship with you, based on monthly committed revenue. The projected total revenue from a customer over their lifetime, calculated as ARPU multiplied by the average customer lifetime in months. ARPU is based on Monthly Committed Revenue divided by the number of active customers in the same period, where an active customer is one with an active subscription or any non-zero metered usage.',
                 controls: []
             },
             'net-dollar-retention': {
                 title: 'Net dollar retention',
-                shortDescription: 'Percentage of recurring revenue retained.',
-                description: 'Percentage of recurring revenue retained from existing customers including expansions and contractions.',
+                shortDescription: 'How much money your existing customers would earn your business this month compared to the previous period.',
+                description: 'How much money your existing customers would earn your business this month compared to the previous period. The percentage change in Monthly Committed Revenue from the same set of customers between the current period and the previous period, excluding revenue from any new customers added in the current period.',
                 controls: []
             },
             'utilization-rate': {
@@ -4818,29 +4759,10 @@ class MetricsPanel {
             },
             
             // Meter-specific metrics
-            'meter-revenue': {
-                title: 'Meter revenue',
-                shortDescription: 'Revenue generated from metered usage.',
-                description: 'Revenue generated from metered usage including all billable usage events.',
-                controls: [
-                    {
-                        id: 'includeTrialUsage',
-                        title: 'Trial usage',
-                        description: 'Include usage during trial periods in meter revenue calculation',
-                        checked: false
-                    },
-                    {
-                        id: 'includeOverageCharges',
-                        title: 'Overage charges',
-                        description: 'Include charges for usage above plan limits',
-                        checked: true
-                    }
-                ]
-            },
             'meter-revenue-growth': {
-                title: 'Meter revenue growth',
-                shortDescription: 'Percent change of meter revenue over time.',
-                description: 'Percent change of meter revenue over time.',
+                title: 'Monthly usage revenue growth',
+                shortDescription: 'Percent change of monthly usage revenue over time.',
+                description: 'Percent change of monthly usage revenue over time.',
                 controls: []
             },
             'aggregate-usage': {
@@ -4882,7 +4804,7 @@ class MetricsPanel {
         
         // Define which metrics to show based on panel type
         let metricsToShow = [];
-        if (this.currentPanelType === 'revenue') {
+        if (this.currentPanelType === 'earnings') {
             metricsToShow = [
                 'total-committed-revenue',
                 'total-revenue-growth', 
@@ -4890,6 +4812,19 @@ class MetricsPanel {
                 'net-revenue',
                 'mrr',
                 'meter-revenue'
+            ];
+        } else if (this.currentPanelType === 'revenue') {
+            metricsToShow = [
+                'total-committed-revenue',
+                'total-revenue-growth', 
+                'gross-revenue',
+                'gross-volume',
+                'net-revenue',
+                'mrr',
+                'meter-revenue',
+                'arpu',
+                'lifetime-value',
+                'net-dollar-retention'
             ];
         } else if (this.currentPanelType === 'subscriptions') {
             metricsToShow = [

@@ -2591,11 +2591,11 @@ function showModal(chartType) {
     
     // Insert "Manage metric calculations" link specifically for MCR modal
     (function manageCalculationsLink() {
-        const calcSection = document.querySelector('#chartModal .modal-calculation-section');
-        if (!calcSection) return;
+        const calcParagraph = document.getElementById('modalCalculationText');
+        if (!calcParagraph) return;
         
         // Remove any existing injected link to avoid duplicates when reopening
-        const existing = calcSection.querySelector('.modal-manage-metrics-link');
+        const existing = calcParagraph.querySelector('.modal-manage-metrics-link');
         if (existing && existing.parentElement) {
             existing.parentElement.removeChild(existing);
         }
@@ -2605,7 +2605,12 @@ function showModal(chartType) {
             const btn = document.createElement('button');
             btn.className = 'metrics-link modal-manage-metrics-link';
             btn.innerHTML = '<u>Manage metric calculations</u>';
-            btn.style.marginTop = '8px';
+            btn.style.fontSize = '14px';
+            btn.style.color = '#353A44';
+            btn.style.background = 'none';
+            btn.style.border = 'none';
+            btn.style.padding = '0';
+            btn.style.cursor = 'pointer';
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 // Close the modal
@@ -2613,14 +2618,14 @@ function showModal(chartType) {
                 // Open the MCR metric detail panel via metrics panel
                 setTimeout(() => {
                     if (window.metricsPanel) {
-                        // Ensure panel context includes total-committed-revenue
                         window.metricsPanel.currentPanelType = 'earnings';
-                        // Open detail directly
                         window.metricsPanel.openDetailPanel('total-committed-revenue');
                     }
                 }, 150);
             });
-            calcSection.appendChild(btn);
+            // Add a space then append the link at the end of the paragraph
+            calcParagraph.appendChild(document.createTextNode(' '));
+            calcParagraph.appendChild(btn);
         }
     })();
     

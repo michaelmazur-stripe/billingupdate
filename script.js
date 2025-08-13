@@ -2589,6 +2589,41 @@ function showModal(chartType) {
     document.getElementById('modalMetricValue').textContent = data.value;
     document.getElementById('modalCalculationText').textContent = calculationText;
     
+    // Insert "Manage metric calculations" link specifically for MCR modal
+    (function manageCalculationsLink() {
+        const calcSection = document.querySelector('#chartModal .modal-calculation-section');
+        if (!calcSection) return;
+        
+        // Remove any existing injected link to avoid duplicates when reopening
+        const existing = calcSection.querySelector('.modal-manage-metrics-link');
+        if (existing && existing.parentElement) {
+            existing.parentElement.removeChild(existing);
+        }
+        
+        // Only show for Monthly committed revenue (MCR)
+        if (data.title === 'Monthly committed revenue (MCR)') {
+            const btn = document.createElement('button');
+            btn.className = 'metrics-link modal-manage-metrics-link';
+            btn.innerHTML = '<u>Manage metric calculations</u>';
+            btn.style.marginTop = '8px';
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Close the modal
+                hideModal();
+                // Open the MCR metric detail panel via metrics panel
+                setTimeout(() => {
+                    if (window.metricsPanel) {
+                        // Ensure panel context includes total-committed-revenue
+                        window.metricsPanel.currentPanelType = 'earnings';
+                        // Open detail directly
+                        window.metricsPanel.openDetailPanel('total-committed-revenue');
+                    }
+                }, 150);
+            });
+            calcSection.appendChild(btn);
+        }
+    })();
+    
     // Update table - horizontal layout
     const tableHead = document.getElementById('modalTableHead');
     const tableBody = document.getElementById('modalTableBody');

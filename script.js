@@ -1345,6 +1345,19 @@ function showPage(pageName) {
     } else if (pageName === 'subscriptions' || pageName.toLowerCase() === 'subscriptions') {
         // Show subscriptions page with sticky filters and subscription charts
         if (subscriptionsPage) subscriptionsPage.style.display = 'block';
+        // Ensure Overview tab is the default active when landing on Subscriptions
+        (function ensureSubscriptionsOverviewDefault() {
+            const container = document.getElementById('subscriptions-page');
+            if (!container) return;
+            const tabButtons = container.querySelectorAll('.tab-button');
+            const tabContents = container.querySelectorAll('.tab-content');
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            const defaultButton = container.querySelector('.tab-button[data-tab="overview"]');
+            const defaultContent = document.getElementById('tab-overview');
+            if (defaultButton) defaultButton.classList.add('active');
+            if (defaultContent) defaultContent.classList.add('active');
+        })();
         // Setup sticky filters and create subscription charts for subscriptions page
         setTimeout(() => {
             setupStickyFilters();
@@ -1354,6 +1367,19 @@ function showPage(pageName) {
     } else if (pageName === 'invoices' || pageName.toLowerCase() === 'invoices') {
         // Show invoices page with tabs
         if (invoicesPage) invoicesPage.style.display = 'block';
+        // Ensure Overview tab is the default active when landing on Invoices
+        (function ensureInvoicesOverviewDefault() {
+            const container = document.getElementById('invoices-page');
+            if (!container) return;
+            const tabButtons = container.querySelectorAll('.tab-button');
+            const tabContents = container.querySelectorAll('.tab-content');
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            const defaultButton = container.querySelector('.tab-button[data-tab="overview"]');
+            const defaultContent = document.getElementById('tab-invoices-overview');
+            if (defaultButton) defaultButton.classList.add('active');
+            if (defaultContent) defaultContent.classList.add('active');
+        })();
         // Initialize invoices tabs functionality, sticky filters, and charts
         setTimeout(() => {
             initInvoicesTabs();
@@ -1364,6 +1390,19 @@ function showPage(pageName) {
     } else if (pageName === 'meters' || pageName.toLowerCase() === 'meters') {
         // Show meters page with tabs
         if (metersPage) metersPage.style.display = 'block';
+        // Ensure Overview tab is the default active when landing on Meters
+        (function ensureMetersOverviewDefault() {
+            const container = document.getElementById('meters-page');
+            if (!container) return;
+            const tabButtons = container.querySelectorAll('.tab-button');
+            const tabContents = container.querySelectorAll('.tab-content');
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            const defaultButton = container.querySelector('.tab-button[data-tab="overview"]');
+            const defaultContent = document.getElementById('tab-meters-overview');
+            if (defaultButton) defaultButton.classList.add('active');
+            if (defaultContent) defaultContent.classList.add('active');
+        })();
         // Initialize meters tabs functionality, sticky filters, and charts
         setTimeout(() => {
             initMetersTabs();
